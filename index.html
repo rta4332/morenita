@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Inicio - Morenita</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+       <script src="js/ocultarf.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/csscarrito.css">
+    <link rel="stylesheet" href="css/tipografia.css">
+</head>
+<body>
+    <!-- Overlay para menú móvil -->
+    <div class="overlay"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <a href="index.html">
+                <img alt="morenita logo" src="img/logo.png">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">INICIO</a></li>
+                <li><a href="desayunos.html">DESAYUNOS</a></li>
+                <li><a href="fresas.html">FRESAS</a></li>
+                <li><a href="box.html">BOX Y LICORES</a></li>
+                <li><a href="arreglos.html">ARREGLOS FLORALES</a></li>
+                <li><a href="frutales.html">FRUTALES</a></li>
+                <li><a href="promociones.html">PROMOCIONES</a></li>
+                <li>
+                    <a href="#" class="toggle-submenu">OTROS</a>
+                    <ul class="submenu" style="margin-top: -5px;">
+                        <li><a href="catalogo-especial.html">CATALOGO ESPECIAL</a></li>
+                        <li><a href="preguntas.html">PREGUNTAS FRECUENTES</a></li>
+                        <li><a href="https://wa.me/573023144445">PEDIDO PERSONALIZADO</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="icons">
+            <a href="#" id="carritoIcon">
+                <i class="fas fa-shopping-cart"></i> 
+                <span id="carritoContador" class="count">0</span>
+            </a>
+            <a href="perfil.html">
+                <i class="fas fa-user"></i>
+            </a>
+            <a href="#" id="search-icon">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Menú lateral móvil -->
+    <div class="side-menu">
+        <div class="close-menu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li>
+                <a href="index.html">
+                    <i class="fas fa-home"></i> INICIO
+                </a>
+            </li>
+            <li>
+                <a href="desayunos.html">
+                    <i class="fas fa-coffee"></i> DESAYUNOS
+                </a>
+            </li>
+            <li>
+                <a href="fresas.html">
+                    <i class="fas fa-stroopwafel"></i> FRESAS
+                </a>
+            </li>
+            <li>
+                <a href="box.html">
+                    <i class="fas fa-gift"></i> BOX Y LICORES
+                </a>
+            </li>
+            <li>
+                <a href="arreglos.html">
+                    <i class="fas fa-spa"></i> ARREGLOS FLORALES
+                </a>
+            </li>
+            <li>
+                <a href="frutales.html">
+                    <i class="fas fa-apple-alt"></i> FRUTALES
+                </a>
+            </li>
+            <li>
+                <a href="catalogo-especial.html">
+                    <i class="fas fa-star"></i> CATALOGO ESPECIAL
+                </a>
+            </li>
+            <li>
+                <a href="preguntas.html">
+                    <i class="fas fa-question-circle"></i> PREGUNTAS FRECUENTES
+                </a>
+            </li>
+            <li>
+                <a href="promociones.html">
+                    <i class="fa-solid fa-tags"></i> PROMOCIONES
+                </a>
+            </li>
+            <li>
+                <a href="https://wa.me/573023144445">
+                    <i class="fas fa-pen"></i> PEDIDOS PERSONALIZADOS
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Modal de búsqueda -->
+    <div class="search-modal" id="search-modal">
+        <div class="search-modal-content">
+            <span class="close-search-modal">×</span>
+            <div class="search-modal-header">
+                <h2>Buscar Productos</h2>
+                <div class="search-input-container">
+                    <input class="search-input" id="search-input" placeholder="Escribe el nombre del producto...">
+                    <button class="search-button" id="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="results-count" id="results-count"></div>
+            <div class="product-grid" id="products-container"></div>
+        </div>
+    </div>
+
+    <!-- Modal del carrito -->
+    <div class="carrito-modal" id="carritoModal">
+        <div class="carrito-content">
+            <div class="carrito-header">
+                <h2>Tu Carrito</h2>
+                <button class="close-carrito" id="closeCarrito">×</button>
+            </div>
+            <div id="carritoItems"></div>
+            <div class="carrito-total" id="carritoTotal">
+                <div class="carrito-total-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0</span>
+                </div>
+                <div class="carrito-total-row">
+                    <span>Envío:</span>
+                    <span id="envio">$0</span>
+                </div>
+                <div class="carrito-total-final">
+                    <span>Total:</span>
+                    <span id="total">$0</span>
+                </div>
+            </div>
+            <div class="carrito-botones">
+                <button class="btn-finalizar" id="finalizarCompra">Finalizar Compra</button>
+                <button class="btn-vaciar" id="vaciarCarrito">Vaciar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast -->
+    <div class="toast-notification" id="toastNotification"></div>
+
+    <!-- Carrusel principal -->
+    <div class="carousel-container" id="desktopCarousel">
+        <div class="carousel">
+            <div class="carousel-inner"></div>
+            <button class="carousel-button prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-button next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="dots-container"></div>
+        </div>
+    </div>
+
+    <div class="carousel-container" id="mobileCarousel">
+        <div class="carousel">
+            <div class="carousel-inner"></div>
+            <button class="carousel-button prev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-button next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="dots-container"></div>
+        </div>
+    </div>
+
+    <!-- Sección de carruseles de productos -->
+    <br>
+
+    <!-- Carrusel 1: Desayunos -->
+    <div class="texto-banner1" id="texto1_container"></div>
+    <div class="carrusel-container1" id="carrusel1_container">
+        <div class="carrusel-wrapper1">
+            <button class="prev1">❮</button>
+            <div class="carrusel-items1" id="carrusel1_items"></div>
+            <button class="next1">❯</button>
+        </div>
+    </div>
+
+    <!-- Banner especial -->
+    <div id="banner-container"></div>
+
+    <!-- Carrusel 2: Fresas -->
+    <div class="texto-banner1" id="texto2_container"></div>
+    <div class="carrusel-container1" id="carrusel2_container">
+        <div class="carrusel-wrapper1">
+            <button class="prev2">❮</button>
+            <div class="carrusel-items1" id="carrusel2_items"></div>
+            <button class="next2">❯</button>
+        </div>
+    </div>
+
+    <!-- Sección Rosa Eterna -->
+    <section class="regala-section">
+        <div class="regala-container">
+            <div class="regala-image">
+                <img src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/rosa eterna/rosa.webp" alt="rosa">
+            </div>
+            <div class="regala-content">
+                <h2 class="regala-title">Rosa eterna</h2>
+                <p class="regala-description">
+                    Una flor natural preservada que mantiene su belleza y frescura por años, sin necesidad de agua ni cuidados especiales. Perfecta para expresar amor, gratitud y admiración, esta rosa es el regalo ideal para momentos inolvidables.
+                </p>
+                <p class="regala-description">
+                    Durabilidad de hasta 3 años o más
+                </p>
+                <a href="detalles.html?categoria=arreglos&id=21" class="regala-btn">Obtener aquí</a>
+            </div>
+        </div>
+    </section>
+
+    <br>
+
+    <!-- choco-->
+    <div class="texto-banner1" id="texto3_container"></div>
+    <div class="carrusel-container1" id="carrusel3_container">
+        <div class="carrusel-wrapper1">
+            <button class="prev3">❮</button>
+            <div class="carrusel-items1" id="carrusel3_items"></div>
+            <button class="next3">❯</button>
+        </div>
+    </div>
+
+    <!-- Sección ¿Cómo comprar? -->
+    <div class="container2">
+        <div class="title-section2">
+            <div class="title-container2">
+                <h2 class="title2">¿Cómo comprar?</h2>
+            </div>
+        </div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="Selecciona un producto" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/1r.png" style="transform:rotate(23deg)">
+                </div>
+                <p class="step-text">Elige un producto</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="Añade al carrito" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/i6.png">
+                </div>
+                <p class="step-text">Añade al carrito</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="Completa los datos" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/i2.png" style="margin-left:12px">
+                </div>
+                <p class="step-text">Completa los datos</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="Recibe confirmación" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/i4.png">
+                </div>
+                <p class="step-text">Recibe confirmación</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="Realiza el pago" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/i3.png">
+                </div>
+                <p class="step-text">Realiza el pago</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <img alt="¡Listo! Recibe en casa" src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/iconos de compra/i5.png">
+                </div>
+                <p class="step-text">¡Listo! Para Recibir</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrusel de historias -->
+    <div class="carousel-container4" id="carousel"></div>
+
+    <!-- Testimonios (ocultos) -->
+    <div style="display: none;">
+        <h1 class="title12">Lo que dicen nuestros clientes</h1>
+        <div class="testimonial-container8">
+            <div class="testimonials-track8" id="testimonialsTrack8"></div>
+            <div class="carousel-dots8" id="carouselDots8"></div>
+        </div>
+    </div>
+
+    
+
+    <!-- Galería de clientes -->
+    <h1 class="title12">Sorprende a los que más quieres</h1>
+    <div class="carousel-container12">
+        <button class="navigation-button12 prev12">❮</button>
+        <div class="carousel12" id="clientCarousel12"></div>
+        <button class="navigation-button12 next12">❯</button>
+        <div class="dots-container12" id="dotsContainer12"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <a href="https://wa.me/573023144445">WhatsApp: (+57) 302 314 4445</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fa-envelope far"></i>
+                    <a href="mailto:morenita.floresfresasorpresas@gmail.com">morenita.floresfresasorpresas@gmail.com</a>
+                </div>
+            </div>
+            <div class="footer-logo">
+                <img alt="morenita" src="img/logo.png">
+                <div class="slogan">Sorprende a los que más quieres</div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/morenita.oficial/" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/573023144445" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Explora</h3>
+                <div class="info-links">
+                    <a href="desayunos.html">Desayunos</a>
+                    <a href="arreglos.html">Arreglos florales</a>
+                    <a href="box.html">Box y licores</a>
+                
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Desayunos, Flores, Fresas y Detalles Valledupar | Diseño de página Web por Dokut</p>
+        </div>
+        
+    </footer>
+
+    <!-- Footer móvil -->
+    <div class="mobile-footer">
+        <div class="footer-menu">
+            <a href="tienda.html" class="footer-item">
+                <i class="fas fa-store"></i>
+                <span>Tienda</span>
+            </a>
+            <a href="#" class="footer-item" id="mobileCarritoIcon" style="position:relative">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="mobileCarritoContador" class="count">0</span>
+                <span>Carrito</span>
+            </a>
+            <a href="#" class="footer-item" id="mobile-search-icon">
+                <i class="fas fa-search"></i>
+                <span>Buscar</span>
+            </a>
+            <a href="perfil.html" class="footer-item">
+                <i class="fas fa-user"></i>
+                <span>Mi cuenta</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Botón WhatsApp flotante -->
+    <a href="https://wa.me/573023144445?text=Hola%20quiero%20más%20información%" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,3713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="img/logo.png"rel="icon"type="image/png">
+    <title>Finalizar Compra</title>
+    <link href="" rel="stylesheet">
+    <link rel="stylesheet" href="css/tipografia.css">
+    <!-- Flatpickr CSS y JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <style>
+        /* Reset y configuración base */
+* {
+    box-sizing: border-box;
+}
+
+html, body { 
+    overflow-x: hidden; 
+    background-color: #ffffff; 
+    position: relative; 
+    touch-action: manipulation; 
+    margin: 0;
+    padding: 0;
+} 
+
+body { 
+    background-color: #fff; 
+    margin: 0; 
+    padding: 20px; 
+   
+    line-height: 1.6;
+} 
+
+/* Contenedor principal mejorado */
+.checkout-container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; 
+    align-items: start;
+} 
+
+/* Secciones principales */
+.checkout-resumen, .checkout-datos { 
+    background: white; 
+    border-radius: 15px; 
+    padding: 30px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #f0f0f0;
+} 
+
+/* Items del checkout */
+.checkout-item { 
+    display: flex; 
+    align-items: center; 
+    padding: 20px 0; 
+    border-bottom: 1px solid #f5f5f5; 
+    gap: 15px;
+} 
+
+.checkout-item-img { 
+    width: 70px; 
+    height: 70px; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    flex-shrink: 0;
+} 
+
+.checkout-item-img img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+} 
+
+.checkout-item-details { 
+    flex: 1; 
+    min-width: 0;
+} 
+
+.checkout-item-name { 
+    font-weight: 600; 
+    color: #333; 
+    margin-bottom: 5px;
+    font-size: 16px;
+} 
+
+.checkout-item-price { 
+    color: #666; 
+    font-size: 14px; 
+} 
+
+.checkout-item-total { 
+    font-weight: bold; 
+    color: #c5a8a3; 
+    font-size: 18px;
+    text-align: right;
+    min-width: 80px;
+} 
+
+/* Botones de eliminar */
+.eliminar-item-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.eliminar-item-btn:hover {
+    background: #ff6b81;
+    transform: scale(1.1);
+}
+
+#eliminar-todo, #eliminar-adiciones {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    margin: 10px 0;
+    width: 100%;
+}
+
+#eliminar-todo:hover, #eliminar-adiciones:hover {
+    background: #ff6b81;
+    transform: translateY(-2px);
+}
+
+/* Totales del checkout */
+.checkout-total { 
+    margin-top: 30px; 
+    padding-top: 25px; 
+    border-top: 2px solid #f0f0f0; 
+} 
+
+.checkout-total-row { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 12px; 
+    color: #666; 
+    font-size: 16px;
+} 
+
+.checkout-total-final { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-top: 20px; 
+    font-size: 22px; 
+    font-weight: bold; 
+    color: #c5a8a3; 
+    padding-top: 15px;
+    border-top: 2px solid #c5a8a3;
+} 
+
+/* Formularios mejorados */
+.form-group { 
+    margin-bottom: 25px; 
+    width: 100%;
+    position: relative;
+} 
+
+.form-group label { 
+    display: block; 
+    margin-bottom: 8px; 
+    color: #333; 
+    font-weight: 600; 
+    font-size: 15px;
+} 
+
+/* ESTILOS MEJORADOS PARA SELECTS */
+.form-group select,
+.globos-select,
+#motivo,
+#mensaje-predefinido,
+#metodo-pago,
+#globos-helio {
+    width: 100%; 
+    padding: 15px; 
+    border: 2px solid #e0e0e0; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    transition: all 0.3s ease;
+    background: #fafafa;
+    cursor: pointer;
+    
+    /* CUSTOM DROPDOWN ARROW */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%23666' d='M2,0L0,2h4zm0,5L0,3h4z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    padding-right: 45px;
+    
+    /* FORZAR QUE EL DROPDOWN SALGA ABAJO */
+    position: relative;
+    z-index: 1;
+}
+
+/* HOVER Y FOCUS STATES */
+.form-group select:hover,
+.globos-select:hover {
+    border-color: #c5a8a3;
+    background: white;
+    box-shadow: 0 2px 8px rgba(197, 168, 163, 0.1);
+}
+
+.form-group select:focus,
+.globos-select:focus {
+    border-color: #c5a8a3;
+    background: white;
+    outline: none;
+    box-shadow: 0 4px 12px rgba(197, 168, 163, 0.2);
+    z-index: 999; /* PRIORIDAD MÁXIMA AL ABRIR */
+}
+
+/* OPCIONES DEL SELECT */
+.form-group select option,
+.globos-select option {
+    padding: 12px;
+    background: white;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    margin: 0;
+}
+
+.form-group select option:hover,
+.globos-select option:hover {
+    background: #f8f4f4;
+    color: #c5a8a3;
+}
+
+.form-group select option:checked,
+.globos-select option:checked {
+    background: #c5a8a3;
+    color: white;
+    font-weight: 600;
+}
+
+/* INPUTS Y TEXTAREAS REGULARES */
+.form-group input, 
+.form-group textarea { 
+    width: 100%; 
+    padding: 15px; 
+    border: 2px solid #e0e0e0; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    transition: all 0.3s ease;
+    background: #fafafa;
+} 
+
+.form-group input:focus, 
+.form-group textarea:focus { 
+    border-color: #c5a8a3; 
+    background: white;
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(197, 168, 163, 0.2);
+} 
+
+/* Botón principal */
+.btn-enviar { 
+    background: linear-gradient(135deg, #c5a8a3 0%, #b39690 100%); 
+    color: white; 
+    border: none; 
+    padding: 18px 30px; 
+    border-radius: 12px; 
+    font-size: 18px; 
+    font-weight: 600;
+    cursor: pointer; 
+    width: 100%; 
+    margin-top: 30px; 
+    transition: all 0.3s ease; 
+    text-transform: uppercase;
+    letter-spacing: 1px;
+} 
+
+.btn-enviar:hover { 
+    background: linear-gradient(135deg, #b39690 0%, #a08680 100%); 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(197, 168, 163, 0.4);
+} 
+
+/* Carrito vacío */
+.carrito-vacio { 
+    text-align: center; 
+    padding: 60px 20px; 
+    color: #666; 
+} 
+
+.carrito-vacio i { 
+    font-size: 80px; 
+    color: #f5f5f5; 
+    margin-bottom: 25px; 
+    display: block; 
+} 
+
+/* Procesando pedido */
+.procesando-pedido { 
+    text-align: center; 
+    padding: 40px 20px; 
+} 
+
+/* Notificaciones */
+.toast-notification { 
+    position: fixed; 
+    bottom: 30px; 
+    right: 30px; 
+    background: #4CAF50; 
+    color: white; 
+    padding: 20px 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); 
+    z-index: 1002; 
+    animation: slideIn 0.4s ease-out forwards; 
+    font-weight: 500;
+} 
+
+@keyframes slideIn { 
+    from { 
+        transform: translateX(100%); 
+        opacity: 0; 
+    } 
+    to { 
+        transform: translateX(0); 
+        opacity: 1; 
+    } 
+} 
+
+.header { 
+    margin-bottom: 30px; 
+    text-align: center; 
+} 
+
+.header h1 { 
+    color: #c5a8a3; 
+    margin-bottom: 10px; 
+} 
+
+.header .pasos { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+} 
+
+.header .paso { 
+    display: flex; 
+    align-items: center; 
+    margin: 0 15px; 
+    color: #999; 
+    font-weight: 500; 
+} 
+
+.header .paso.activo { 
+    color: #c5a8a3; 
+    font-weight: bold; 
+} 
+
+.header .paso-numero { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    background: #f5f5f5; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin-right: 10px; 
+} 
+
+.header .paso.activo .paso-numero { 
+    background: #c5a8a3; 
+    color: white; 
+} 
+
+@media (max-width: 768px) { 
+    .header .pasos { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding-left: 10px;
+    } 
+    .header .paso { 
+        margin: 5px 0; 
+    } 
+}
+
+/* Opciones adicionales */
+.extra-options { 
+    margin-top: 30px; 
+    padding: 25px; 
+    background: linear-gradient(135deg, #faf4f4 0%, #f8f2f2 100%); 
+    border-radius: 15px; 
+    border: 1px solid #e8d8d8;
+} 
+
+.extra-options h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Modales mejorados */
+.modal, .modal-1 { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.6); 
+    overflow: auto; 
+    backdrop-filter: blur(5px);
+} 
+
+.modal-content, .modal-content-1 { 
+    background-color: #fff; 
+    margin: 5% auto; 
+    padding: 30px; 
+    border: none; 
+    width: 90%; 
+    max-width: 600px; 
+    max-height: 85vh; 
+    border-radius: 20px; 
+    position: relative; 
+    overflow-y: auto; 
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.3s ease-out forwards;
+} 
+
+@keyframes modalAppear {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Scrollbar personalizado */
+.modal-content::-webkit-scrollbar, 
+.modal-content-1::-webkit-scrollbar { 
+    width: 8px; 
+} 
+
+.modal-content::-webkit-scrollbar-track, 
+.modal-content-1::-webkit-scrollbar-track { 
+    background: #f1f1f1; 
+    border-radius: 10px; 
+} 
+
+.modal-content::-webkit-scrollbar-thumb, 
+.modal-content-1::-webkit-scrollbar-thumb { 
+    background: #c5a8a3; 
+    border-radius: 10px; 
+} 
+
+.modal-content::-webkit-scrollbar-thumb:hover, 
+.modal-content-1::-webkit-scrollbar-thumb:hover { 
+    background: #b29792; 
+} 
+
+/* Items de adición */
+.adicion-item { 
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 20px; 
+    gap: 20px;
+} 
+
+.adicion-item img { 
+    width: 100px; 
+    height: 100px; 
+    border-radius: 12px; 
+    object-fit: cover;
+    flex-shrink: 0;
+} 
+
+.adicion-info { 
+    flex: 1; 
+} 
+
+.adicion-info h3 { 
+    margin: 0 0 8px 0; 
+    font-size: 18px; 
+    font-weight: 600;
+} 
+
+.adicion-info p { 
+    margin: 0; 
+    color: #666; 
+    font-size: 14px;
+} 
+
+.adicion-item button { 
+    background: linear-gradient(135deg, #c5a8a3 0%, #b39690 100%); 
+    color: #fff; 
+    border: none; 
+    padding: 12px 20px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-weight: 500;
+    transition: all 0.3s ease;
+} 
+
+.adicion-item button:hover { 
+    background: linear-gradient(135deg, #b39690 0%, #a08680 100%); 
+    transform: translateY(-2px);
+} 
+
+/* Botones de cerrar */
+.close, .close-1 { 
+    color: #aaa; 
+    float: right; 
+    font-size: 32px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    line-height: 1;
+    transition: all 0.3s ease;
+} 
+
+.close:hover, .close-1:hover { 
+    color: #c5a8a3; 
+    transform: scale(1.1);
+} 
+
+/* Globos en modal */
+.globos-imagenes-1 { 
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px; 
+    padding: 20px; 
+    max-height: 300px;
+    overflow-y: auto;
+} 
+
+.globos-imagenes-1 img { 
+    width: 100%; 
+    height: 100px; 
+    border-radius: 12px; 
+    object-fit: contain; 
+    cursor: pointer; 
+    border: 3px solid transparent; 
+    transition: all 0.3s ease; 
+    padding: 8px; 
+    background: #f9f9f9;
+} 
+
+.globos-imagenes-1 img.seleccionado { 
+    border: 3px solid #c5a8a3; 
+    transform: scale(1.05); 
+    box-shadow: 0 8px 25px rgba(197, 168, 163, 0.4); 
+    background: white;
+} 
+
+.globos-imagenes-1 img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de acción */
+#agregar-adicion, 
+#ver-colores-globos, 
+#seleccionar-globo { 
+    background: linear-gradient(135deg, #c5a8a3 0%, #b39690 100%); 
+    color: white; 
+    border: none; 
+    padding: 15px 25px; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    font-weight: 600;
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+    margin: 10px 0; 
+    width: 100%;
+} 
+
+#agregar-adicion:hover, 
+#ver-colores-globos:hover, 
+#seleccionar-globo:hover { 
+    background: linear-gradient(135deg, #b39690 0%, #a08680 100%); 
+    transform: translateY(-2px); 
+    box-shadow: 0 8px 25px rgba(197, 168, 163, 0.4);
+} 
+
+/* Información de precios */
+.precio-info-1 {
+    background: white;
+    border-radius: 12px;
+}
+
+.precio-info-1 p {
+    margin: 8px 0;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Resumen para imprimir */
+#resumen-para-imprimir { 
+    width: 100%; 
+    max-width: 600px; 
+    margin: 20px auto; 
+    padding: 30px; 
+    background: white; 
+    border-radius: 15px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
+} 
+
+.download-btn { 
+    background: #4CAF50; 
+    color: white; 
+    border: none; 
+    padding: 15px 25px; 
+    border-radius: 10px; 
+    font-size: 16px; 
+    font-weight: 500;
+    cursor: pointer; 
+    margin-top: 20px; 
+    transition: all 0.3s ease; 
+    width: 100%;
+} 
+
+.download-btn:hover { 
+    background: #3e8e41; 
+    transform: translateY(-2px);
+} 
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .checkout-container {
+        grid-template-columns: 1fr;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) { 
+    body {
+        padding: 10px;
+    }
+    
+    .checkout-container { 
+        grid-template-columns: 1fr;
+        gap: 15px;
+    } 
+    
+    .checkout-resumen, .checkout-datos {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    
+    /* CHECKOUT ITEMS ARREGLADOS PARA MÓVIL */
+    .checkout-item {
+        display: flex;
+        flex-direction: row !important; /* FORZAR FILA */
+        align-items: center;
+        padding: 15px 0;
+        gap: 12px;
+        text-align: left; /* NO CENTRADO */
+    }
+    
+    .checkout-item-img {
+        width: 60px;
+        height: 60px;
+        flex-shrink: 0;
+    }
+    
+    .checkout-item-details {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .checkout-item-name {
+        font-size: 14px;
+        line-height: 1.3;
+    }
+    
+    .checkout-item-total {
+        font-size: 16px;
+        min-width: 70px;
+    }
+    
+    /* ADICIONES ARREGLADAS PARA MÓVIL */
+    .adicion-item {
+        display: flex !important;
+        flex-direction: row !important; /* FORZAR FILA */
+        align-items: center;
+        gap: 15px;
+        text-align: left; /* NO CENTRADO */
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .adicion-item img {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+    }
+    
+    .adicion-info {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .adicion-info h3 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+    
+    .adicion-item button {
+        flex-shrink: 0;
+        padding: 8px 15px;
+        font-size: 14px;
+        width: auto; /* NO FULL WIDTH */
+    }
+    
+    /* SELECTS Y FORMULARIOS ARREGLADOS */
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea,
+    .globos-select {
+        padding: 12px;
+        font-size: 16px; /* iOS FIX */
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 12px;
+        padding-right: 35px;
+    }
+    
+    /* MODAL RESPONSIVE */
+    .modal-content, .modal-content-1 {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+        max-height: 90vh;
+    }
+    
+    /* GLOBOS EN MODAL MÓVIL */
+    .globos-imagenes-1 {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        padding: 15px;
+    }
+    
+    .globos-imagenes-1 img {
+        width: 70px !important;
+        height: 70px !important;
+        flex-shrink: 0;
+        object-fit: contain;
+    }
+    
+    /* BOTONES EN MÓVIL */
+    #agregar-adicion, 
+    #ver-colores-globos, 
+    #seleccionar-globo,
+    #eliminar-adiciones {
+        padding: 12px 20px;
+        font-size: 14px;
+        margin: 8px 0;
+    }
+} 
+
+@media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+    
+    .checkout-resumen, .checkout-datos {
+        padding: 12px;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header .paso {
+        font-size: 20px;
+    }
+    
+    
+    
+    /* MÁS PEQUEÑO EN PANTALLAS MUY PEQUEÑAS */
+    .checkout-item-img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .adicion-item img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .globos-imagenes-1 img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea,
+    .globos-select {
+        padding: 10px;
+        font-size: 16px; /* iOS NO ZOOM */
+    }
+}
+ /* Estilos para los círculos de colores de lazo */
+  .colores-lazo-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .color-lazo-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .color-lazo-option:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .color-lazo-option.seleccionado {
+    border: 2px solid #333;
+    box-shadow: 0 0 0 2px #c5a8a3;
+  }
+
+  /* CSS para los radio buttons de horarios */
+#opciones-entrega {
+ margin-bottom: 15px;
+}
+
+#opciones-entrega > div {
+ display: flex;
+ align-items: center;
+ margin-bottom: 10px;
+ padding: 8px;
+ border-radius: 6px;
+ transition: background-color 0.2s ease;
+}
+
+#opciones-entrega > div:hover {
+ background-color: #f8f9fa;
+}
+
+#opciones-entrega input[type="radio"] {
+ appearance: none;
+ width: 20px;
+ height: 20px;
+ border: 2px solid #c5a8a3;
+ border-radius: 4px;
+ background: white;
+ margin-right: 10px;
+ margin-top: 0;
+ margin-bottom: 0;
+ cursor: pointer;
+ position: relative;
+ transition: all 0.3s ease;
+}
+
+#opciones-entrega input[type="radio"]:checked {
+ background: #c5a8a3;
+ border-color: #c5a8a3;
+}
+
+#opciones-entrega input[type="radio"]:checked::after {
+ content: '✓';
+ position: absolute;
+ left: 50%;
+ top: 50%;
+ transform: translate(-50%, -50%);
+ color: white;
+ font-weight: bold;
+ font-size: 14px;
+}
+
+#opciones-entrega label {
+ margin: 0;
+ cursor: pointer;
+ font-weight: 500;
+ color: #2d3748;
+ line-height: 1.4;
+ flex: 1;
+ user-select: none;
+}
+
+/* Estilo para los selects de horarios */
+#select-horario-desayuno,
+#select-horario-general {
+  margin-bottom: 15px;
+}
+
+#select-horario-desayuno label,
+#select-horario-general label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+#horario-desayuno,
+#horario-general {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: white;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#horario-desayuno:focus,
+#horario-general:focus {
+  outline: none;
+  border-color: #c5a8a3;
+  box-shadow: 0 0 0 3px rgba(197, 168, 163, 0.1);
+}
+
+/* Estilo para el mensaje de coordinación especial */
+#coordinacion-especial-msg {
+  background: linear-gradient(90deg, #f0f8ff 0%, #e6f3ff 100%);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #c5a8a3;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+#coordinacion-especial-msg p {
+  margin: 0;
+  color: #2d3748;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  #opciones-entrega > div {
+    padding: 12px 8px;
+  }
+  
+  #opciones-entrega input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+  }
+  
+  #opciones-entrega label {
+    font-size: 14px;
+  }
+}
+
+/* CSS para el checkbox de domicilio fuera - AGREGAR a tu archivo CSS */
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #c5a8a3; /* Color del check */
+}
+
+.checkbox-container label {
+    cursor: pointer;
+    font-weight: 500;
+    color: #2d3748;
+    margin: 0;
+}
+
+/* Estilo alternativo más personalizado */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #c5a8a3;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.custom-checkbox input[type="checkbox"]:checked {
+    background: #c5a8a3;
+    border-color: #c5a8a3;
+}
+
+.custom-checkbox input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.custom-checkbox label {
+    cursor: pointer;
+    font-weight: 500;
+    color: #2d3748;
+    margin: 0;
+    user-select: none;
+}
+/* Modal para fechas clausuradas */
+.modal-fecha-clausurada {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content-fecha {
+    background: #1F2937;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.3s ease;
+    color: #ffffff;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-fecha {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #374151;
+    padding-bottom: 15px;
+}
+
+.modal-icon-fecha {
+    font-size: 40px;
+    margin-right: 15px;
+    color: #ff6b6b;
+}
+
+.modal-title-fecha {
+    color: #ff6b6b;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.modal-date-fecha {
+    font-size: 18px;
+    color: #D1D5DB;
+    margin: 20px 0;
+    font-weight: 600;
+    padding: 10px;
+    background: rgba(55, 65, 81, 0.5);
+    border-radius: 8px;
+    border-left: 4px solid #ff6b6b;
+}
+
+.modal-reason-fecha {
+    background: rgba(55, 65, 81, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid #ff6b6b;
+}
+
+.modal-reason-label-fecha {
+    font-size: 14px;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.modal-reason-text-fecha {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.close-btn-fecha {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+.close-btn-fecha:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.close-btn-fecha:active {
+    transform: translateY(0);
+}
+
+/* Estilos personalizados para Flatpickr en días clausurados */
+.flatpickr-day.disabled {
+    background: #ff6b6b !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    position: relative;
+}
+
+.flatpickr-day.disabled:before {
+    content: "✖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.flatpickr-day.disabled:hover {
+    background: #ee5a24 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modal-content-fecha {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+    
+    .modal-title-fecha {
+        font-size: 20px;
+    }
+    
+    .modal-icon-fecha {
+        font-size: 35px;
+        margin-right: 10px;
+    }
+    
+    .modal-date-fecha {
+        font-size: 16px;
+    }
+    
+    .modal-reason-text-fecha {
+        font-size: 15px;
+    }
+}
+/* Estilos para días clausurados en Flatpickr */
+.flatpickr-day.fecha-clausurada {
+    background: #ff6b6b !important;
+    color: white !important;
+    cursor: not-allowed !important;
+    position: relative;
+    border-color: #ee5a24 !important;
+}
+
+.flatpickr-day.fecha-clausurada:before {
+    content: "✖";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 1;
+    color: white;
+}
+
+.flatpickr-day.fecha-clausurada:hover {
+    background: #ee5a24 !important;
+    color: white !important;
+}
+
+.flatpickr-day.fecha-clausurada.selected {
+    background: #ff6b6b !important;
+}
+
+.globo-item {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+}
+
+.globo-tipo-etiqueta {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.globo-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.globo-item img.seleccionado {
+  border-color: #c5a8a3;
+  transform: scale(1.05);
+}
+
+/* Estilos para radio buttons personalizados */
+.custom-radio-cambios {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.custom-radio-cambios input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    cursor: pointer;
+    background: white;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.custom-radio-cambios input[type="radio"]:checked {
+    background: #c5a8a3;
+    border-color: #c5a8a3;
+}
+
+.custom-radio-cambios label {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-weight: normal;
+    margin: 0;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Finalizar Compra</h1>
+        <div class="pasos">
+            <div class="paso">
+                <div class="paso-numero">1</div>
+                <span>Carrito</span>
+            </div>
+            <div class="paso activo">
+                <div class="paso-numero">2</div>
+                <span>Detalles de Envío</span>
+            </div>
+            <div class="paso">
+                <div class="paso-numero">3</div>
+                <span>Confirmación</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-container">
+        <div class="checkout-resumen">
+            <div id="checkout-items"></div>
+            <div class="checkout-total" id="checkout-total">
+                <div class="checkout-total-row"><span>Subtotal:</span> <span id="checkout-subtotal">$0</span></div>
+                <div class="checkout-total-row"><span>Envío:</span> <span id="checkout-envio">$0</span></div>
+                <div class="checkout-total-final"><span>Total:</span> <span id="checkout-total-valor">$0</span></div>
+            </div>
+        </div>
+
+        <div class="checkout-datos">
+            <h2>Datos de Envío</h2>
+            <form id="checkout-form">
+                <!-- Información Personal -->
+                <div class="form-group">
+                    <label for="nombre">Nombre de quien agenda </label> 
+                    <input id="nombre" name="nombre" type="text" required>
+                </div>
+                
+                
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label> 
+                    <input id="telefono" name="telefono" type="tel">
+                </div>
+
+                <div class="form-group">
+                <label for="fecha-entrega">Fecha de entrega *</label>
+                <input type="text" id="fecha-entrega" name="fecha-entrega" required readonly placeholder="Selecciona una fecha">
+                 </div>
+                
+                <!-- Información de Entrega -->
+
+                <div class="form-group" id="selector-horarios-container" style="display: none;">
+                    <label>Seleccionar horario de entrega *</label>
+                    
+                    <div id="opciones-entrega" style="display: none; margin-bottom: 15px;">
+                        <div style="margin-bottom: 10px;">
+                            <input type="radio" id="entrega-conjunta" name="tipo-entrega" value="conjunta">
+                            <label for="entrega-conjunta" id="label-entrega-conjunta">Entregar todo junto en horario de desayuno</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="entrega-separada" name="tipo-entrega" value="separada">
+                            <label for="entrega-separada" id="label-entrega-separada">Entregar por separado</label>
+                        </div>
+                    </div>
+                    
+                    <div id="select-horario-desayuno" style="display: none; margin-bottom: 15px;">
+                        <label for="horario-desayuno">Horario para desayunos:</label>
+                        <select id="horario-desayuno" name="horario-desayuno" required>
+                            <option value="">Seleccionar horario</option>
+                            <option value="domingo-8-9">Domingos: 8:00am - 9:00am</option>
+                            <option value="lunes-sabado-7:30-8:35">Lunes a Sábado: 7:30am - 8:35am</option>
+                            <option value="lunes-sabado-9:30-10:35">Lunes a Sábado: 9:30am - 10:35am</option>
+                        </select>
+                    </div>
+                    
+                    <div id="select-horario-general" style="display: none;">
+                        <label for="horario-general">Horario general:</label>
+                        <select id="horario-general" name="horario-general">
+    <option value="">Seleccionar horario</option>
+    <option value="lunes-domingo-10-12:45">Lunes a Domingo: 10:00am - 12:45pm</option>
+    <option value="lunes-domingo-15-16:45">Lunes a Domingo: 3:00pm - 4:45pm</option>
+    <option value="lunes-domingo-17-19">Lunes a Domingo: 5:00pm - 7:00pm</option>
+</select>
+                    </div>
+                    
+                    <div id="coordinacion-especial-msg" style="display: none; background: #f0f8ff; padding: 15px; border-radius: 8px; border-left: 4px solid #c5a8a3;">
+                        <p style="margin: 0; color: #2d3748; font-weight: 500;">
+                            📞 Coordinación especial seleccionada. Nos pondremos en contacto contigo para coordinar los horarios de entrega.
+                        </p>
+                    </div>
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="direccion">Dirección de envío *</label> 
+                    <input type="text" id="direccion" name="direccion" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="punto-referencia">Punto de referencia</label>
+                    <input type="text" id="punto-referencia" name="punto-referencia" placeholder="Ej: Frente al parque, casa verde">
+                </div>
+                <div class="form-group">
+    
+</div>
+
+<div class="form-group">
+    <div class="custom-checkbox">
+        <input type="checkbox" id="domicilio-fuera" name="domicilio-fuera">
+        <label for="domicilio-fuera">Domicilio fuera de Valledupar</label>
+    </div>
+</div>
+
+
+<div class="form-group" id="zona-fuera-container" style="display: none;">
+    <label for="zona-fuera">Selecciona la zona de entrega *</label>
+    <select id="zona-fuera" name="zona-fuera">
+        <option value="">Seleccionar zona</option>
+        <option value="la-paz" data-precio="18000">La Paz, Cesar - $18.000</option>
+        <option value="casa-campo" data-precio="14000">Casa campo (vía La Paz) - $14.000</option>
+        <option value="bodegas-metroparque" data-precio="13000">Bodegas Metroparque (vía La Paz) - $13.000</option>
+        <option value="san-diego" data-precio="20000">San Diego, Cesar - $20.000</option>
+        <option value="batallon-ingenieros" data-precio="18000">Batallón de ingenieros (vía Río Seco) - $18.000</option>
+        <option value="colegios-condominios" data-precio="18000">Colegios y condominios (Vía Río Seco) - $18.000</option>
+    </select>
+</div>
+
+    <div class="form-group" id="selector-lazo-container" style="display: none;">
+                        <label>Color del lazo sin costo</label>
+                        <div id="colores-lazo" class="colores-lazo-container"></div>
+                    </div>
+                       <div class="form-group">
+    <label for="tarjeta-de">De: (quien envía)</label>
+    <input type="text" id="tarjeta-de" name="tarjeta-de" placeholder="Ej: Andrés" maxlength="50">
+</div>
+
+<div class="form-group">
+    <label for="tarjeta-para">Para: (quien recibe)</label>
+    <input type="text" id="tarjeta-para" name="tarjeta-para" placeholder="Ej: Celia" maxlength="50">
+</div>
+
+<div class="form-group">
+    <label for="mensaje-tarjeta">Mensaje de tarjeta (sin costo adicional)</label>
+    <textarea id="mensaje-tarjeta" name="mensaje-tarjeta" rows="3" placeholder="Escribe tu mensaje personalizado aquí..." maxlength="200"></textarea>
+</div>
+
+                
+                <div class="form-group">
+                    <label for="receptor-nombre">Quién recibe (nombre completo) *</label>
+                    <input type="text" id="receptor-nombre" name="receptor-nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="receptor-celular">Número de celular de Quién recibe *</label>
+                    <input type="tel" id="receptor-celular" name="receptor-celular" required>
+                </div>
+                <!-- Sección de cambios al pedido -->
+<div class="form-group">
+    <label>¿Deseas hacer algún cambio al pedido?</label>
+    <div style="margin: 10px 0;">
+        <div class="custom-radio-cambios">
+            <input type="radio" id="sin-cambios" name="solicitar-cambios" value="no" checked>
+            <label for="sin-cambios">No, el pedido está correcto</label>
+        </div>
+        <div class="custom-radio-cambios">
+            <input type="radio" id="con-cambios" name="solicitar-cambios" value="si">
+            <label for="con-cambios">Sí, quiero solicitar un cambio</label>
+        </div>
+    </div>
+    
+    <div id="descripcion-cambio-container" style="display: none; margin-top: 15px;">
+        <label for="descripcion-cambio">Describe el cambio que necesitas:</label>
+        <textarea id="descripcion-cambio" name="descripcion-cambio" rows="3" placeholder="Ejemplo: Cambiar color del lazo, modificar cantidad, etc."></textarea>
+    </div>
+</div>
+                <div class="extra-options">
+                    <h3>Opciones adicionales</h3>
+                    
+                    <div class="form-group">
+                        <label for="motivo">Mensaje de globo</label> 
+                        <select id="motivo" name="motivo">
+                            <option value="">Seleccionar mensaje</option>
+                            <option value="feliz-cumpleanos">Feliz cumpleaños</option>
+                            <option value="feliz-aniversario">Feliz aniversario</option>
+                            <option value="feliz-mes">Feliz mes</option>
+                            <option value="feliz-grado">Feliz grado</option>
+                            <option value="te-amo">Te amo</option>
+                            <option value="te-quiero">Te quiero</option>
+                            <option value="felicidades">Felicidades</option>
+                            <option value="bienvenido">Bienvenido</option>
+                            <option value="personalizado">Mensaje personalizado (+$3.000)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="mensaje-personalizado-globo-container" style="display:none">
+                        <label for="mensaje-personalizado-globo">Mensaje personalizado (+$3.000)</label>
+                        <textarea id="mensaje-personalizado-globo" name="mensaje-personalizado-globo" rows="2" placeholder="Escriba aquí su mensaje personalizado"></textarea>
+                    </div>
+                    
+                
+                    
+                    <!-- Globos -->
+                    <div class="form-group-1">
+                        <label for="globos-helio">Agregar globos</label>
+                        <p>Globo con helio látex: $4.500 c/u</p>
+                        <div class="globos-option-1">
+                            <select id="globos-helio" name="globos-helio" class="globos-select">
+                                <option value="0">0 globos</option>
+                                <option value="1">1 globo</option>
+                                <option value="2">2 globos</option>
+                                <option value="3">3 globos</option>
+                                <option value="4">4 globos</option>
+                                <option value="5">5 globos</option>
+                                <option value="6">6 globos</option>
+                                <option value="7">7 globos</option>
+                                <option value="8">8 globos</option>
+                                
+                                
+                                <option value="personalizado">Cantidad personalizada</option>
+                            </select>
+
+                            <!-- Cantidad personalizada de globos -->
+                            <div id="cantidad-personalizada-container" style="display: none; margin-top: 10px;">
+                                <label for="cantidad-personalizada">Cantidad de globos:</label>
+                                <input type="number" id="cantidad-personalizada" name="cantidad-personalizada" min="1" value="1">
+                            </div>
+
+                            <div class="precio-info-1" id="precio-globos"></div>
+                            
+                            <button type="button" id="ver-colores-globos" style="display:none">Seleccionar colores y tipos de globos</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal de globos -->
+                    <div class="modal-1" id="modal-globos-1">
+                        <div class="modal-content-1">
+                            <span class="close-1">×</span>
+                            <h2>Selecciona tus globos</h2>
+                            <p style="font-size:14px;color:#666;">Puedes seleccionar varios globos de diferentes tipos</p>
+                            <div class="globos-imagenes-1"></div>
+                            <button type="button" id="seleccionar-globo">Confirmar selección</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Mensaje de tarjeta -->
+                
+                
+                <!-- Botones de adiciones -->
+                <button type="button" id="agregar-adicion">Agregar una  adición</button>
+                <button type="button" id="eliminar-adiciones">Eliminar adiciones</button>
+                
+                <!-- Método de pago -->
+               <div class="form-group">
+    <label for="metodo-pago">Método de pago</label> 
+    <select id="metodo-pago" name="metodo-pago" required>
+        <option value="">Selecciona método de pago</option>
+  
+        <option value="bancolombia">Bancolombia</option>
+        <option value="nequi">Nequi</option>
+        <option value="daviplata">Daviplata</option>
+        <option value="wester">Wester union</option>
+      
+        
+    </select>
+</div>
+                
+                <button type="submit" class="btn-enviar">Finalizar Compra</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de adiciones -->
+    <div class="modal" id="adicion-modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">×</span>
+            <h2>Agregar Adición</h2>
+            <div id="adiciones-container"></div>
+        </div>
+    </div>
+
+    <div id="modal-adiciones" style="display:none">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <h3>Selecciona una adición</h3>
+            <div class="adiciones-list"></div>
+        </div>
+    </div>
+
+    <!-- Resumen para imprimir -->
+    <div id="resumen-para-imprimir" style="display:none">
+        <h2>Resumen del pedido</h2>
+        <div id="resumen-items-print"></div>
+        <div id="resumen-totales-print"></div>
+        <div id="resumen-cliente-print"></div>
+        <div id="resumen-adicionales-print"></div>
+    </div>
+<!-- Modal para fechas clausuradas -->
+<div id="closedDayModal" class="modal-fecha-clausurada">
+    <div class="modal-content-fecha">
+        <div class="modal-header-fecha">
+            <div class="modal-icon-fecha">🚫</div>
+            <h2 class="modal-title-fecha">Fecha No Disponible</h2>
+        </div>
+        <div class="modal-date-fecha" id="modalDate"></div>
+        <div class="modal-reason-fecha">
+            <div class="modal-reason-label-fecha">Motivo del cierre:</div>
+            <div class="modal-reason-text-fecha" id="modalReason"></div>
+        </div>
+        <button class="close-btn-fecha" id="btn-entendido-clausurado">Entendido</button>
+    </div>
+</div>
+    <!-- Notificación toast -->
+    <div class="toast-notification" id="toastNotification" style="display:none"></div>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkout-auth.js"></script>
+
+
+
+    <script>
+// Inicialización de Firebase
+if (!firebase.apps.length) {
+  const firebaseConfig = {
+    apiKey: "AIzaSyBoRNOrpueYTJVeqxZwMtUsyAYArEHvgVU",
+    authDomain: "morenita0ficial.firebaseapp.com",
+    databaseURL: "https://morenita0ficial-default-rtdb.firebaseio.com",
+    projectId: "morenita0ficial",
+    storageBucket: "morenita0ficial.firebasestorage.app",
+    messagingSenderId: "867231481408",
+    appId: "1:867231481408:web:50512d7709d3b9d4e7a9a5"
+  };
+  firebase.initializeApp(firebaseConfig);
+}
+
+const database = firebase.database();
+
+let globosSeleccionados = [];
+let colorLazoSeleccionado = null;
+let categoriaProducto = "";
+
+// Función para cargar colores de lazo desde Firebase
+function cargarColoresLazo() {
+  return new Promise((resolve, reject) => {
+    database.ref('colores-lazos').once('value').then((snapshot) => {
+      const colores = snapshot.val();
+      resolve(colores);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+// Función para mostrar los colores de lazo
+function mostrarColoresLazo(colores) {
+  const container = document.getElementById('colores-lazo');
+  container.innerHTML = '';
+  
+  Object.keys(colores).forEach((key) => {
+    const color = colores[key];
+    const colorElement = document.createElement('div');
+    colorElement.className = 'color-lazo-option';
+    colorElement.style.backgroundColor = color.codigo;
+    colorElement.setAttribute('data-color-id', key);
+    colorElement.setAttribute('title', color.nombre);
+    
+    colorElement.addEventListener('click', function() {
+      // Deseleccionar todos los colores
+      document.querySelectorAll('.color-lazo-option').forEach(el => {
+        el.classList.remove('seleccionado');
+      });
+      
+      // Seleccionar este color
+      this.classList.add('seleccionado');
+      colorLazoSeleccionado = {
+        id: key,
+        nombre: color.nombre,
+        codigo: color.codigo
+      };
+    });
+    
+    container.appendChild(colorElement);
+  });
+}
+
+// Verificar si el producto es de categoría "desayunos" y mostrar selector de lazo
+function verificarCategoriaProducto() {
+  const carrito = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]");
+  
+  if (carrito && carrito.length > 0) {
+    categoriaProducto = carrito[0].categoria || "";
+    
+    if (categoriaProducto.toLowerCase().includes("desayuno")) {
+      document.getElementById('selector-lazo-container').style.display = 'block';
+      
+      // Cargar colores de lazo desde Firebase
+      cargarColoresLazo().then(colores => {
+        mostrarColoresLazo(colores);
+      }).catch(error => {
+        console.error("Error al cargar colores de lazo:", error);
+      });
+    } else {
+      document.getElementById('selector-lazo-container').style.display = 'none';
+    }
+  }
+}
+
+// Configurar fecha mínima para el selector de fecha (hoy)
+document.addEventListener("DOMContentLoaded", function() {
+
+  // Agregar dentro del DOMContentLoaded existente
+const radioSinCambios = document.getElementById("sin-cambios");
+const radioConCambios = document.getElementById("con-cambios");
+const descripcionContainer = document.getElementById("descripcion-cambio-container");
+
+if (radioSinCambios && radioConCambios) {
+    radioSinCambios.addEventListener("change", function() {
+        if (this.checked) {
+            descripcionContainer.style.display = "none";
+        }
+    });
+    
+    radioConCambios.addEventListener("change", function() {
+        if (this.checked) {
+            descripcionContainer.style.display = "block";
+        }
+    });
+}
+
+  const fechaInput = document.getElementById('fecha-entrega');
+  if (fechaInput) {
+    const hoy = new Date();
+    const fechaMinima = hoy.toISOString().split('T')[0];
+    fechaInput.min = fechaMinima;
+  }
+  
+  // Verificar categoría del producto al cargar la página
+  verificarCategoriaProducto();
+});
+
+
+
+
+
+function calcularEnvio(subtotal) {
+  if (subtotal === 0) return 0;
+  
+  const domicilioFuera = document.getElementById("domicilio-fuera");
+  const zonaFuera = document.getElementById("zona-fuera");
+  
+  if (domicilioFuera && domicilioFuera.checked && zonaFuera && zonaFuera.value) {
+    const opcionSeleccionada = zonaFuera.options[zonaFuera.selectedIndex];
+    const precioEnvio = parseInt(opcionSeleccionada.getAttribute("data-precio"));
+    console.log("Zona seleccionada:", zonaFuera.value, "Precio:", precioEnvio); // Para debug
+    return precioEnvio || 8000;
+  }
+  
+  return 8000; // Precio normal para Valledupar
+}
+
+// Función para mostrar productos en el checkout
+function mostrarProductosCheckout(e) {
+  const o = document.getElementById("checkout-items");
+  let t = "<h3>Resumen del pedido</h3>";
+  
+  e.forEach((e, o) => {
+    t += `
+      <div class="checkout-item">
+        <div class="checkout-item-img">
+          <img src="${e.imagen}" alt="${e.nombre}">
+        </div>
+        <div class="checkout-item-details">
+          <div class="checkout-item-name">${e.nombre}</div>
+          <div class="checkout-item-price">$${e.precio} x ${e.cantidad}</div>
+        </div>
+        <div class="checkout-item-total">$${e.precio * e.cantidad}</div>
+        <button class="eliminar-item-btn" data-item-id="${o}">×</button>
+      </div>
+    `;
+  });
+  
+  o.innerHTML = t;
+  
+  // Agregar eventos a todos los botones de eliminar
+  document.querySelectorAll(".eliminar-item-btn").forEach((e) => {
+    e.addEventListener("click", function() {
+      eliminarItem(parseInt(e.getAttribute("data-item-id")));
+    });
+  });
+}
+
+
+
+
+// Función mejorada con alerta al hacer click
+// Función mejorada con wrapper para capturar clicks
+function controlarHorariosSegunFecha() {
+  const fechaInput = document.getElementById('fecha-entrega');
+  const horarioDesayuno = document.getElementById('horario-desayuno');
+  const horarioGeneral = document.getElementById('horario-general');
+  
+  // Crear wrapper para horario desayuno si existe
+  if (horarioDesayuno && !horarioDesayuno.parentElement.classList.contains('select-wrapper')) {
+    const wrapperDesayuno = document.createElement('div');
+    wrapperDesayuno.className = 'select-wrapper';
+    wrapperDesayuno.style.position = 'relative';
+    wrapperDesayuno.style.display = 'inline-block';
+    wrapperDesayuno.style.width = '100%';
+    horarioDesayuno.parentNode.insertBefore(wrapperDesayuno, horarioDesayuno);
+    wrapperDesayuno.appendChild(horarioDesayuno);
+  }
+  
+  // Crear wrapper para horario general si existe
+  if (horarioGeneral && !horarioGeneral.parentElement.classList.contains('select-wrapper')) {
+    const wrapperGeneral = document.createElement('div');
+    wrapperGeneral.className = 'select-wrapper';
+    wrapperGeneral.style.position = 'relative';
+    wrapperGeneral.style.display = 'inline-block';
+    wrapperGeneral.style.width = '100%';
+    horarioGeneral.parentNode.insertBefore(wrapperGeneral, horarioGeneral);
+    wrapperGeneral.appendChild(horarioGeneral);
+  }
+  
+  if (!fechaInput.value) {
+    // Deshabilitar selectores y agregar overlay
+    if (horarioDesayuno) {
+      horarioDesayuno.disabled = true;
+      horarioDesayuno.style.opacity = '0.5';
+      
+      // Crear overlay invisible
+      let overlayDesayuno = horarioDesayuno.parentElement.querySelector('.click-overlay');
+      if (!overlayDesayuno) {
+        overlayDesayuno = document.createElement('div');
+        overlayDesayuno.className = 'click-overlay';
+        overlayDesayuno.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;cursor:not-allowed;z-index:1;';
+        overlayDesayuno.onclick = function() {
+          mostrarNotificacion('⚠️ Primero selecciona la fecha de entrega');
+          fechaInput.focus();
+          fechaInput.click();
+        };
+        horarioDesayuno.parentElement.appendChild(overlayDesayuno);
+      }
+    }
+    
+    if (horarioGeneral) {
+      horarioGeneral.disabled = true;
+      horarioGeneral.style.opacity = '0.5';
+      
+      // Crear overlay invisible
+      let overlayGeneral = horarioGeneral.parentElement.querySelector('.click-overlay');
+      if (!overlayGeneral) {
+        overlayGeneral = document.createElement('div');
+        overlayGeneral.className = 'click-overlay';
+        overlayGeneral.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;cursor:not-allowed;z-index:1;';
+        overlayGeneral.onclick = function() {
+          mostrarNotificacion('⚠️ Primero selecciona la fecha de entrega');
+          fechaInput.focus();
+          fechaInput.click();
+        };
+        horarioGeneral.parentElement.appendChild(overlayGeneral);
+      }
+    }
+    
+    // Actualizar label
+    const selectorContainer = document.getElementById('selector-horarios-container');
+    if (selectorContainer && selectorContainer.style.display !== 'none') {
+      const label = selectorContainer.querySelector('label');
+      if (label && !label.textContent.includes('(Seleccione fecha primero)')) {
+        label.innerHTML = 'Seleccionar horario de entrega * <span style="color: #e74c3c; font-size: 12px;">(Seleccione fecha primero)</span>';
+      }
+    }
+  } else {
+    // Habilitar selectores y remover overlay
+    if (horarioDesayuno) {
+      horarioDesayuno.disabled = false;
+      horarioDesayuno.style.opacity = '1';
+      
+      // Remover overlay
+      const overlayDesayuno = horarioDesayuno.parentElement.querySelector('.click-overlay');
+      if (overlayDesayuno) {
+        overlayDesayuno.remove();
+      }
+    }
+    
+    if (horarioGeneral) {
+      horarioGeneral.disabled = false;
+      horarioGeneral.style.opacity = '1';
+      
+      // Remover overlay
+      const overlayGeneral = horarioGeneral.parentElement.querySelector('.click-overlay');
+      if (overlayGeneral) {
+        overlayGeneral.remove();
+      }
+    }
+    
+    // Restaurar label original
+    const selectorContainer = document.getElementById('selector-horarios-container');
+    if (selectorContainer) {
+      const label = selectorContainer.querySelector('label');
+      if (label) {
+        label.textContent = 'Seleccionar horario de entrega *';
+      }
+    }
+  }
+}
+// Agregar al DOMContentLoaded existente
+document.addEventListener('DOMContentLoaded', function() {
+  // Llamar función inicial
+  controlarHorariosSegunFecha();
+  
+  // Agregar listener al campo de fecha
+  const fechaInput = document.getElementById('fecha-entrega');
+  if (fechaInput) {
+    fechaInput.addEventListener('change', function() {
+      controlarHorariosSegunFecha();
+      setTimeout(() => {
+        verificarYActualizarHorarios();
+      }, 100);
+    });
+  }
+});
+
+// Función para eliminar item del carrito
+function eliminarItem(index) {
+  let carritoCheckout = JSON.parse(localStorage.getItem("carritoCheckout") || "[]");
+  let carritoPrincipal = JSON.parse(localStorage.getItem("carrito") || "[]");
+  
+  if (index >= 0 && index < carritoCheckout.length) {
+    const itemEliminado = carritoCheckout[index];
+    
+    // 1. Eliminar del carrito checkout
+    carritoCheckout.splice(index, 1);
+    localStorage.setItem("carritoCheckout", JSON.stringify(carritoCheckout));
+    
+    // 2. Buscar y eliminar el mismo item del carrito principal
+    carritoPrincipal = carritoPrincipal.filter(item => {
+      return !(item.nombre === itemEliminado.nombre && 
+              item.precio === itemEliminado.precio && 
+              item.imagen === itemEliminado.imagen);
+    });
+    
+    localStorage.setItem("carrito", JSON.stringify(carritoPrincipal));
+    
+    // Actualizar vistas
+    mostrarProductosCheckout(carritoCheckout);
+    calcularTotalesCheckout(carritoCheckout);
+    mostrarNotificacion(`"${itemEliminado.nombre}" eliminado completamente`);
+  }
+}
+
+
+
+
+
+
+
+// Sistema de restricción de horarios basado en tiempo real - VERSIÓN SIMPLIFICADA
+// Agregar este código después de las funciones existentes en el script
+
+// Configuración de horarios con sus límites de tiempo
+const HORARIOS_CONFIG = {
+  // Horarios de desayuno
+  "domingo-8-9": {
+    texto: "Domingos: 8:00am - 9:00am",
+    limiteHora: 8,
+    limiteMinuto: 1, // 8:01am
+    dias: [0] // Domingo
+  },
+  "lunes-sabado-7:30-8:35": {
+    texto: "Lunes a Sábado: 7:30am - 8:35am",
+    limiteHora: 7,
+    limiteMinuto: 31, // 7:31am
+    dias: [1, 2, 3, 4, 5, 6] // Lunes a Sábado
+  },
+  "lunes-sabado-9:30-10:35": {
+    texto: "Lunes a Sábado: 9:30am - 10:35am",
+    limiteHora: 9,
+    limiteMinuto: 31, // 9:31am
+    dias: [1, 2, 3, 4, 5, 6] // Lunes a Sábado
+  },
+  
+  // Horarios generales
+  "lunes-domingo-10-12:45": {
+    texto: "Lunes a Domingo: 10:00am - 12:45pm",
+    limiteHora: 10,
+    limiteMinuto: 1, // 10:01am
+    dias: [0, 1, 2, 3, 4, 5, 6] // Todos los días
+  },
+  "lunes-domingo-15-16:45": {
+    texto: "Lunes a Domingo: 3:00pm - 4:45pm",
+    limiteHora: 15,
+    limiteMinuto: 1, // 3:01pm
+    dias: [0, 1, 2, 3, 4, 5, 6] // Todos los días
+  },
+  "lunes-domingo-17-19": {
+    texto: "Lunes a Domingo: 5:00pm - 7:00pm",
+    limiteHora: 17,
+    limiteMinuto: 1, // 5:01pm
+    dias: [0, 1, 2, 3, 4, 5, 6] // Todos los días
+  }
+};
+
+// Función para formatear fecha en formato YYYY-MM-DD
+function formatearFecha(fecha) {
+  const year = fecha.getFullYear();
+  const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
+  const day = fecha.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+// Función para verificar si un horario está disponible
+function esHorarioDisponible(horarioValue, fechaSeleccionada) {
+  if (!horarioValue || !fechaSeleccionada) return true;
+  
+  const config = HORARIOS_CONFIG[horarioValue];
+  if (!config) return true;
+  
+  const ahora = new Date();
+  const fechaHoy = formatearFecha(ahora);
+  
+  // Debug: mostrar información en consola
+  console.log('=== DEBUG HORARIOS ===');
+  console.log('Hora del navegador:', ahora.toLocaleString());
+  console.log('Fecha hoy:', fechaHoy);
+  console.log('Fecha seleccionada:', fechaSeleccionada);
+  console.log('Es hoy?', fechaSeleccionada === fechaHoy);
+  
+  // Si la fecha de entrega NO es hoy, todos los horarios están disponibles
+  if (fechaSeleccionada !== fechaHoy) {
+    console.log('No es hoy, horario disponible');
+    return true;
+  }
+  
+  // Verificar si hoy es un día válido para este horario
+  const diaHoy = ahora.getDay();
+  console.log('Día actual:', diaHoy, 'Días válidos:', config.dias);
+  
+  if (!config.dias.includes(diaHoy)) {
+    console.log('Hoy no es un día válido para este horario');
+    return false;
+  }
+  
+  // Verificar si ya pasó la hora límite
+  const horaActual = ahora.getHours();
+  const minutoActual = ahora.getMinutes();
+  
+  console.log('Hora actual:', horaActual + ':' + minutoActual);
+  console.log('Límite:', config.limiteHora + ':' + config.limiteMinuto);
+  console.log('Horario:', config.texto);
+  
+  // Si ya pasó la hora límite
+  if (horaActual > config.limiteHora) {
+    console.log('Ya pasó la hora límite - DESHABILITADO');
+    return false;
+  } 
+  // Si es la misma hora pero ya pasó el minuto límite
+  else if (horaActual === config.limiteHora && minutoActual >= config.limiteMinuto) {
+    console.log('Ya pasó el minuto límite - DESHABILITADO');
+    return false;
+  }
+  
+  console.log('Horario disponible - HABILITADO');
+  return true;
+}
+
+// Función para actualizar opciones de horarios
+function actualizarOpcionesHorarios(selectElement, tipoHorario, fechaSeleccionada) {
+  if (!selectElement || !fechaSeleccionada) return true;
+  
+  console.log(`Actualizando horarios ${tipoHorario} para fecha:`, fechaSeleccionada);
+  
+  const options = selectElement.querySelectorAll('option');
+  let hayOpcionesDisponibles = false;
+  
+  options.forEach(option => {
+    if (option.value === "") {
+      return; // Skip placeholder option
+    }
+    
+    const disponible = esHorarioDisponible(option.value, fechaSeleccionada);
+    
+    if (disponible) {
+      option.disabled = false;
+      option.style.color = '';
+      option.style.backgroundColor = '';
+      option.textContent = HORARIOS_CONFIG[option.value]?.texto || option.textContent;
+      hayOpcionesDisponibles = true;
+      console.log('Opción habilitada:', option.value);
+    } else {
+      option.disabled = true;
+      option.style.color = '#999';
+      option.style.backgroundColor = '#f5f5f5';
+      const textoOriginal = HORARIOS_CONFIG[option.value]?.texto || option.textContent;
+      option.textContent = textoOriginal + ' (No disponible)';
+      console.log('Opción deshabilitada:', option.value);
+      
+      // Si esta opción estaba seleccionada, deseleccionarla
+      if (option.selected) {
+        option.selected = false;
+        selectElement.value = '';
+      }
+    }
+  });
+  
+  console.log(`Hay opciones ${tipoHorario} disponibles:`, hayOpcionesDisponibles);
+  return hayOpcionesDisponibles;
+}
+
+// Función para mostrar mensaje cuando no hay horarios disponibles
+function mostrarMensajeNoHorarios(container, tipoHorario) {
+  const mensajeId = `mensaje-no-horarios-${tipoHorario}`;
+  let mensajeDiv = document.getElementById(mensajeId);
+  
+  if (!mensajeDiv) {
+    mensajeDiv = document.createElement('div');
+    mensajeDiv.id = mensajeId;
+    mensajeDiv.style.cssText = `
+      background: #fff3cd;
+      border: 1px solid #ffeaa7;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 10px;
+      color: #856404;
+      font-weight: 500;
+      text-align: center;
+    `;
+    container.appendChild(mensajeDiv);
+  }
+  
+  const ultimoHorario = tipoHorario === 'desayuno' ? 
+    'Lunes a Sábado: 9:30am - 10:35am' : 
+    'Lunes a Domingo: 5:00pm - 7:00pm';
+  
+  mensajeDiv.innerHTML = `
+    ⏰ <strong>Lo sentimos</strong><br>
+    Ya no manejamos horarios después de las <strong>${ultimoHorario}</strong><br>
+    <em>Por favor agenda tu pedido para mañana según los horarios disponibles</em>
+  `;
+  mensajeDiv.style.display = 'block';
+  
+  console.log('Mostrando mensaje de no horarios para:', tipoHorario);
+}
+
+// Función para ocultar mensaje de no horarios
+function ocultarMensajeNoHorarios(tipoHorario) {
+  const mensajeId = `mensaje-no-horarios-${tipoHorario}`;
+  const mensajeDiv = document.getElementById(mensajeId);
+  if (mensajeDiv) {
+    mensajeDiv.style.display = 'none';
+  }
+}
+
+// Función para verificar y actualizar todos los horarios
+function verificarYActualizarHorarios() {
+  const fechaEntrega = document.getElementById('fecha-entrega').value;
+  if (!fechaEntrega) {
+    console.log('No hay fecha seleccionada');
+    return;
+  }
+  
+  console.log('=== VERIFICANDO HORARIOS ===');
+  console.log('Fecha seleccionada:', fechaEntrega);
+  
+  const ahora = new Date();
+  const fechaHoy = formatearFecha(ahora);
+  
+  console.log('Hora actual:', ahora.toLocaleString());
+  console.log('Es miércoles?', ahora.getDay() === 3);
+  console.log('Son más de las 4:09 PM?', ahora.getHours() > 16 || (ahora.getHours() === 16 && ahora.getMinutes() >= 9));
+  
+  // Actualizar horarios de desayuno
+  const selectDesayuno = document.getElementById('horario-desayuno');
+  const containerDesayuno = document.getElementById('select-horario-desayuno');
+  if (selectDesayuno && containerDesayuno && containerDesayuno.style.display !== 'none') {
+    console.log('Actualizando horarios de desayuno...');
+    const hayDesayunosDisponibles = actualizarOpcionesHorarios(selectDesayuno, 'desayuno', fechaEntrega);
+    
+    if (!hayDesayunosDisponibles && fechaEntrega === fechaHoy) {
+      mostrarMensajeNoHorarios(containerDesayuno, 'desayuno');
+      selectDesayuno.style.display = 'none';
+    } else if (hayDesayunosDisponibles) {
+      ocultarMensajeNoHorarios('desayuno');
+      selectDesayuno.style.display = 'block';
+    }
+  }
+  
+  // Actualizar horarios generales
+  const selectGeneral = document.getElementById('horario-general');
+  const containerGeneral = document.getElementById('select-horario-general');
+  if (selectGeneral && containerGeneral && containerGeneral.style.display !== 'none') {
+    console.log('Actualizando horarios generales...');
+    const hayGeneralesDisponibles = actualizarOpcionesHorarios(selectGeneral, 'general', fechaEntrega);
+    
+    if (!hayGeneralesDisponibles && fechaEntrega === fechaHoy) {
+      mostrarMensajeNoHorarios(containerGeneral, 'general');
+      selectGeneral.style.display = 'none';
+    } else if (hayGeneralesDisponibles) {
+      ocultarMensajeNoHorarios('general');
+      selectGeneral.style.display = 'block';
+    }
+  }
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+  // Verificar horarios cuando cambie la fecha
+  const fechaInput = document.getElementById('fecha-entrega');
+  if (fechaInput) {
+    fechaInput.addEventListener('change', function() {
+      console.log('Fecha cambiada a:', this.value);
+      setTimeout(() => {
+        verificarYActualizarHorarios();
+      }, 100);
+    });
+  }
+  
+  // Verificar horarios cada minuto
+  setInterval(() => {
+    const fechaEntrega = document.getElementById('fecha-entrega').value;
+    if (fechaEntrega) {
+      const ahora = new Date();
+      const fechaHoy = formatearFecha(ahora);
+      // Solo verificar si la fecha seleccionada es hoy
+      if (fechaEntrega === fechaHoy) {
+        console.log('Verificación automática cada minuto - Hora actual:', ahora.toLocaleString());
+        verificarYActualizarHorarios();
+      }
+    }
+  }, 60000); // Cada minuto
+  
+  // Verificar al cargar la página
+  setTimeout(() => {
+    console.log('Verificación inicial al cargar página...');
+    verificarYActualizarHorarios();
+  }, 1000);
+});
+
+// Función para validar horarios antes del envío
+function validarHorariosDisponibles() {
+  const fechaEntrega = document.getElementById('fecha-entrega').value;
+  if (!fechaEntrega) return true;
+  
+  const selectDesayuno = document.getElementById('horario-desayuno');
+  const selectGeneral = document.getElementById('horario-general');
+  
+  // Verificar horario de desayuno si está visible y requerido
+  if (selectDesayuno && selectDesayuno.hasAttribute('required') && selectDesayuno.value) {
+    if (!esHorarioDisponible(selectDesayuno.value, fechaEntrega)) {
+      mostrarNotificacion('El horario de desayuno seleccionado ya no está disponible. Por favor selecciona otro horario o agenda para mañana.');
+      return false;
+    }
+  }
+  
+  // Verificar horario general si está visible y requerido
+  if (selectGeneral && selectGeneral.hasAttribute('required') && selectGeneral.value) {
+    if (!esHorarioDisponible(selectGeneral.value, fechaEntrega)) {
+      mostrarNotificacion('El horario general seleccionado ya no está disponible. Por favor selecciona otro horario o agenda para mañana.');
+      return false;
+    }
+  }
+  
+  return true;
+}
+
+// Función de prueba manual
+function probarHorarios() {
+  const ahora = new Date();
+  console.log('=== PRUEBA MANUAL ===');
+  console.log('Hora del navegador:', ahora.toLocaleString());
+  console.log('Día de la semana:', ahora.getDay()); // 0=domingo, 1=lunes, ..., 3=miércoles
+  console.log('Hora:', ahora.getHours());
+  console.log('Minutos:', ahora.getMinutes());
+  
+  // Probar cada horario
+  Object.keys(HORARIOS_CONFIG).forEach(horario => {
+    const config = HORARIOS_CONFIG[horario];
+    const disponible = esHorarioDisponible(horario, formatearFecha(ahora));
+    console.log(`${config.texto}: ${disponible ? 'DISPONIBLE' : 'NO DISPONIBLE'}`);
+  });
+  
+  verificarYActualizarHorarios();
+}
+
+// Agregar función al window para poder usarla desde la consola
+window.probarHorarios = probarHorarios;
+
+
+
+
+
+
+
+
+function calcularTotalesCheckout(e) {
+  const o = e.reduce(((e, o) => e + o.precio * o.cantidad), 0);
+  const t = calcularEnvio(o);
+  
+  // Calcular costo de globos
+  let n = 0;
+  const globosHelioSelect = document.getElementById("globos-helio");
+
+  if (globosHelioSelect) {
+    let cantidadGlobos = 0;
+    
+    if (globosHelioSelect.value === "personalizado") {
+      const cantidadInput = document.getElementById("cantidad-personalizada");
+      cantidadGlobos = parseInt(cantidadInput.value) || 0;
+    } else {
+      cantidadGlobos = parseInt(globosHelioSelect.value) || 0;
+    }
+
+    if (cantidadGlobos > 0) {
+      let globosMetalizados = 0;
+      let globosLatex = 0;
+      
+      if (globosSeleccionados.length === 0) {
+        // Si no hay colores seleccionados, asumir todos como latex (precio más bajo)
+        globosLatex = cantidadGlobos;
+        globosMetalizados = 0;
+      } else {
+        // Si hay colores seleccionados, contar exactamente cuántos de cada tipo
+        globosSeleccionados.forEach(globo => {
+          if (globo.tipo === "metalizado") {
+            globosMetalizados++;
+          } else {
+            globosLatex++;
+          }
+        });
+        
+        // Si se seleccionaron menos globos que la cantidad total, completar con latex
+        const totalSeleccionados = globosMetalizados + globosLatex;
+        if (totalSeleccionados < cantidadGlobos) {
+          globosLatex += (cantidadGlobos - totalSeleccionados);
+        }
+        
+        // Si se seleccionaron más globos que la cantidad permitida, tomar solo los primeros
+        if (totalSeleccionados > cantidadGlobos) {
+          // Recalcular basado en proporción
+          const proporcionMetalizado = globosMetalizados / totalSeleccionados;
+          globosMetalizados = Math.floor(cantidadGlobos * proporcionMetalizado);
+          globosLatex = cantidadGlobos - globosMetalizados;
+        }
+      }
+      
+      // Calcular costo total de globos
+      n += (4500 * globosLatex) + (5000 * globosMetalizados);
+    }
+  }
+  
+  // Calcular costo de mensaje personalizado de globo
+  const motivo = document.getElementById("motivo");
+  if (motivo && motivo.value === "personalizado") {
+    n += 3000;
+  }
+  
+  const c = o + t + n;
+  
+  // Actualizar visualización de totales
+  document.getElementById("checkout-subtotal").textContent = `$${o.toLocaleString()}`;
+  document.getElementById("checkout-envio").textContent = `$${t.toLocaleString()}`;
+  
+  const r = document.getElementById("checkout-total");
+  const d = document.getElementById("adicionales-row");
+  
+  if (n > 0) {
+    if (d) {
+      d.querySelector("span:last-child").textContent = `$${n.toLocaleString()}`;
+    } else {
+      const nuevoAdicional = document.createElement("div");
+      nuevoAdicional.id = "adicionales-row";
+      nuevoAdicional.className = "checkout-total-row";
+      nuevoAdicional.innerHTML = `
+        <span>Adicionales:</span>
+        <span>$${n.toLocaleString()}</span>
+      `;
+      const totalFinal = document.querySelector(".checkout-total-final");
+      r.insertBefore(nuevoAdicional, totalFinal);
+    }
+  } else {
+    d && d.remove();
+  }
+  
+  document.getElementById("checkout-total-valor").textContent = `$${c.toLocaleString()}`;
+}
+
+function eliminarTodasAdiciones() {
+  const e = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]")
+    .filter((e) => !e.nombre.startsWith("Adición"));
+  
+  localStorage.setItem("carritoCheckout", JSON.stringify(e));
+  mostrarProductosCheckout(e);
+  calcularTotalesCheckout(e);
+  mostrarNotificacion("Todas las adiciones han sido eliminadas");
+}
+
+// Función para abrir modal de adiciones
+async function abrirModalAdiciones() {
+  try {
+    const adiciones = await cargarAdiciones();
+    const modal = document.getElementById("adicion-modal");
+    const modalContent = modal.querySelector(".modal-content");
+    
+    // Limpiar contenido existente
+    modalContent.innerHTML = `
+      <span id="close-modal" class="close">×</span>
+      <h2>Agregar Adición</h2>
+      <div id="adiciones-container"></div>
+    `;
+    
+    // Agregar cada adición al modal
+    const container = document.getElementById("adiciones-container");
+    Object.keys(adiciones).forEach((key) => {
+      const adicion = adiciones[key];
+      const adicionItem = document.createElement("div");
+      adicionItem.className = "adicion-item";
+      adicionItem.innerHTML = `
+        <img alt="${adicion.nombre}" src="${adicion.imagen}">
+        <div class="adicion-info">
+          <h3>${adicion.nombre}</h3>
+          <p>$${adicion.precio}</p>
+          <p>${adicion.descripcion || ''}</p>
+        </div>
+        <button type="button" onclick='agregarAdicion("${adicion.nombre}", ${adicion.precio}, "${adicion.imagen}")'>Agregar</button>
+      `;
+      container.appendChild(adicionItem);
+    });
+    
+    modal.style.display = "block";
+    
+    // Agregar evento para cerrar el modal
+    document.getElementById("close-modal").addEventListener("click", cerrarModalAdiciones);
+    
+  } catch (error) {
+    console.error("Error al cargar adiciones:", error);
+    mostrarNotificacion("Error al cargar las opciones de adición");
+  }
+}
+
+// Función para cerrar modal de adiciones
+function cerrarModalAdiciones() {
+  const e = document.getElementById("adicion-modal");
+  e && (e.style.display = "none");
+}
+
+// Función para agregar adición
+function agregarAdicion(e, o, t) {
+  const n = localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito");
+  const a = n ? JSON.parse(n) : [];
+  const i = {
+    nombre: e,
+    precio: o,
+    imagen: t,
+    cantidad: 1
+  };
+  a.push(i);
+  localStorage.setItem("carritoCheckout", JSON.stringify(a));
+  mostrarProductosCheckout(a);
+  calcularTotalesCheckout(a);
+  cerrarModalAdiciones();
+  mostrarNotificacion(`Adición "${e}" agregada al carrito ($${o})`);
+}
+
+// Función para cargar adiciones desde Firebase
+function cargarAdiciones() {
+  return new Promise((resolve, reject) => {
+    database.ref('adiciones').once('value').then((snapshot) => {
+      const adiciones = snapshot.val();
+      resolve(adiciones);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+// Función para cargar globos desde Firebase
+function cargarGlobos() {
+  return new Promise((resolve, reject) => {
+    database.ref('globos').once('value').then((snapshot) => {
+      const globos = snapshot.val();
+      resolve(globos);
+    }).catch((error) => {
+      reject(error);
+    });
+  });
+}
+
+// Función para mostrar modal de globos
+// Función para mostrar modal de globos con etiquetas de tipo
+async function mostrarModalGlobos() {
+  try {
+    const globos = await cargarGlobos();
+    const modal = document.getElementById("modal-globos-1");
+    const imagenesContainer = modal.querySelector(".globos-imagenes-1");
+    const globosHelioSelect = document.getElementById("globos-helio");
+    const cantidadPersonalizada = document.getElementById("cantidad-personalizada");
+
+    // Determinar cantidad de globos
+    let cantidadGlobos = globosHelioSelect.value === "personalizado" ? 
+      parseInt(cantidadPersonalizada.value) : parseInt(globosHelioSelect.value);
+
+    // Limpiar contenedor
+    imagenesContainer.innerHTML = '';
+
+    // Agregar globos al modal con etiquetas de tipo
+    Object.keys(globos).forEach((key) => {
+      const globo = globos[key];
+      
+      // Crear contenedor para el globo
+      const container = document.createElement("div");
+      container.className = "globo-item";
+      container.style.cssText = "position: relative; display: inline-block; margin: 5px;";
+      
+      // Crear imagen del globo
+      const img = document.createElement("img");
+      img.src = globo.imagen;
+      img.alt = globo.nombre;
+      img.setAttribute("data-url", globo.imagen);
+      img.setAttribute("data-precio", globo.precio);
+      img.setAttribute("data-tipo", globo.tipo);
+      img.style.cssText = `
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        transition: all 0.2s ease;
+      `;
+
+      // Crear etiqueta de tipo
+      const etiqueta = document.createElement("div");
+      etiqueta.className = "globo-tipo-etiqueta";
+      etiqueta.textContent = globo.tipo === "metalizado" ? "METALIZADO" : "NORMAL";
+      etiqueta.style.cssText = `
+        position: absolute;
+        top: 3px;
+        right: 3px;
+        background: ${globo.tipo === "metalizado" ? "#FFD700" : "#4CAF50"};
+        color: ${globo.tipo === "metalizado" ? "#000" : "#fff"};
+        padding: 2px 6px;
+        border-radius: 10px;
+        font-size: 9px;
+        font-weight: bold;
+        z-index: 10;
+        pointer-events: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      `;
+
+      // Verificar si este globo estaba seleccionado previamente
+      const estabaSeleccionado = globosSeleccionados.some(g => g.url === globo.imagen);
+      if (estabaSeleccionado) {
+        img.classList.add("seleccionado");
+        img.style.border = "2px solid #c5a8a3";
+        img.style.transform = "scale(1.05)";
+      }
+
+      // Agregar imagen y etiqueta al contenedor
+      container.appendChild(img);
+      container.appendChild(etiqueta);
+      
+      // Agregar contenedor al modal
+      imagenesContainer.appendChild(container);
+    });
+
+    modal.style.display = "block";
+
+    // Configurar evento de clic para los globos
+    const imagenes = imagenesContainer.querySelectorAll("img");
+    imagenes.forEach(img => {
+      img.addEventListener("click", function() {
+        // Si solo se permite 1 globo, limpiar selecciones anteriores
+        if (cantidadGlobos === 1) {
+          imagenes.forEach(i => {
+            i.classList.remove("seleccionado");
+            i.style.border = "2px solid transparent";
+            i.style.transform = "scale(1)";
+          });
+          globosSeleccionados = [];
+        }
+
+        // Manejar selección/deselección
+        if (this.classList.contains("seleccionado")) {
+          // Deseleccionar
+          this.classList.remove("seleccionado");
+          this.style.border = "2px solid transparent";
+          this.style.transform = "scale(1)";
+          globosSeleccionados = globosSeleccionados.filter(g => g.url !== this.getAttribute("data-url"));
+        } else if (globosSeleccionados.length < cantidadGlobos) {
+          // Seleccionar
+          this.classList.add("seleccionado");
+          this.style.border = "2px solid #c5a8a3";
+          this.style.transform = "scale(1.05)";
+          globosSeleccionados.push({
+            url: this.getAttribute("data-url"),
+            tipo: this.getAttribute("data-tipo"),
+            precio: parseInt(this.getAttribute("data-precio"))
+          });
+        }
+      });
+    });
+
+    // Configurar botón de confirmación
+    const seleccionarBtn = document.getElementById("seleccionar-globo");
+    if (seleccionarBtn) {
+      seleccionarBtn.onclick = function() {
+        modal.style.display = "none";
+        calcularTotalesCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito")));
+      };
+    }
+
+  } catch (error) {
+    console.error("Error al cargar globos:", error);
+    mostrarNotificacion("Error al cargar los colores de globos");
+  }
+}
+// Modificar la función procesarPedido para incluir los nuevos campos
+// Modificar la función procesarPedido para incluir los nuevos campos de horarios
+async function procesarPedido(e) {
+  e.preventDefault();
+  
+  const o = document.getElementById("nombre").value;
+  const n = document.getElementById("direccion").value;
+  const fechaEntrega = document.getElementById("fecha-entrega").value;
+  const puntoReferencia = document.getElementById("punto-referencia").value;
+  const receptorNombre = document.getElementById("receptor-nombre").value;
+  const receptorCelular = document.getElementById("receptor-celular").value;
+  const domicilioFuera = document.getElementById("domicilio-fuera").checked;
+  const zonaFuera = document.getElementById("zona-fuera").value;
+const solicitaCambios = document.querySelector('input[name="solicitar-cambios"]:checked')?.value === "si";
+const descripcionCambio = document.getElementById("descripcion-cambio").value || "";
+  let zonaFueraTexto = "";
+
+  if (domicilioFuera && zonaFuera) {
+    const zonaSelect = document.getElementById("zona-fuera");
+    zonaFueraTexto = zonaSelect.options[zonaSelect.selectedIndex].text;
+  }
+  
+  // NUEVOS CAMPOS DE HORARIOS
+  const horarioDesayuno = document.getElementById("horario-desayuno").value;
+  const horarioGeneral = document.getElementById("horario-general").value;
+  const tipoEntrega = document.querySelector('input[name="tipo-entrega"]:checked')?.value || "";
+  
+  // Validar horarios según el caso
+  const categorias = detectarCategorias();
+  const hayDesayunos = tieneDesayunos(categorias);
+
+  if (categorias.length === 1) {
+    if (hayDesayunos && !horarioDesayuno) {
+      return void mostrarNotificacion("Por favor selecciona un horario para desayunos");
+    }
+    if (!hayDesayunos && !horarioGeneral) {
+      return void mostrarNotificacion("Por favor selecciona un horario de entrega");
+    }
+  } else if (categorias.length >= 2 && hayDesayunos) {
+    if (!tipoEntrega) {
+      return void mostrarNotificacion("Por favor selecciona el tipo de entrega");
+    }
+    
+    if (tipoEntrega === "conjunta" && categorias.length === 2 && !horarioDesayuno) {
+      return void mostrarNotificacion("Por favor selecciona un horario para desayunos");
+    }
+    
+    if (tipoEntrega === "conjunta" && categorias.length >= 3 && (!horarioDesayuno || !horarioGeneral)) {
+      return void mostrarNotificacion("Por favor selecciona ambos horarios");
+    }
+    
+    if (tipoEntrega === "separada" && categorias.length === 2 && (!horarioDesayuno || !horarioGeneral)) {
+      return void mostrarNotificacion("Por favor selecciona ambos horarios");
+    }
+  }
+  
+  if (!o || !n || !fechaEntrega || !receptorNombre || !receptorCelular) {
+    return void mostrarNotificacion("Por favor completa todos los campos obligatorios");
+  }
+  
+  const a = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito"));
+  const i = generarCodigoPedido();
+  
+  // Obtener la categoría del primer producto del carrito
+  if (a && a.length > 0 && a[0].categoria) {
+    categoriaProducto = a[0].categoria;
+  }
+  
+  console.log("Comprobando Firebase...");
+  
+  if (!firebase.apps.length) {
+    console.log("Inicializando Firebase...");
+    const e = {
+      apiKey: "AIzaSyC5QFujt2nmR40p6lXh3Yft7e7gxsvu7oY",
+      authDomain: "morenitta-57ed3.firebaseapp.com",
+      databaseURL: "https://morenitta-57ed3-default-rtdb.firebaseio.com",
+      projectId: "morenitta-57ed3",
+      storageBucket: "morenitta-57ed3.appspot.com",
+      messagingSenderId: "813042769292",
+      appId: "1:813042769292:web:e9bf4d9ba0eb80919ccaa9"
+    };
+    firebase.initializeApp(e);
+  }
+  
+  const c = firebase.database();
+  console.log("Firebase Database inicializada");
+  
+  console.log("Procesando pedido sin descarga...");
+  
+  const r = (new Date).toISOString();
+  const d = a.reduce(((e, o) => e + o.precio * o.cantidad), 0);
+  const l = calcularEnvio(d);
+  
+  let s = 0;
+  const m = document.getElementById("globos-helio");
+  const u = m && parseInt(m.value) || 0;
+  
+  // Calcular costo de globos
+  const modal = document.getElementById("modal-globos-1");
+  const globosSeleccionados = modal ? modal.querySelectorAll(".globos-imagenes-1 img.seleccionado") : [];
+  
+  let globosMetalizados = 0;
+  let globosLatex = 0;
+  let coloresGlobos = [];
+  
+  globosSeleccionados.forEach(globo => {
+    if (globo.getAttribute("data-tipo") === "metalizado") {
+      globosMetalizados++;
+    } else {
+      globosLatex++;
+    }
+    coloresGlobos.push(globo.getAttribute("data-url"));
+  });
+  
+  if (u > 0) {
+    s += (4500 * globosLatex) + (5000 * globosMetalizados);
+  }
+  
+  const p = d + l + s;
+  const f = document.getElementById("motivo");
+  
+  let v = "No especificado";
+  if (f) {
+    switch (f.value) {
+      case "feliz-cumpleanos":
+        v = "Feliz cumpleaños";
+        break;
+      case "feliz-aniversario":
+        v = "Feliz aniversario";
+        break;
+      case "feliz-mes":
+        v = "Feliz mes";
+        break;
+      case "feliz-grado":
+        v = "Feliz grado";
+        break;
+      case "te-amo":
+        v = "Te amo";
+        break;
+      case "te-quiero":
+        v = "Te quiero";
+        break;
+      case "felicidades":
+        v = "Felicidades";
+        break;
+      case "bienvenido":
+        v = "Bienvenido";
+        break;
+      default:
+        v = "No especificado";
+    }
+  }
+  
+  // Nuevos campos de mensaje de tarjeta
+  const tarjetaDe = document.getElementById("tarjeta-de").value || "";
+  const tarjetaPara = document.getElementById("tarjeta-para").value || "";
+  const mensajeTarjeta = document.getElementById("mensaje-tarjeta").value || "";
+  
+  // Construir mensaje completo de tarjeta
+  let mensajeCompleto = "";
+  if (tarjetaDe || tarjetaPara || mensajeTarjeta) {
+    if (tarjetaDe) mensajeCompleto += `De: ${tarjetaDe}\n`;
+    if (tarjetaPara) mensajeCompleto += `Para: ${tarjetaPara}\n`;
+    if (mensajeTarjeta) mensajeCompleto += `\n${mensajeTarjeta}`;
+  } else {
+    mensajeCompleto = "Sin mensaje";
+  }
+  
+  const E = coloresGlobos.length > 0 ? coloresGlobos.join(", ") : "";
+  
+  // Obtener información del usuario activo
+  let userInfo = {
+    userId: 'invitado',
+    userEmail: 'no email',
+    userDisplayName: o
+  };
+  
+  try {
+    const user = await new Promise((resolve) => {
+      firebase.auth().onAuthStateChanged((user) => {
+        resolve(user);
+      });
+    });
+    
+    if (user) {
+      userInfo = {
+        userId: user.uid,
+        userEmail: user.email,
+        userDisplayName: user.displayName || o
+      };
+    }
+  } catch (error) {
+    console.error("Error al verificar usuario:", error);
+  }
+  
+  // Mapeo de métodos de pago
+  const metodoPagoValue = document.getElementById("metodo-pago").value;
+let metodoPagoTexto = "";
+
+switch(metodoPagoValue) {
+  case "bancolombia":  // CAMBIAR de "efectivo" a "bancolombia"
+    metodoPagoTexto = "Bancolombia";
+    break;
+  case "nequi":
+    metodoPagoTexto = "Nequi";
+    break;
+  case "daviplata":
+    metodoPagoTexto = "Daviplata";
+    break;
+  case "wester":
+    metodoPagoTexto = "Wester Union";
+    break;
+
+  default:
+    metodoPagoTexto = "Método no especificado";
+}
+  
+  // Función para convertir valor de horario a texto legible
+  function convertirHorarioATexto(valor) {
+    const horarios = {
+      "domingo-8-9": "Domingos: 8:00am - 9:00am",
+      "lunes-sabado-7:30-8:35": "Lunes a Sábado: 7:30am - 8:35am",
+      "lunes-sabado-9:30-10:35": "Lunes a Sábado: 9:30am - 10:35am",
+      "lunes-domingo-10-12:45": "Lunes a Domingo: 10:00am - 12:45pm",
+      "lunes-domingo-15-16:45": "Lunes a Domingo: 3:00pm - 4:45pm",
+      "lunes-domingo-17-19": "Lunes a Domingo: 5:00pm - 7:00pm"
+    };
+    return horarios[valor] || valor;
+  }
+  
+  // Función para convertir tipo de entrega a texto
+  function convertirTipoEntregaATexto(tipo, numCategorias) {
+    if (tipo === "conjunta") {
+      return numCategorias === 2 ? "Entregar todo junto en horario de desayuno" : "Dividir en máximo 2 entregas";
+    } else if (tipo === "separada") {
+      return numCategorias === 2 ? "Entregar por separado" : "Coordinar entrega especial";
+    }
+    return "No especificado";
+  }
+  
+  // Preparar datos del pedido con los nuevos campos de horarios
+  const I = {
+    id: i,
+    fecha: r,
+    fechaFormateada: new Date(r).toLocaleDateString(),
+    fechaEntrega: fechaEntrega,
+    categoria: categoriaProducto,
+    cliente: {
+      nombre: o,
+      email: 'no email',
+      direccion: n,
+      telefono: document.getElementById("telefono").value,
+      puntoReferencia: puntoReferencia,
+      domicilioFuera: domicilioFuera,
+      zonaFuera: zonaFuera,
+      zonaFueraTexto: zonaFueraTexto 
+    },
+solicitudCambio: {
+    solicitaCambios: solicitaCambios,
+    descripcionCambio: solicitaCambios ? descripcionCambio : "",
+    fechaSolicitud: solicitaCambios ? new Date().toISOString() : null
+},
+    receptor: {
+      nombre: receptorNombre,
+      celular: receptorCelular
+    },
+    usuario: userInfo,
+    adicionales: {
+      motivo: v,
+      mensajeGloboPersonalizado: f && f.value === "personalizado" ? 
+        document.getElementById("mensaje-personalizado-globo").value : "",
+      globos: u > 0 ? `${u} globos (${globosLatex} latex, ${globosMetalizados} metalizado) - Total: $${(4500 * globosLatex) + (5000 * globosMetalizados)}` : "Ninguno",
+      colorGlobo: E,
+      mensajeTarjeta: {
+        de: tarjetaDe,
+        para: tarjetaPara,
+        mensaje: mensajeTarjeta,
+        textoCompleto: mensajeCompleto
+      },
+      colorLazo: colorLazoSeleccionado ? {
+        id: colorLazoSeleccionado.id,
+        nombre: colorLazoSeleccionado.nombre,
+        codigo: colorLazoSeleccionado.codigo
+      } : null,
+      horarios: {
+        categorias: categorias,
+        tipoEntrega: tipoEntrega,
+        tipoEntregaTexto: convertirTipoEntregaATexto(tipoEntrega, categorias.length),
+        horarioDesayuno: horarioDesayuno,
+        horarioDesayunoTexto: horarioDesayuno ? convertirHorarioATexto(horarioDesayuno) : "",
+        horarioGeneral: horarioGeneral,
+        horarioGeneralTexto: horarioGeneral ? convertirHorarioATexto(horarioGeneral) : "",
+        coordinacionEspecial: tipoEntrega === "separada" && categorias.length >= 3,
+        numeroCategoriasDetectadas: categorias.length,
+        tieneDesayunos: hayDesayunos
+      }
+    },
+    productos: a,
+    metodo_pago: metodoPagoTexto,
+    subtotal: d,
+    envio: l,
+    adicionales_costo: s,
+    total: p,
+     estado: 'Por realizar',
+    timestamp: (new Date).getTime()
+  };
+  
+  console.log("Datos del pedido preparados:", I);
+  
+  c.ref("pedidos").push(I).then((e) => {
+
+     generarResumenDescargable(i).then(() => {
+    console.log("Factura generada correctamente");
+  }).catch((error) => {
+    console.error("Error al generar factura:", error);
+  });
+  
+    console.log("Pedido guardado con ID: ", e.key);
+    document.getElementById("checkout-form").innerHTML = `
+    <div class="procesando-pedido" style="text-align: center;">
+      <h3>¡Pedido procesado correctamente!</h3>
+      <p>Su código de pedido es: <strong>${i}</strong></p>
+      <div id="whatsapp-redirect-container" style="margin: 20px auto; display: inline-block;">
+        <button id="go-to-whatsapp" style="padding: 12px 24px; background: #25D366; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 auto;">
+          redirigirse a WhatsApp para confirmar el pedido (obligatorio)
+        </button>
+      </div>
+      <div id="back-to-home-container" style="display: none; margin-top: 20px;">
+        <button id="back-to-home" style="padding: 12px 24px; background: #c5a8a3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+          ← Volver al inicio
+        </button>
+      </div>
+      <p style="margin-top: 20px; font-size: 14px; color: #666;">
+        Si ya confirmaste tu pedido en WhatsApp, puedes volver al inicio
+      </p>
+    </div>
+  `;
+  
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("carritoCheckout");
+    localStorage.setItem("checkoutCompleto", "true");
+  
+    // Configurar el botón de WhatsApp
+   // Reemplazar el addEventListener del botón WhatsApp existente
+// Reemplazar el addEventListener del botón WhatsApp existente
+document.getElementById("go-to-whatsapp").addEventListener("click", function() {
+    let mensajeWhatsApp = `Holaa💖, mi código de pedido es *${i}* y mi nombre es *${o}*.`;
+    
+    if (solicitaCambios) {
+        mensajeWhatsApp += ` NOTA IMPORTANTE: Necesito hacer un cambio en mi pedido.`;
+        if (descripcionCambio) {
+            mensajeWhatsApp += ` Detalle: ${descripcionCambio}.`;
+        }
+    }
+    
+    mensajeWhatsApp += ` ¿Me compartes los medios de pago? ¡Gracias!✨📝`;
+    
+    const whatsappUrl = `https://wa.me/573023144445?text=${encodeURIComponent(mensajeWhatsApp)}`;
+    window.open(whatsappUrl, "_blank");
+    
+    document.getElementById("back-to-home-container").style.display = "block";
+});
+    // Configurar el botón de volver al inicio
+    document.getElementById("back-to-home").addEventListener("click", function() {
+      window.location.href = "index.html";
+    });
+  
+    // Mostrar el botón de volver al inicio si detectamos que viene de WhatsApp
+    if (document.referrer.includes("whatsapp.com") || document.referrer.includes("wa.me")) {
+      document.getElementById("back-to-home-container").style.display = "block";
+    }
+  
+  }).catch((e) => {
+    console.error("Error al guardar el pedido: ", e);
+    mostrarNotificacion("Hubo un error al procesar su pedido: " + e.message);
+  });
+}
+
+// Función para detectar categorías en el carrito
+function detectarCategorias() {
+  const carrito = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]");
+  const categorias = new Set();
+  
+  carrito.forEach(item => {
+    if (item.categoria) {
+      categorias.add(item.categoria.toLowerCase());
+    }
+  });
+  
+  return Array.from(categorias);
+}
+
+// Función para determinar si hay desayunos
+function tieneDesayunos(categorias) {
+  return categorias.some(cat => cat.includes("desayuno"));
+}
+
+// Función para mostrar selector de horarios
+function mostrarSelectorHorarios() {
+  const categorias = detectarCategorias();
+  const container = document.getElementById("selector-horarios-container");
+  const opcionesEntrega = document.getElementById("opciones-entrega");
+  const selectDesayuno = document.getElementById("select-horario-desayuno");
+  const selectGeneral = document.getElementById("select-horario-general");
+  const coordinacionMsg = document.getElementById("coordinacion-especial-msg");
+  
+  // Elementos de los selects
+  const selectDesayunoElement = document.getElementById("horario-desayuno");
+  const selectGeneralElement = document.getElementById("horario-general");
+  
+  // Ocultar todos los elementos inicialmente
+  container.style.display = "none";
+  opcionesEntrega.style.display = "none";
+  selectDesayuno.style.display = "none";
+  selectGeneral.style.display = "none";
+  coordinacionMsg.style.display = "none";
+  
+  // Remover required de todos los selects inicialmente
+  selectDesayunoElement.removeAttribute("required");
+  selectGeneralElement.removeAttribute("required");
+  
+  if (categorias.length === 0) return;
+  
+  container.style.display = "block";
+  const hayDesayunos = tieneDesayunos(categorias);
+  
+  // CASE 1: Solo una categoría
+  if (categorias.length === 1) {
+    if (hayDesayunos) {
+      // Solo desayunos
+      selectDesayuno.style.display = "block";
+      selectDesayunoElement.setAttribute("required", "required");
+    } else {
+      // Solo otras categorías
+      selectGeneral.style.display = "block";
+      selectGeneralElement.setAttribute("required", "required");
+    }
+  }
+  // CASE 2: Dos categorías (desayunos + otra)
+  else if (categorias.length === 2 && hayDesayunos) {
+    opcionesEntrega.style.display = "block";
+    document.getElementById("label-entrega-conjunta").textContent = "Entregar todo junto en horario de desayuno";
+    document.getElementById("label-entrega-separada").textContent = "Entregar por separado";
+  }
+  // CASE 3: Tres o más categorías (incluyendo desayunos)
+  else if (categorias.length >= 3 && hayDesayunos) {
+    opcionesEntrega.style.display = "block";
+    document.getElementById("label-entrega-conjunta").textContent = "Dividir en máximo 2 entregas";
+    document.getElementById("label-entrega-separada").textContent = "Coordinar entrega especial";
+  }
+}
+
+
+function manejarOpcionesEntrega() {
+  const entregaConjunta = document.getElementById("entrega-conjunta");
+  const entregaSeparada = document.getElementById("entrega-separada");
+  const selectDesayuno = document.getElementById("select-horario-desayuno");
+  const selectGeneral = document.getElementById("select-horario-general");
+  const coordinacionMsg = document.getElementById("coordinacion-especial-msg");
+  const categorias = detectarCategorias();
+  
+  // Elementos de los selects
+  const selectDesayunoElement = document.getElementById("horario-desayuno");
+  const selectGeneralElement = document.getElementById("horario-general");
+  
+  if (entregaConjunta && entregaConjunta.checked) {
+    if (categorias.length === 2) {
+      // Case 2: Entregar todo junto
+      selectDesayuno.style.display = "block";
+      selectGeneral.style.display = "none";
+      coordinacionMsg.style.display = "none";
+      selectDesayunoElement.setAttribute("required", "required");
+      selectGeneralElement.removeAttribute("required");
+    } else if (categorias.length >= 3) {
+      // Case 3: Dividir en máximo 2 entregas
+      selectDesayuno.style.display = "block";
+      selectGeneral.style.display = "block";
+      coordinacionMsg.style.display = "none";
+      selectDesayunoElement.setAttribute("required", "required");
+      selectGeneralElement.setAttribute("required", "required");
+    }
+  } else if (entregaSeparada && entregaSeparada.checked) {
+    if (categorias.length === 2) {
+      // Case 2: Entregar por separado
+      selectDesayuno.style.display = "block";
+      selectGeneral.style.display = "block";
+      coordinacionMsg.style.display = "none";
+      selectDesayunoElement.setAttribute("required", "required");
+      selectGeneralElement.setAttribute("required", "required");
+    } else if (categorias.length >= 3) {
+      // Case 3: Coordinar entrega especial
+      selectDesayuno.style.display = "none";
+      selectGeneral.style.display = "none";
+      coordinacionMsg.style.display = "block";
+      selectDesayunoElement.removeAttribute("required");
+      selectGeneralElement.removeAttribute("required");
+    }
+  }
+}
+
+
+function generarResumenDescargable(e) {
+  return new Promise((o, t) => {
+    const n = document.getElementById("nombre").value || "No especificado";
+    const i = document.getElementById("telefono").value || "No especificado";
+    const c = document.getElementById("direccion").value || "No especificado";
+    const puntoReferencia = document.getElementById("punto-referencia").value || "No especificado";
+    const receptorNombre = document.getElementById("receptor-nombre").value || "No especificado";
+    const receptorCelular = document.getElementById("receptor-celular").value || "No especificado";
+    const domicilioFuera = document.getElementById("domicilio-fuera").checked;
+const zonaFuera = document.getElementById("zona-fuera");
+let zonaFueraInfo = "";
+
+if (domicilioFuera && zonaFuera && zonaFuera.value) {
+  zonaFueraInfo = zonaFuera.options[zonaFuera.selectedIndex].text;
+}
+    const r = document.getElementById("metodo-pago").value;
+    const d = document.getElementById("motivo");
+    const l = document.getElementById("globos-helio").value;
+    const s = document.getElementById("mensaje-predefinido");
+    const m = document.getElementById("mensaje-personalizado").value;
+    const u = document.querySelectorAll(".globos-imagenes-1 img.seleccionado");
+    
+    const p = localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito");
+    const f = JSON.parse(p);
+    const v = f.reduce(((e, o) => e + o.precio * o.cantidad), 0);
+    const y = calcularEnvio(v);
+    
+    let h = 0;
+    const b = parseInt(l) || 0;
+    
+    // Calcular costo de globos
+    let globosMetalizados = 0;
+    let globosLatex = 0;
+    let coloresGlobos = [];
+    
+    u.forEach(globo => {
+      if (globo.getAttribute("data-tipo") === "metalizado") {
+        globosMetalizados++;
+      } else {
+        globosLatex++;
+      }
+      coloresGlobos.push(globo.getAttribute("data-url"));
+    });
+    
+    if (b > 0) {
+      h += (4500 * globosLatex) + (5000 * globosMetalizados);
+    }
+    
+    if (s && "personalizado" === s.value) {
+      h += 3000;
+    }
+    
+    const E = v + y + h;
+    
+    let I = "Ninguno";
+    if (s && "personalizado" === s.value && m) {
+      I = `Personalizado: "${m}" `;
+    } else if (s && s.value && "personalizado" !== s.value) {
+      I = s.options[s.selectedIndex].text;
+    }
+    
+    let k = "Ninguno";
+    if (b > 0) {
+      k = `${b} globos (${globosLatex} colores ) - Total: $${(4500 * globosLatex) + (5000 * globosMetalizados)}`;
+      if (coloresGlobos.length > 0) {
+        k += ` (Colores seleccionados)`;
+      }
+    }
+    
+    let $ = "No especificado";
+    if (d) {
+      switch (d.value) {
+        case "feliz-cumpleanos":
+          $ = "Feliz cumpleaños";
+          break;
+        case "feliz-aniversario":
+          $ = "Feliz aniversario";
+          break;
+        case "feliz-mes":
+          $ = "Feliz mes";
+          break;
+        case "feliz-grado":
+          $ = "Feliz grado";
+          break;
+        case "te-amo":
+          $ = "Te amo";
+          break;
+        case "te-quiero":
+          $ = "Te quiero";
+          break;
+        case "felicidades":
+          $ = "Felicidades";
+          break;
+        case "bienvenido":
+          $ = "Bienvenido";
+          break;
+        default:
+          $ = "No especificado";
+      }
+    }
+    
+    // Mapeo de métodos de pago para el resumen
+   let metodoPagoTexto = "";
+switch(r) {  // r es el valor del select
+  case "bancolombia":  // CAMBIAR de "efectivo" a "bancolombia"
+    metodoPagoTexto = "Bancolombia";
+    break;
+  case "nequi":
+    metodoPagoTexto = "Nequi";
+    break;
+  case "daviplata":
+    metodoPagoTexto = "Daviplata";
+    break;
+  case "wester":
+    metodoPagoTexto = "Wester Union";
+    break;
+  default:
+    metodoPagoTexto = "Método no especificado";
+}
+    
+    const S = document.getElementById("resumen-items-print");
+    const B = document.getElementById("resumen-totales-print");
+    const C = document.getElementById("resumen-cliente-print");
+    const x = document.getElementById("resumen-adicionales-print");
+    
+    let L = "";
+    f.forEach((e, index) => {
+      L += `
+        <div style="display: flex; align-items: center; margin-bottom: 18px; border-bottom: 1px solid #e8e8e8; padding-bottom: 18px; background: linear-gradient(90deg, #fafafa 0%, #ffffff 100%); border-radius: 8px; padding: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+          <div style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #c5a8a3 0%, #b89890 100%); color: white; display: flex; align-items: center; justify-content: center; margin-right: 16px; font-weight: bold; font-size: 16px; box-shadow: 0 3px 8px rgba(197,168,163,0.3);">
+            ${index + 1}
+          </div>
+          <div style="flex: 1;">
+            <div style="font-weight: 600; color: #2d3748; font-size: 15px; margin-bottom: 4px;">${e.nombre}</div>
+            <div style="color: #718096; font-size: 13px; font-weight: 500;">${e.precio.toLocaleString()} × ${e.cantidad}</div>
+          </div>
+          <div style="font-weight: 700; color: #c5a8a3; font-size: 16px; text-shadow: 0 1px 2px rgba(0,0,0,0.1);">${(e.precio * e.cantidad).toLocaleString()}</div>
+        </div>
+      `;
+    });
+    
+    S.innerHTML = L;
+    
+    B.innerHTML = `
+      <div style="margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 20px; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 500; color: #4a5568;">
+          <span>Subtotal:</span>
+          <span>${v.toLocaleString()}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 500; color: #4a5568;">
+          <span>Envío:</span>
+          <span>${y.toLocaleString()}</span>
+        </div>
+        ${h > 0 ? `
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: 500; color: #4a5568;">
+          <span>Adicionales:</span>
+          <span>${h.toLocaleString()}</span>
+        </div>
+        ` : ""}
+        <div style="border-top: 2px solid #c5a8a3; margin-top: 15px; padding-top: 15px;">
+          <div style="display: flex; justify-content: space-between; font-size: 20px; font-weight: 800; color: #c5a8a3; text-shadow: 0 2px 4px rgba(0,0,0,0.1); background: linear-gradient(90deg, #c5a8a3, #b89890); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            <span style="color: #2C2C2C">TOTAL:</span>
+            <span style="color: #2C2C2C">${E.toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    C.innerHTML = `
+      <div style="margin-top: 25px; border-top: 2px solid #e2e8f0; padding-top: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+        <h3 style="margin-bottom: 18px; color: #2d3748; font-weight: 700; font-size: 18px; text-align: center; text-shadow: 0 1px 3px rgba(0,0,0,0.1);">📦 DATOS DE ENVÍO</h3>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Código:</span>
+          <span style="font-weight: 500; color: #2d3748;">${e}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Nombre:</span>
+          <span style="font-weight: 500; color: #2d3748;">${n}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Teléfono:</span>
+          <span style="font-weight: 500; color: #2d3748;">${i}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Dirección:</span>
+          <span style="font-weight: 500; color: #2d3748;">${c}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Punto de referencia:</span>
+          <span style="font-weight: 500; color: #2d3748;">${puntoReferencia}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Quién recibe:</span>
+          <span style="font-weight: 500; color: #2d3748;">${receptorNombre}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Celular receptor:</span>
+          <span style="font-weight: 500; color: #2d3748;">${receptorCelular}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+          <span style="font-weight: 600; color: #4a5568;">Método de pago:</span>
+          <span style="font-weight: 500; color: #2d3748;">${metodoPagoTexto}</span>
+        </div>
+        ${domicilioFuera ? `
+<div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding: 8px 12px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #c5a8a3;">
+  <span style="font-weight: 600; color: #4a5568;">Zona de entrega:</span>
+  <span style="font-weight: 500; color: #2d3748;">${zonaFueraInfo}</span>
+</div>
+` : ""}
+      </div>
+    `;
+    
+    x.innerHTML = `
+      <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
+        <h3 style="margin-bottom: 10px; text-align: center">Gracias por su compra</h3>
+        <div style="margin-top: 20px; text-align: center; font-size: 12px; color: #999;">
+          <p>Fecha del pedido: ${(new Date).toLocaleDateString()}</p>
+        </div>
+      </div>
+    `;
+    
+    const N = document.getElementById("resumen-para-imprimir");
+    N.style.display = "block";
+    
+    html2canvas(N, {
+      backgroundColor: "#ffffff",
+      scale: 2,
+      logging: false,
+      useCORS: true
+    }).then((e) => {
+      N.style.display = "none";
+      const t = e.toDataURL("image/png");
+      const n = document.createElement("a");
+      n.href = t;
+      n.download = "resumen-pedido.png";
+      document.body.appendChild(n);
+      n.click();
+      document.body.removeChild(n);
+      mostrarNotificacion("El resumen se ha descargado correctamente");
+      o(t);
+    }).catch((e) => {
+      console.error("Error al generar la imagen:", e);
+      mostrarNotificacion("Hubo un error al generar la imagen del resumen");
+      t(e);
+    });
+  });
+}
+
+
+function generarCodigoPedido() {
+  return Math.floor(100000 + 900000 * Math.random()).toString();
+}
+
+function mostrarNotificacion(e) {
+  const o = document.getElementById("toastNotification");
+  
+  if (o) {
+    o.textContent = e;
+    o.style.display = "block";
+    setTimeout(() => {
+      o.style.display = "none";
+    }, 3000);
+  } else {
+    const o = document.createElement("div");
+    o.className = "toast-notification";
+    o.textContent = e;
+    document.body.appendChild(o);
+    setTimeout(() => {
+      document.body.removeChild(o);
+    }, 3000);
+  }
+}
+
+
+// Inicializar Flatpickr después de cargar días clausurados
+document.addEventListener("DOMContentLoaded", function() {
+    const fechaInput = document.getElementById('fecha-entrega');
+    
+    if (fechaInput) {
+        // Cargar días clausurados desde Firebase
+        cargarDiasClausurados().then(diasClausurados => {
+            // Configurar Flatpickr
+            flatpickr(fechaInput, {
+                locale: "es",
+                dateFormat: "Y-m-d", 
+                minDate: "today",
+                disable: diasClausurados.map(dia => dia.fecha),
+                allowInput: false,
+                onDayCreate: function(dObj, dStr, fp, dayElem) {
+                    const date = dayElem.dateObj;
+                    const dateStr = formatDateForComparison(date);
+                    
+                    // Verificar si esta fecha está clausurada
+                    const diaClausurado = diasClausurados.find(dia => dia.fecha === dateStr);
+                    if (diaClausurado) {
+                        dayElem.classList.add('fecha-clausurada');
+                        dayElem.title = `Clausurado: ${diaClausurado.motivo}`;
+                        
+                        // Agregar evento de click para mostrar modal
+                        dayElem.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setTimeout(() => {
+                                mostrarModalDiaClausurado(dateStr, diaClausurado.motivo);
+                            }, 100);
+                        });
+                    }
+                }
+            });
+        });
+    }
+});
+// Función para mostrar el modal de día clausurado
+function mostrarModalDiaClausurado(fecha, motivo) {
+    // Cerrar el calendario de Flatpickr primero
+    const fechaInput = document.getElementById('fecha-entrega');
+    if (fechaInput._flatpickr) {
+        fechaInput._flatpickr.close();
+    }
+    
+    // Mostrar el modal
+    document.getElementById('modalDate').textContent = fecha;
+    document.getElementById('modalReason').textContent = motivo;
+    document.getElementById('closedDayModal').style.display = 'block';
+}
+
+// Función para cerrar el modal de día clausurado
+function cerrarModalDiaClausurado() {
+    document.getElementById('closedDayModal').style.display = 'none';
+}
+
+// Función para cargar días clausurados desde Firebase
+function cargarDiasClausurados() {
+    return new Promise((resolve) => {
+        database.ref('dias-clausurados').once('value').then((snapshot) => {
+            const dias = snapshot.val();
+            if (dias) {
+                const diasArray = Object.keys(dias).map(key => ({
+                    fecha: key,
+                    motivo: dias[key].motivo || 'Día no disponible'
+                }));
+                resolve(diasArray);
+            } else {
+                resolve([]);
+            }
+        }).catch((error) => {
+            console.error("Error al cargar días clausurados:", error);
+            resolve([]);
+        });
+    });
+}
+function closeModal() {
+    document.getElementById('closedDayModal').style.display = 'none';
+}
+
+// Configurar eventos del modal cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Botón "Entendido" del modal de días clausurados
+    const btnEntendido = document.getElementById('btn-entendido-clausurado');
+    if (btnEntendido) {
+        btnEntendido.addEventListener('click', cerrarModalDiaClausurado);
+    }
+    
+    // Cerrar modal con click fuera o tecla Escape
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('closedDayModal');
+        if (event.target === modal) {
+            cerrarModalDiaClausurado();
+        }
+    });
+
+    window.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            cerrarModalDiaClausurado();
+        }
+    });
+});
+
+// Función para formatear fecha para comparación
+function formatDateForComparison(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// Función para mostrar el modal
+function showClosedDayModal(fecha, motivo) {
+    document.getElementById('modalDate').textContent = fecha;
+    document.getElementById('modalReason').textContent = motivo;
+    document.getElementById('closedDayModal').style.display = 'block';
+}
+
+// Función para cerrar el modal
+function closeModal() {
+    document.getElementById('closedDayModal').style.display = 'none';
+}
+
+
+// Event listeners
+document.getElementById("ver-colores-globos").addEventListener("click", function() {
+  const globosHelioSelect = document.getElementById("globos-helio");
+  if (globosHelioSelect.value === "0") {
+    globosSeleccionados = [];
+  }
+  mostrarModalGlobos();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const e = localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito");
+  
+  if (e && "[]" !== e) {
+    const o = JSON.parse(e);
+    mostrarProductosCheckout(o);
+    calcularTotalesCheckout(o);
+  } else {
+    document.getElementById("checkout-items").innerHTML = `
+      <div class="carrito-vacio">
+        <i>🛒</i>
+        <p>El carrito está vacío</p>
+        <p><a href="index.html">Volver a la tienda</a></p>
+      </div>
+    `;
+    document.getElementById("checkout-total").style.display = "none";
+    document.getElementById("checkout-form").style.display = "none";
+  }
+  
+  const o = document.getElementById("checkout-form");
+  o && o.addEventListener("submit", procesarPedido);
+  const t = document.getElementById("globos");
+  t && t.addEventListener("change", function() {
+    calcularTotalesCheckout(JSON.parse(e));
+  });
+  
+  const n = document.getElementById("agregar-adicion");
+  n && n.addEventListener("click", function() {
+    abrirModalAdiciones();
+  });
+  
+  const a = document.getElementById("close-modal");
+  a && a.addEventListener("click", cerrarModalAdiciones);
+  
+  const i = document.getElementById("adicion-modal");
+  i && i.addEventListener("click", function(e) {
+    e.target === i && cerrarModalAdiciones();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  mostrarProductosCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]"));
+  
+  const e = document.getElementById("eliminar-adiciones");
+  e && e.addEventListener("click", function() {
+    eliminarTodasAdiciones();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const e = document.getElementById("globos-helio");
+  const o = document.getElementById("ver-colores-globos");
+  const t = document.getElementById("modal-globos-1");
+  const n = t.querySelector(".close-1");
+  
+  e && o && e.addEventListener("change", function() {
+    this.value > 0 ? o.style.display = "block" : o.style.display = "none";
+  });
+  
+  o && t && o.addEventListener("click", function() {
+    mostrarModalGlobos();
+  });
+  
+  n && n.addEventListener("click", function() {
+    t.style.display = "none";
+  });
+  
+  window.addEventListener("click", function(e) {
+    e.target === t && (t.style.display = "none");
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Para el mensaje personalizado de globo
+  const motivoSelect = document.getElementById("motivo");
+  const mensajeGloboContainer = document.getElementById("mensaje-personalizado-globo-container");
+  
+  motivoSelect && mensajeGloboContainer && motivoSelect.addEventListener("change", function() {
+    if (this.value === "personalizado") {
+      mensajeGloboContainer.style.display = "block";
+    } else {
+      mensajeGloboContainer.style.display = "none";
+    }
+    calcularTotalesCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito")));
+  });
+  
+  const t = document.getElementById("globos-helio");
+  t && t.addEventListener("change", function() {
+    calcularTotalesCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito")));
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Para el select de globos
+  const globosHelioSelect = document.getElementById("globos-helio");
+  const cantidadPersonalizadaContainer = document.getElementById("cantidad-personalizada-container");
+  const cantidadPersonalizadaInput = document.getElementById("cantidad-personalizada");
+  const fechaInput = document.getElementById('fecha-entrega');
+
+
+
+
+  
+  globosHelioSelect.addEventListener("change", function() {
+    if (this.value === "personalizado") {
+      cantidadPersonalizadaContainer.style.display = "block";
+      cantidadPersonalizadaInput.value = "1";
+    } else {
+      cantidadPersonalizadaContainer.style.display = "none";
+    }
+    
+    // Mostrar/ocultar botón de selección de colores
+    const verColoresBtn = document.getElementById("ver-colores-globos");
+    if (this.value > 0 || this.value === "personalizado") {
+      verColoresBtn.style.display = "block";
+    } else {
+      verColoresBtn.style.display = "none";
+    }
+    
+    calcularTotalesCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito")));
+  });
+  
+  cantidadPersonalizadaInput.addEventListener("change", function() {
+    calcularTotalesCheckout(JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito")));
+  });
+
+ 
+  mostrarSelectorHorarios();
+  
+
+  const entregaConjunta = document.getElementById("entrega-conjunta");
+  const entregaSeparada = document.getElementById("entrega-separada");
+  
+  if (entregaConjunta) {
+    entregaConjunta.addEventListener("change", manejarOpcionesEntrega);
+  }
+  if (entregaSeparada) {
+    entregaSeparada.addEventListener("change", manejarOpcionesEntrega);
+  }
+});
+
+// Event listeners para domicilio fuera
+const domicilioFueraCheck = document.getElementById("domicilio-fuera");
+const zonaFueraContainer = document.getElementById("zona-fuera-container");
+const zonaFueraSelect = document.getElementById("zona-fuera");
+
+if (domicilioFueraCheck && zonaFueraContainer) {
+  domicilioFueraCheck.addEventListener("change", function() {
+    if (this.checked) {
+      zonaFueraContainer.style.display = "block";
+      zonaFueraSelect.setAttribute("required", "required");
+    } else {
+      zonaFueraContainer.style.display = "none";
+      zonaFueraSelect.removeAttribute("required");
+      zonaFueraSelect.value = "";
+    }
+    // Recalcular totales
+    const carrito = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]");
+    calcularTotalesCheckout(carrito);
+  });
+  
+  zonaFueraSelect.addEventListener("change", function() {
+    // Recalcular totales cuando cambie la zona
+    const carrito = JSON.parse(localStorage.getItem("carritoCheckout") || localStorage.getItem("carrito") || "[]");
+    calcularTotalesCheckout(carrito);
+  });
+}
+
+
+</script>
+</body>
+</html>

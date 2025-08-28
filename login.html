@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login y Registro - Morenita</title>
+       <link href="img/logo.png"rel="icon"type="image/png">
+<link rel="stylesheet" href="css/tipografia.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            
+              background-color: #e4e4e4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .auth-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8, #2563eb);
+            background-size: 200% 100%;
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+            font-size: 28px;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        input:hover {
+            border-color: #c5c9cc;
+        }
+        
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        button:hover::before {
+            left: 100%;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .switch-form {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+        
+        .switch-form a {
+            color: #3b82f6;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .switch-form a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+        
+        .forgot-password a {
+            color: #888;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password a:hover {
+            color: #3b82f6;
+            text-decoration: underline;
+        }
+        
+        .message {
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .success {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .email-verification {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e8f0fe, #d2e3fc);
+            border-radius: 15px;
+            text-align: center;
+            color: #1967d2;
+            border: 1px solid #d2e3fc;
+        }
+        
+        .resend-link {
+            color: #3b82f6;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .resend-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        
+        /* Animaciones de entrada para los formularios */
+        .auth-form {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="logo-container">
+            <img src="" alt="Logo" class="logo" id="company-logo">
+        </div>
+        
+        <h1 id="form-title">Iniciar Sesión</h1>
+        
+        <div id="message" class="message hidden"></div>
+        
+        <!-- Formulario de Login -->
+        <form id="login-form" class="auth-form">
+            <div class="form-group">
+                <label for="login-email">Correo electrónico</label>
+                <input type="email" id="login-email" required placeholder="Ingresa tu email">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Contraseña</label>
+                <input type="password" id="login-password" required placeholder="Ingresa tu contraseña">
+            </div>
+            <div class="forgot-password">
+                <a id="forgot-password-link">¿Olvidaste tu contraseña?</a>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+            <div class="switch-form">
+                ¿No tienes una cuenta? <a id="show-register">Regístrate</a>
+            </div>
+        </form>
+        
+        <!-- Formulario de Registro -->
+        <form id="register-form" class="auth-form hidden">
+            <div class="form-group">
+                <label for="register-email">Correo electrónico</label>
+                <input type="email" id="register-email" required placeholder="Ingresa tu email">
+            </div>
+            <div class="form-group">
+                <label for="register-password">Contraseña</label>
+                <input type="password" id="register-password" required placeholder="Mínimo 6 caracteres">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Contraseña</label>
+                <input type="password" id="confirm-password" required placeholder="Repite tu contraseña">
+            </div>
+            <button type="submit">Registrarse</button>
+            <div class="switch-form">
+                ¿Ya tienes una cuenta? <a id="show-login">Inicia Sesión</a>
+            </div>
+        </form>
+        
+        <!-- Formulario de Recuperación de Contraseña -->
+        <form id="reset-form" class="auth-form hidden">
+            <div class="form-group">
+                <label for="reset-email">Correo electrónico</label>
+                <input type="email" id="reset-email" required placeholder="Ingresa tu email">
+            </div>
+            <button type="submit">Enviar enlace de recuperación</button>
+            <div class="switch-form">
+                <a id="show-login-from-reset">Volver a Iniciar Sesión</a>
+            </div>
+        </form>
+        
+        <!-- Mensaje de verificación de correo -->
+        <div id="email-verification-message" class="email-verification hidden">
+            Hemos enviado un correo de verificación a tu dirección de email. Por favor verifica tu correo para completar el registro.
+            si no lo ves, revisa tu carpeta de spam 
+            <br><br>
+            ¿No recibiste el correo? <span class="resend-link" id="resend-verification">Reenviar verificación</span>
+        </div>
+    </div>
+
+    <!-- Incluir Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    
+    <script>
+        // Configuración de Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyBoRNOrpueYTJVeqxZwMtUsyAYArEHvgVU",
+  authDomain: "morenita0ficial.firebaseapp.com",
+  databaseURL: "https://morenita0ficial-default-rtdb.firebaseio.com",
+  projectId: "morenita0ficial",
+  storageBucket: "morenita0ficial.firebasestorage.app",
+  messagingSenderId: "867231481408",
+  appId: "1:867231481408:web:50512d7709d3b9d4e7a9a5"
+};
+
+// Inicializar Firebase
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// Cambiar el logo por tu URL
+document.getElementById('company-logo').src = 'https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/logo-moretina/418035298_1017029066046715_4957160141710940103_n-removebg-preview.png';
+
+// ========== FUNCIONES DE REDIRECCIÓN ==========
+function getUrlParameter(name) {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const param = urlParams.get(name);
+        return param;
+    } catch (error) {
+        return null;
+    }
+}
+
+function checkForRedirectParameter() {
+    try {
+        const currentUrl = window.location.href;
+        const hasRedirectCheckout = currentUrl.includes('redirect=checkout');
+        
+        if (hasRedirectCheckout) {
+            return 'checkout';
+        }
+        
+        const redirectParam = getUrlParameter('redirect');
+        if (redirectParam === 'checkout') {
+            return 'checkout';
+        }
+        
+        return 'index';
+        
+    } catch (error) {
+        return 'index';
+    }
+}
+
+function saveRedirectPage() {
+    try {
+        const redirectDestination = checkForRedirectParameter();
+        
+        if (redirectDestination === 'checkout') {
+            localStorage.setItem('redirectAfterAuth', 'checkout');
+        } else {
+            localStorage.removeItem('redirectAfterAuth');
+        }
+        
+        return redirectDestination;
+    } catch (error) {
+        localStorage.removeItem('redirectAfterAuth');
+        return 'index';
+    }
+}
+
+function redirectAfterAuth() {
+    try {
+        const redirectPage = localStorage.getItem('redirectAfterAuth');
+        
+        if (redirectPage === 'checkout') {
+            localStorage.removeItem('redirectAfterAuth');
+            window.location.href = 'checkout.html';
+        } else {
+            window.location.href = 'index.html';
+        }
+    } catch (error) {
+        window.location.href = 'index.html';
+    }
+}
+
+function handleSuccessfulAuth() {
+    try {
+        redirectAfterAuth();
+    } catch (error) {
+        window.location.href = 'index.html';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const destination = saveRedirectPage();
+});
+
+// Referencias a los elementos del DOM
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+const resetForm = document.getElementById('reset-form');
+const showRegisterLink = document.getElementById('show-register');
+const showLoginLink = document.getElementById('show-login');
+const showLoginFromResetLink = document.getElementById('show-login-from-reset');
+const forgotPasswordLink = document.getElementById('forgot-password-link');
+const formTitle = document.getElementById('form-title');
+const messageDiv = document.getElementById('message');
+const emailVerificationMessage = document.getElementById('email-verification-message');
+const resendVerificationLink = document.getElementById('resend-verification');
+
+// Mostrar formulario de registro
+showRegisterLink.addEventListener('click', () => {
+    loginForm.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+    resetForm.classList.add('hidden');
+    emailVerificationMessage.classList.add('hidden');
+    formTitle.textContent = 'Registrarse';
+    clearMessage();
+});
+
+// Mostrar formulario de login
+showLoginLink.addEventListener('click', () => {
+    registerForm.classList.add('hidden');
+    loginForm.classList.remove('hidden');
+    resetForm.classList.add('hidden');
+    emailVerificationMessage.classList.add('hidden');
+    formTitle.textContent = 'Iniciar Sesión';
+    clearMessage();
+});
+
+// Mostrar formulario de login desde recuperación
+showLoginFromResetLink.addEventListener('click', () => {
+    resetForm.classList.add('hidden');
+    loginForm.classList.remove('hidden');
+    emailVerificationMessage.classList.add('hidden');
+    formTitle.textContent = 'Iniciar Sesión';
+    clearMessage();
+});
+
+// Mostrar formulario de recuperación de contraseña
+forgotPasswordLink.addEventListener('click', () => {
+    loginForm.classList.add('hidden');
+    resetForm.classList.remove('hidden');
+    emailVerificationMessage.classList.add('hidden');
+    formTitle.textContent = 'Recuperar Contraseña';
+    clearMessage();
+});
+
+// Función para mostrar mensajes
+function showMessage(type, text) {
+    messageDiv.textContent = text;
+    messageDiv.className = `message ${type}`;
+    messageDiv.classList.remove('hidden');
+}
+
+// Función para limpiar mensajes
+function clearMessage() {
+    messageDiv.classList.add('hidden');
+    messageDiv.textContent = '';
+}
+
+// Función para verificar si un email existe
+async function checkEmailExists(email) {
+    try {
+        const methods = await auth.fetchSignInMethodsForEmail(email);
+        return methods.length > 0;
+    } catch (error) {
+        return false;
+    }
+}
+
+// Manejar el envío del formulario de login
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    
+    try {
+        // Primero verificar si el email existe
+        const emailExists = await checkEmailExists(email);
+        
+        // Intentar hacer login
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        
+        if (user.emailVerified) {
+            showMessage('success', 'Inicio de sesión exitoso. Redirigiendo...');
+            setTimeout(() => {
+                handleSuccessfulAuth();
+            }, 1000);
+        } else {
+            auth.signOut();
+            showMessage('error', 'Por favor verifica tu correo electrónico antes de iniciar sesión.');
+        }
+        
+    } catch (error) {
+        console.log('Código de error:', error.code); // Para debugging
+        let errorMessage;
+        
+        // Manejar errores específicos
+        if (error.code === 'auth/invalid-login-credentials' || error.code === 'auth/invalid-credential') {
+            // Verificar si el email existe para dar un mensaje más específico
+            const emailExists = await checkEmailExists(email);
+            if (!emailExists) {
+                errorMessage = 'Este correo electrónico no está registrado.';
+            } else {
+                errorMessage = 'La contraseña es incorrecta.';
+            }
+        }
+        else if (error.code === 'auth/user-not-found') {
+            errorMessage = 'Este correo electrónico no está registrado.';
+        }
+        else if (error.code === 'auth/wrong-password') {
+            errorMessage = 'La contraseña es incorrecta.';
+        }
+        else if (error.code === 'auth/invalid-email') {
+            errorMessage = 'El formato del correo electrónico no es válido.';
+        }
+        else if (error.code === 'auth/user-disabled') {
+            errorMessage = 'Esta cuenta ha sido deshabilitada.';
+        }
+        else if (error.code === 'auth/too-many-requests') {
+            errorMessage = 'Demasiados intentos fallidos. Intenta de nuevo más tarde.';
+        }
+        else {
+            errorMessage = 'Error al iniciar sesión. Por favor intenta de nuevo.';
+        }
+        
+        showMessage('error', errorMessage);
+    }
+});
+
+// Manejar el envío del formulario de registro
+registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+    if (password !== confirmPassword) {
+        showMessage('error', 'Las contraseñas no coinciden.');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showMessage('error', 'La contraseña debe tener al menos 6 caracteres.');
+        return;
+    }
+    
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            sendEmailVerification(user);
+            
+            registerForm.classList.add('hidden');
+            emailVerificationMessage.classList.remove('hidden');
+            formTitle.textContent = 'Verifica tu correo';
+            
+            showMessage('success', '¡Registro exitoso! Por favor verifica tu correo electrónico.');
+        })
+        .catch((error) => {
+            let errorMessage = error.message;
+            if (error.code === 'auth/email-already-in-use') {
+                errorMessage = 'Este correo electrónico ya está registrado.';
+            }
+            showMessage('error', errorMessage);
+        });
+});
+
+// Función para enviar correo de verificación
+function sendEmailVerification(user) {
+    user.sendEmailVerification()
+        .then(() => {
+            // Correo de verificación enviado
+        })
+        .catch((error) => {
+            // Error al enviar correo de verificación
+        });
+}
+
+// Manejar el reenvío de verificación de correo
+resendVerificationLink.addEventListener('click', () => {
+    const user = auth.currentUser;
+    if (user) {
+        sendEmailVerification(user);
+        showMessage('success', 'Correo de verificación reenviado. Por favor revisa tu bandeja de entrada.');
+    }
+});
+
+// Manejar el envío del formulario de recuperación de contraseña
+resetForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('reset-email').value;
+    
+    auth.sendPasswordResetEmail(email)
+        .then(() => {
+            showMessage('success', 'Se ha enviado un correo para restablecer tu contraseña. Por favor revisa tu bandeja de entrada.');
+        })
+        .catch((error) => {
+            let errorMessage;
+            if (error.code === 'auth/user-not-found') {
+                errorMessage = 'No existe una cuenta con este correo electrónico.';
+            } else if (error.code === 'auth/invalid-email') {
+                errorMessage = 'El formato del correo electrónico no es válido.';
+            } else {
+                errorMessage = 'Error al enviar el correo de recuperación. Intenta de nuevo.';
+            }
+            showMessage('error', errorMessage);
+        });
+});
+
+// Escuchar cambios en el estado de autenticación
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        if (user.emailVerified) {
+            // Usuario autenticado y verificado
+        } else {
+            // Usuario autenticado pero no verificado
+        }
+    } else {
+        // Usuario no autenticado
+    }
+});
+    </script>
+</body>
+</html>

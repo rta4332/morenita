@@ -1,0 +1,213 @@
+<!doctypehtml>
+<html lang="en">
+   <meta charset="UTF-8">
+   <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"name="viewport">
+   <link href="img/logo.png"rel="icon"type="image/png">
+   <title>Anchetas Box - Morenita</title>
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"rel="stylesheet">
+   <link rel="stylesheet" href="css/box.css">
+   <link rel="stylesheet" href="css/tipografia.css">
+      <link rel="stylesheet" href="css/color.css">
+
+      <script src="js/ocultarf.js"></script>
+
+   <link href=""rel="stylesheet">
+   <div class="overlay"></div>
+   <header>
+      <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+      
+      <div class="logo">
+  <a href="index.html">
+    <img alt="morenita logo" src="img/logo.png">
+  </a>
+</div>
+
+
+      
+      <nav>
+         <ul>
+            <li><a href="index.html">INICIO</a>
+            <li><a href="desayunos.html">DESAYUNOS</a>
+            <li><a href="fresas.html">FRESAS</a>
+            <li><a href="box.html"class="active">BOX Y LICORES</a>
+            <li><a href="arreglos.html">ARREGLOS FLORALES</a>
+            <li><a href="frutales.html">FRUTALES</a></li>
+            <li><a href="promociones.html">PROMOCIONES</a></li>
+            <nav>
+               <ul>
+                  <li>
+                     <a href="#"class="toggle-submenu">OTROS</a>
+                     <ul class="submenu"style="margin-top:-5px">
+                        <li><a href="catalogo-especial.html">CATALOGO ESPECIAL</a>
+                        <li><a href="preguntas.html">PREGUNTAS FRECUENTES</a>
+                        <li><a href="https://wa.me/573023144445">PEDIDO PERSONALIZADO</a>
+                     </ul>
+               </ul>
+            </nav>
+         </ul>
+      </nav>
+      <div class="icons"><a href="#"id="carritoIcon"><i class="fas fa-shopping-cart"></i> <span id="carritoContador"class="count">0</span> </a><a href="perfil.html"><i class="fas fa-user"></i></a> <a href="#"id="search-icon"><i class="fas fa-search"></i></a></div>
+   </header>
+ <div class="side-menu">
+      <div class="close-menu"><i class="fas fa-times"></i></div>
+      <ul>
+       <li>
+    <a href="index.html">
+        <i class="fas fa-home"></i> INICIO
+    </a>
+</li>
+<li>
+    <a href="desayunos.html" class="active">
+        <i class="fas fa-coffee"></i> DESAYUNOS
+    </a>
+</li>
+<li>
+    <a href="fresas.html">
+        <i class="fas fa-stroopwafel"></i> FRESAS
+    </a>
+</li>
+<li>
+    <a href="box.html">
+        <i class="fas fa-gift"></i> BOX Y LICORES
+    </a>
+</li>
+<li>
+    <a href="arreglos.html">
+        <i class="fas fa-spa"></i> ARREGLOS FLORALES
+    </a>
+</li>
+<li>
+    <a href="frutales.html">
+        <i class="fas fa-apple-alt"></i> FRUTALES
+    </a>
+</li>
+<li>
+    <a href="catalogo-especial.html">
+        <i class="fas fa-star"></i> CATALOGO ESPECIAL
+    </a>
+</li>
+<li>
+    <a href="preguntas.html">
+        <i class="fas fa-question-circle"></i> PREGUNTAS FRECUENTES
+    </a>
+</li>
+<li>  
+      <a href="promociones.html">
+         <i class="fa-solid fa-tags"></i> PROMOCIONES
+      </a>
+</li>
+<li>
+    <a href="https://wa.me/573023144445">
+        <i class="fas fa-pen"></i> PEDIDOS PERSONALIZADOS
+    </a>
+</li>
+      </ul>
+   </div>
+   <div class="search-modal"id="search-modal">
+      <div class="search-modal-content">
+         <span class="close-search-modal">×</span>
+         <div class="search-modal-header">
+            <h2>Buscar Productos</h2>
+            <div class="search-input-container"><input id="search-input"class="search-input"placeholder="Escribe el nombre del producto..."> <button class="search-button"id="search-button"><i class="fas fa-search"></i></button></div>
+         </div>
+         <div class="results-count"id="results-count"></div>
+         <div class="product-grid"id="products-container"></div>
+      </div>
+   </div>
+   <div class="carrito-modal"id="carritoModal">
+      <div class="carrito-content">
+         <div class="carrito-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-carrito"id="closeCarrito">×</button>
+         </div>
+         <div id="carritoItems"></div>
+         <div class="carrito-total"id="carritoTotal">
+            <div class="carrito-total-row"><span>Subtotal:</span> <span id="subtotal">$0</span></div>
+            <div class="carrito-total-row"><span>Envío:</span> <span id="envio">$0</span></div>
+            <div class="carrito-total-final"><span>Total:</span> <span id="total">$0</span></div>
+         </div>
+         <div class="carrito-botones"><button class="btn-finalizar"id="finalizarCompra">Finalizar Compra</button> <button class="btn-vaciar"id="vaciarCarrito">Vaciar</button></div>
+      </div>
+   </div>
+   <div class="toast-notification"id="toastNotification"></div>
+   <div class="modal"id="filtersModal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h3></h3>
+            <button class="close-modal">×</button>
+         </div>
+         <div class="modal-body"></div>
+      </div>
+   </div>
+  <div class="header-filtros">
+      <div>
+         <p>
+      </div>
+      <div class="filtro-favoritos">
+         <label for="ordenFavoritos">Ordenar por :</label> 
+         <select id="ordenFavoritos"onchange="ordenarPorFavoritos()">
+            <option value="normal">Sin ordenar
+            <option value="favoritos">Más populares
+         </select>
+      </div>
+   </div>
+   <div class="mobile-header">
+ <div class="mobile-ordenar">
+   <label for="ordenFavoritos">Ordenar por:</label>
+   <select id="ordenFavoritos" onchange="ordenarPorFavoritos2(this)">
+      <option value="normal">Sin ordenar</option>
+      <option value="favoritos">Más populares</option>
+   </select>
+</div>
+   
+   <button id="showFilters">
+      <i class="fas fa-filter"></i>
+      <span>Filtros</span>
+   </button>
+
+
+    
+
+</div>
+<div class="contenedor-actual">
+      <div id="categoria-actual" class="categoria-actual">1</div>
+  </div>
+   <div class="contenedor">
+      <div class="categorias">
+         <h2 style="margin-left:14px">Categorías</h2>
+         <button onclick='cargarProductos("desayunos")'> Desayunos</button> <button onclick='cargarProductos("fresas")'> Fresas</button> <button onclick='cargarProductos("promociones")'> Promociones</button> <button onclick='cargarProductos("box")'> Box y licores</button> <button onclick='cargarProductos("arreglos")'> Arreglos florales</button> <button onclick='cargarProductos("frutales")'> frutales</button> <button onclick='cargarProductos("diaespecial")'> Ver productos día especial</button>
+         <div class="filtros">
+            <h3 style="margin-left:14px">Filtrar por precio</h3>
+            <input id="precio"max="800000"min="0"oninput="actualizarPrecio()"step="1000"style="margin-left:10px"type="range"value="0"> <span id="valorPrecio">Precio: $0</span> <button onclick="aplicarFiltro()">Aplicar Filtro</button> <button onclick="reiniciarFiltros()">Reiniciar Filtro</button>
+         </div>
+      </div>
+      <div class="productos"id="productos"></div>
+   </div>
+
+   <footer class="footer">
+      <div class="footer-content">
+         <div class="footer-section">
+            <h3>Contacto</h3>
+            <div class="contact-item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/573023144445">WhatsApp: (+57) 302 314 4445</a></div>
+            <div class="contact-item"><i class="fa-envelope far"></i> <a href="mailto:morenita.floresfresasorpresas@gmail.com">morenita.floresfresasorpresas@gmail.com</a></div>
+         </div>
+         <div class="footer-logo">
+            <img alt="morenita"src="img/logo.png">
+            <div class="slogan">Sorprende a los que más quieres</div>
+            <div class="footer-social"><a href="https://www.instagram.com/morenita.oficial/"aria-label="Instagram"><i class="fab fa-instagram"></i> </a><a href="https://wa.me/573023144445"aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div>
+         </div>
+         <div class="footer-section">
+            <h3>Explora</h3>
+            <div class="info-links"><a href="desayunos.html">Desayunos</a> <a href="arreglos.html">Arreglos florales</a> <a href="box.html">box y licores</a></div>
+         </div>
+      </div>
+     
+      <div class="footer-bottom">
+                  <p>Desayunos, Flores, Fresas y Detalles Valledupar | Diseño de página Web por Dokut </p>
+      </div>
+      
+   </footer>
+   <div class="mobile-footer">
+      <div class="footer-menu"><a href="tienda.html"class="footer-item"><i class="fas fa-store"></i> <span>Tienda</span> </a><a href="#"class="footer-item"id="mobileCarritoIcon"style="position:relative"><i class="fas fa-shopping-cart"></i> <span id="mobileCarritoContador"class="count">0</span> <span>Carrito</span> </a><a href="#"class="footer-item"id="mobile-search-icon"><i class="fas fa-search"></i> <span>Buscar</span> </a><a href="perfil.html"class="footer-item"><i class="fas fa-user"></i> <span>Mi cuenta</span></a></div>
+   </div>
+   <a href="https://wa.me/573023144445?text=Hola%20quiero%20más%20información%"class="whatsapp-button"target="_blank"><i class="fa-whatsapp fab"></i></a><script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script><script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script><script src="js/box.js"></script><script src=""></script><script src="js/auth.js"></script>

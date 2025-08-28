@@ -1,0 +1,2815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor R2 Storage</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.1691.0/aws-sdk.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/tipografia.css">
+    
+    <script src="js/fivernimda.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #0078d4;
+            --accent-hover: #106ebe;
+            --success: #107c10;
+            --danger: #d13438;
+            --warning: #ffc107;
+            --border: #484848;
+        }
+
+        body {
+            
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+        }
+         .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .logo-container{
+            margin-top: 380px;
+            margin-left: 20px;
+        }
+
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Toolbar */
+        .toolbar {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toolbar-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toolbar-separator {
+            width: 1px;
+            height: 30px;
+            background: var(--border);
+            margin: 0 10px;
+        }
+
+        .btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn:disabled:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--border);
+        }
+
+        /* Address bar */
+        .address-bar {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            padding: 15px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-title {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding: 0 15px 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-item {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .sidebar-item.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* File area */
+        .file-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .file-header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 30px;
+            display: grid;
+            grid-template-columns: 40px 1fr 150px 100px 40px;
+            gap: 15px;
+            align-items: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .file-content {
+            flex: 1;
+            overflow: auto;
+            padding: 10px;
+        }
+
+        /* File grid */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            padding: 10px;
+        }
+
+        .file-item {
+            background: var(--bg-secondary);
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+            position: relative;
+        }
+
+        .file-item:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+        }
+
+        .file-item.selected {
+            background: var(--accent);
+            border-color: var(--accent-hover);
+        }
+
+        .file-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .folder-icon {
+            color: #ffd700;
+        }
+
+        .image-icon {
+            color: #4CAF50;
+        }
+
+        .file-name {
+            font-size: 12px;
+            word-break: break-word;
+            line-height: 1.3;
+            max-height: 32px;
+            overflow: hidden;
+        }
+
+        /* List view */
+        .file-list {
+            display: none;
+        }
+
+        .file-list.active {
+            display: block;
+        }
+
+        .list-header {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 8px;
+            display: grid;
+            grid-template-columns: 40px 1fr 150px 100px 40px;
+            gap: 15px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .list-item {
+            border: 1px solid transparent;
+            border-top: none;
+            background: var(--bg-secondary);
+            padding: 8px;
+            display: grid;
+            grid-template-columns: 40px 1fr 150px 100px 40px;
+            gap: 15px;
+            align-items: center;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .list-item:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+        }
+
+        .list-item.selected {
+            background: var(--accent);
+            border-color: var(--accent-hover);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--border);
+        }
+
+        .modal-content.image-modal {
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .btn-close:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .form-input {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Image Preview Modal */
+        .image-preview-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-preview-container img {
+            max-width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-info {
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            min-width: 80px;
+            color: var(--text-secondary);
+        }
+
+        .info-url {
+            flex: 1;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            
+        }
+
+        .btn-copy {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-copy:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Drop zone */
+        #dropZone {
+    position: fixed; /* CAMBIO: de relative a fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; /* Oculto por defecto */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+#dropZone.dragover {
+    display: flex !important; /* Mostrar cuando se arrastra */
+    background: rgba(74, 144, 226, 0.9);
+}
+
+        .drop-zone-icon {
+            font-size: 48px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .drop-zone-text {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .drop-zone-subtext {
+            color: var(--text-secondary);
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Context menu */
+        .context-menu {
+            position: fixed;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 5px 0;
+            z-index: 2000;
+            min-width: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+
+        .context-menu.active {
+            display: block;
+        }
+
+        .context-item {
+            padding: 8px 15px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+
+        .context-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .context-separator {
+            height: 1px;
+            background: var(--border);
+            margin: 5px 0;
+        }
+
+        /* Status bar */
+        .status-bar {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 5px 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            z-index: 3000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 300px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .toast.error {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hidden inputs */
+        .hidden {
+            display: none;
+        }
+
+        /* Image preview */
+        .image-preview {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            
+            .sidebar-title,
+            .sidebar-item span {
+                display: none;
+            }
+            
+            .file-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .file-icon {
+                font-size: 32px;
+            }
+
+            .modal-content.image-modal {
+                width: 95%;
+                max-height: 95vh;
+            }
+
+            .image-actions {
+                justify-content: stretch;
+            }
+
+            .image-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+        .file-preview-list {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.file-preview-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.file-preview-item:last-child {
+    border-bottom: none;
+}
+
+.file-preview-item i {
+    margin-right: 8px;
+    color: #4CAF50;
+}
+
+
+/* Progress Circle */
+
+/* Modal de progreso */
+.progress-circle {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.progress-circle svg {
+    transform: rotate(-90deg);
+}
+
+.progress-circle-bg {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 8;
+}
+
+.progress-circle-fill {
+    fill: none;
+    stroke: #4CAF50;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-percentage {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.progress-count {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.current-file {
+    margin: 20px 0;
+    padding: 15px;
+    background: #2D2D2D;
+    border-radius: 8px;
+    border-left: 4px solid #4CAF50;
+}
+
+.filename {
+    
+    color: #333;
+    word-break: break-all;
+    margin: 5px 0 0 0;
+}
+
+.upload-stats {
+    margin-top: 15px;
+    color: #666;
+    font-size: 12px;
+}
+
+/* Animación del círculo */
+@keyframes pulse {
+    0% { stroke: #4CAF50; }
+    50% { stroke: #45a049; }
+    100% { stroke: #4CAF50; }
+}
+
+.progress-circle-fill.uploading {
+    animation: pulse 2s infinite;
+}
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button class="btn" id="backBtn" onclick="goBack()" disabled>
+                    <i class="fas fa-arrow-left"></i> Atrás
+                </button>
+                <button class="btn" id="forwardBtn" onclick="goForward()" disabled>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn" onclick="goUp()">
+                    <i class="fas fa-arrow-up"></i> Arriba
+                </button>
+            </div>
+            
+            <div class="toolbar-separator"></div>
+            
+            <div class="toolbar-group">
+                <button class="btn" onclick="showNewFolderModal()">
+                    <i class="fas fa-folder-plus"></i> Nueva Carpeta
+                </button>
+                <button class="btn" onclick="uploadFiles()">
+                    <i class="fas fa-file-upload"></i> Subir Archivos
+                </button>
+                <button class="btn" onclick="uploadFolder()">
+                    <i class="fas fa-folder-open"></i> Subir Carpeta
+                </button>
+            </div>
+            
+            <div class="toolbar-separator"></div>
+            
+            <div class="toolbar-group">
+                <button class="btn" id="viewBtn" onclick="viewSelected()" disabled>
+                    <i class="fas fa-eye"></i> Ver
+                </button>
+                <button class="btn" id="deleteBtn" onclick="deleteSelected()" disabled>
+                    <i class="fas fa-trash"></i> Eliminar
+                </button>
+                <button class="btn" onclick="refresh()">
+                    <i class="fas fa-sync-alt"></i> Actualizar
+                </button>
+            </div>
+            
+            <div class="toolbar-separator"></div>
+            
+            <input type="text" class="address-bar" id="addressBar" placeholder="Ruta actual..." readonly>
+            
+            <div class="toolbar-group">
+                <button class="btn" id="viewModeBtn" onclick="toggleViewMode()">
+                    <i class="fas fa-th"></i> Vista
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Acceso rápido</div>
+                    <div class="sidebar-item active" onclick="navigateTo('')">
+                        <i class="fas fa-home"></i>
+                        <span>Inicio</span>
+                    </div>
+                    <div class="sidebar-item" onclick="window.location.href='dash.html'">
+    <i class="fas fa-clock"></i>
+    <span>Dashboard</span>
+</div>
+                </div>
+                
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Herramientas</div>
+                    <div class="sidebar-item" onclick="showStorageInfo()">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Almacenamiento</span>
+                    </div>
+                </div>
+
+            <div class="logo-container">
+
+                <div class="user-info">
+                    <img src="https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/logo-moretina/profile.jpg" alt="User">
+                    <span id="admin-name"></span>
+                </div>
+
+            </div>
+
+                
+
+                
+            </div>
+
+            <!-- File area -->
+            <div class="file-area">
+                <div class="file-header">
+                    <span></span>
+                    <span>Nombre</span>
+                    <span>Modificado</span>
+                    <span>Tamaño</span>
+                    <span></span>
+                </div>
+                
+                <div class="file-content" id="fileContent">
+                    <div class="drop-zone" id="dropZone" onclick="uploadFiles()">
+                        <div class="drop-zone-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="drop-zone-text">Arrastra archivos o carpetas aquí</div>
+                        <div class="drop-zone-subtext">O haz clic para seleccionar archivos</div>
+                    </div>
+                    
+                    <!-- File grid view -->
+                    <div class="file-grid" id="fileGrid">
+                        <!-- Files will be populated here -->
+                    </div>
+                    
+                    <!-- File list view -->
+                    <div class="file-list" id="fileList">
+                        <!-- List view items will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status bar -->
+        <div class="status-bar" id="statusBar">
+            <span id="itemCount">0 elementos</span>
+            <span id="selectionInfo"></span>
+            <span style="margin-left: auto;" id="connectionStatus">Conectado</span>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- New Folder Modal -->
+    <div class="modal" id="newFolderModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-folder-plus"></i>
+                Nueva Carpeta
+            </div>
+            <div class="form-group">
+                <label class="form-label">Nombre de la carpeta:</label>
+                <input type="text" class="form-input" id="folderNameInput" placeholder="Nombre de la carpeta">
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="closeModal('newFolderModal')">Cancelar</button>
+                <button class="btn" onclick="createFolder()">Crear</button>
+            </div>
+        </div>
+    </div>
+<!-- Modal de vista previa de archivos -->
+<div id="filePreviewModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📁 Archivos a subir</h3>
+            <button class="close-btn" onclick="closeModal('filePreviewModal')">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Se encontraron <strong id="fileCount">0</strong> imágenes:</p>
+            <div id="filePreviewList" class="file-preview-list" style="max-height: 300px; overflow-y: auto;">
+                <!-- Lista de archivos se genera aquí -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button onclick="closeModal('filePreviewModal')" class="btn btn-secondary">Cancelar</button>
+            <button onclick="confirmUpload()" class="btn btn-primary">✅ Subir archivos</button>
+        </div>
+    </div>
+</div>
+<!-- Modal de progreso de subida -->
+<div id="uploadProgressModal" class="modal">
+    <div class="modal-content" style="max-width: 400px; text-align: center;">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-file-arrow-up"></i> Subiendo archivos</h3>
+        </div>
+        <div class="modal-body">
+            <!-- Círculo de progreso -->
+            <div class="progress-circle">
+                <svg width="120" height="120">
+                    <circle class="progress-circle-bg" cx="60" cy="60" r="50"></circle>
+                    <circle class="progress-circle-fill" cx="60" cy="60" r="50" id="progressCircle"></circle>
+                </svg>
+                <div class="progress-text">
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                    <div class="progress-count" id="progressCount">0 / 0</div>
+                </div>
+            </div>
+            
+            <!-- Archivo actual -->
+            <div class="current-file">
+                <p><strong>Subiendo:</strong></p>
+                <p id="currentFileName" class="filename" style="color: #ffffff;">preparando...</p>
+            </div>
+            
+            <!-- Velocidad y tiempo estimado -->
+            <div class="upload-stats">
+                <small id="uploadSpeed"></small>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Image Preview Modal -->
+    <div class="modal" id="imagePreviewModal">
+        <div class="modal-content image-modal">
+            <div class="modal-header">
+                <i class="fas fa-eye"></i>
+                <span id="imageTitle">Vista Previa</span>
+                <button class="btn-close" onclick="closeModal('imagePreviewModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="image-preview-container">
+                <img id="previewImage" src="" alt="Vista previa">
+            </div>
+            <div class="image-actions">
+                <button class="btn" onclick="copyImageUrl()">
+                    <i class="fas fa-link"></i> Copiar URL
+                </button>
+                <button class="btn" onclick="downloadCurrentImage()">
+                    <i class="fas fa-download"></i> Descargar
+                </button>
+                <button class="btn" onclick="openImageInNewTab()">
+                    <i class="fas fa-external-link-alt"></i> Abrir en Nueva Pestaña
+                </button>
+            </div>
+            <div class="image-info">
+                <div class="info-row">
+                    <span class="info-label">URL:</span>
+                    <input type="text" class="info-url" id="imageUrlInput" readonly>
+                    <button class="btn-copy" onclick="copyFromInput()">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Nombre:</span>
+                    <span id="imageFileName"></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tamaño:</span>
+                    <span id="imageFileSize"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" onclick="openSelected()">
+            <i class="fas fa-folder-open"></i>
+            Abrir
+        </div>
+        <div class="context-item" onclick="viewSelected()">
+            <i class="fas fa-eye"></i>
+            Ver
+        </div>
+        <div class="context-separator"></div>
+        <div class="context-item" onclick="copyUrl()">
+            <i class="fas fa-link"></i>
+            Copiar URL
+        </div>
+        <div class="context-item" onclick="downloadSelected()">
+            <i class="fas fa-download"></i>
+            Descargar
+        </div>
+        <div class="context-separator"></div>
+        <div class="context-item" onclick="renameSelected()">
+            <i class="fas fa-edit"></i>
+            Renombrar
+        </div>
+        <div class="context-item" onclick="deleteSelected()">
+            <i class="fas fa-trash"></i>
+            Eliminar
+        </div>
+    </div>
+
+    <!-- Hidden inputs -->
+    <input type="file" id="fileInput" multiple accept="image/*" class="hidden">
+    <input type="file" id="folderInput" multiple webkitdirectory accept="image/*" class="hidden">
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-info-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+
+
+     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="js/fivernimda.js"></script>
+
+   <script>
+    // Configuration
+const CONFIG = {
+    BUCKET_NAME: 'almacenamientotwo',
+    ENDPOINT: 'https://8a8cf338dc9a47bd289e1cef8d9ac60a.r2.cloudflarestorage.com',
+    ACCESS_KEY: 'a15bbcc1c73f9336f64e4cf45e17ea4a',
+    SECRET_KEY: '384da9a634f1c3a5eb25ffe53a6c4d5bfa1ce63f9b9e59886b891d572ddb0498',
+    PUBLIC_DOMAIN: 'https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev'
+};
+
+// Global state
+let s3;
+let currentPath = '';
+let navigationHistory = [''];
+let historyIndex = 0;
+let selectedItems = new Set();
+let viewMode = 'grid';
+let pendingFiles = null;
+let currentImageData = null;
+let isUploading = false; // Flag para controlar uploads concurrentes
+
+// Initialize application
+window.addEventListener('load', () => {
+    initializeS3();
+    setupEventListeners();
+    loadContent();
+    updateUI();
+});
+
+function initializeS3() {
+    AWS.config.update({
+        accessKeyId: CONFIG.ACCESS_KEY,
+        secretAccessKey: CONFIG.SECRET_KEY,
+        region: 'auto'
+    });
+
+    s3 = new AWS.S3({
+        endpoint: CONFIG.ENDPOINT,
+        s3ForcePathStyle: true
+    });
+}
+
+function setupEventListeners() {
+    // Drop zone events - NUEVO SISTEMA COMPLETO
+    document.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const dropZone = document.getElementById('dropZone');
+        if (dropZone) {
+            dropZone.style.display = 'flex';
+            dropZone.classList.add('dragover');
+        }
+    });
+
+    document.addEventListener('dragleave', (e) => {
+        // Solo ocultar si realmente salimos de la ventana
+        if (e.clientX === 0 && e.clientY === 0) {
+            const dropZone = document.getElementById('dropZone');
+            if (dropZone) {
+                dropZone.style.display = 'none';
+                dropZone.classList.remove('dragover');
+            }
+        }
+    });
+
+    document.addEventListener('drop', (e) => {
+        e.preventDefault();
+        const dropZone = document.getElementById('dropZone');
+        if (dropZone) {
+            dropZone.style.display = 'none';
+            dropZone.classList.remove('dragover');
+        }
+        handleDrop(e.dataTransfer.items);
+    });
+
+    // File input events
+    document.getElementById('fileInput').addEventListener('change', (e) => {
+        if (pendingFiles) {
+            const files = Array.from(e.target.files).map(file => ({ file, path: file.name }));
+            uploadFilesToPath(files, pendingFiles);
+            pendingFiles = null;
+        } else {
+            const files = Array.from(e.target.files).map(file => ({ file, path: file.name }));
+            uploadFilesToPath(files, currentPath);
+        }
+        e.target.value = ''; // Limpiar input
+    });
+
+    document.getElementById('folderInput').addEventListener('change', (e) => {
+        const files = Array.from(e.target.files).map(file => ({ 
+            file, 
+            path: file.webkitRelativePath 
+        }));
+        if (pendingFiles) {
+            uploadFilesToPath(files, pendingFiles);
+            pendingFiles = null;
+        } else {
+            uploadFilesToPath(files, currentPath);
+        }
+        e.target.value = ''; // Limpiar input
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+            switch (e.key) {
+                case 'a':
+                    e.preventDefault();
+                    selectAll();
+                    break;
+                case 'n':
+                    e.preventDefault();
+                    showNewFolderModal();
+                    break;
+                case 'r':
+                    e.preventDefault();
+                    refresh();
+                    break;
+            }
+        } else {
+            switch (e.key) {
+                case 'Delete':
+                    deleteSelected();
+                    break;
+                case 'F5':
+                    e.preventDefault();
+                    refresh();
+                    break;
+                case 'Escape':
+                    clearSelection();
+                    hideContextMenu();
+                    closeModal('imagePreviewModal');
+                    closeModal('filePreviewModal');
+                    break;
+                case 'Enter':
+                    if (selectedItems.size === 1) {
+                        const selectedKey = Array.from(selectedItems)[0];
+                        const item = document.querySelector(`[data-key="${selectedKey}"]`);
+                        if (item.dataset.type === 'image') {
+                            viewSelected();
+                        } else {
+                            openSelected();
+                        }
+                    }
+                    break;
+            }
+        }
+    });
+
+    // Context menu - Mejorado
+    document.addEventListener('contextmenu', (e) => {
+        const fileItem = e.target.closest('.file-item, .list-item');
+        if (fileItem) {
+            e.preventDefault();
+            
+            // Seleccionar el item si no está seleccionado
+            if (!selectedItems.has(fileItem.dataset.key)) {
+                clearSelection();
+                selectedItems.add(fileItem.dataset.key);
+                updateSelectionUI();
+                updateActionButtons();
+            }
+            
+            showContextMenu(e.pageX, e.pageY);
+        }
+    });
+
+    // Cerrar menú contextual
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.context-menu')) {
+            hideContextMenu();
+        }
+    });
+
+    // Modal events
+    document.getElementById('folderNameInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            createFolder();
+        }
+    });
+
+// Cerrar modales al hacer clic fuera
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) {
+        // Lista de modales que SÍ se pueden cerrar
+        const closableModals = ['newFolderModal', 'imagePreviewModal', 'filePreviewModal'];
+        
+        if (closableModals.includes(e.target.id)) {
+            e.target.classList.remove('active');
+        }
+    }
+});
+
+    // Prevenir arrastre de imágenes
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+}
+
+// FUNCIÓN CORREGIDA: Manejo mejorado del drag and drop
+async function handleDrop(items) {
+    if (isUploading) {
+        showToast('Ya hay una subida en progreso, espera a que termine', 'warning');
+        return;
+    }
+
+    showLoading(true);
+    const files = [];
+    
+    try {
+        // Procesar archivos
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.kind === 'file') {
+                const entry = item.webkitGetAsEntry();
+                if (entry && entry.isDirectory) {
+                    await processEntry(entry, files);
+                } else if (entry && entry.isFile) {
+                    showToast('❌ Solo se pueden arrastrar carpetas, no archivos individuales', 'error');
+                    showLoading(false);
+                    return;
+                }
+            }
+        }
+        
+        if (files.length === 0) {
+            showToast('No se encontraron imágenes en las carpetas', 'warning');
+            showLoading(false);
+            return;
+        }
+
+        // Filtrar solo imágenes válidas
+        const validFiles = files.filter(({ file }) => {
+            return file.type && file.type.startsWith('image/');
+        });
+
+        if (validFiles.length === 0) {
+            showToast('Solo se permiten archivos de imagen', 'error');
+            showLoading(false);
+            return;
+        }
+
+        showLoading(false);
+        
+        // NUEVO: Mostrar modal de vista previa
+        showFilePreview(validFiles);
+        
+    } catch (error) {
+        console.error('Error processing dropped files:', error);
+        showToast('Error procesando las carpetas arrastradas', 'error');
+        showLoading(false);
+    }
+}
+
+
+// Variable global para guardar archivos pendientes
+let pendingUploadFiles = null;
+
+function showFilePreview(filesWithPath) {
+    pendingUploadFiles = filesWithPath;
+    
+    // Actualizar contador
+    document.getElementById('fileCount').textContent = filesWithPath.length;
+    
+    // Generar lista de archivos
+    const listContainer = document.getElementById('filePreviewList');
+    listContainer.innerHTML = '';
+    
+    filesWithPath.forEach(({ file, path }) => {
+        const item = document.createElement('div');
+        item.className = 'file-preview-item';
+        
+        // Validar nombre del archivo
+        const validation = validateFileName(file.name);
+        const icon = validation.valid ? 
+            '<i class="fas fa-check-circle" style="color: #4CAF50;"></i>' :
+            '<i class="fas fa-exclamation-triangle" style="color: #ff9800;"></i>';
+        
+        const warning = validation.valid ? '' : 
+            `<small style="color: #ff9800;"> (${validation.error})</small>`;
+        
+        item.innerHTML = `
+            ${icon}
+            <span>${path}${warning}</span>
+        `;
+        
+        listContainer.appendChild(item);
+    });
+    
+    // Mostrar modal
+    document.getElementById('filePreviewModal').classList.add('active');
+}
+
+function confirmUpload() {
+    if (pendingUploadFiles) {
+        closeModal('filePreviewModal');
+        uploadFilesToPath(pendingUploadFiles, currentPath);
+        pendingUploadFiles = null;
+    }
+}
+
+// Función para validar nombres de archivo
+function validateFileName(fileName) {
+    // Validar caracteres especiales
+    if (!/^[a-zA-Z0-9\-_\.\s]+$/.test(fileName)) {
+        return { 
+            valid: false, 
+            error: 'Contiene caracteres no válidos. Solo se permiten: letras, números, espacios, guiones (-), guiones bajos (_) y puntos (.)' 
+        };
+    }
+    
+    return { valid: true };
+}
+
+
+async function processEntry(entry, files, basePath = '') {
+    return new Promise((resolve) => {
+        if (entry.isFile) {
+            entry.file((file) => {
+                const fullPath = basePath ? `${basePath}/${file.name}` : file.name;
+                files.push({ file, path: fullPath });
+                resolve();
+            }, (error) => {
+                console.error('Error reading file:', error);
+                resolve();
+            });
+        } else if (entry.isDirectory) {
+            const dirReader = entry.createReader();
+            dirReader.readEntries(async (entries) => {
+                const newPath = basePath ? `${basePath}/${entry.name}` : entry.name;
+                for (let childEntry of entries) {
+                    await processEntry(childEntry, files, newPath);
+                }
+                resolve();
+            }, (error) => {
+                console.error('Error reading directory:', error);
+                resolve();
+            });
+        } else {
+            resolve();
+        }
+    });
+}
+
+
+
+
+//progrees circle//
+// Variables para el progreso
+let uploadStartTime = 0;
+let currentUploadIndex = 0;
+let totalUploadFiles = 0;
+
+function showUploadProgress(totalFiles) {
+    totalUploadFiles = totalFiles;
+    currentUploadIndex = 0;
+    uploadStartTime = Date.now();
+    
+    // Resetear progreso
+    updateProgressCircle(0);
+    document.getElementById('progressCount').textContent = `0 / ${totalFiles}`;
+    document.getElementById('progressPercentage').textContent = '0%';
+    document.getElementById('currentFileName').textContent = 'preparando...';
+    document.getElementById('uploadSpeed').textContent = '';
+    
+    // Mostrar modal
+    document.getElementById('uploadProgressModal').classList.add('active');
+    
+    // Animar círculo
+    document.getElementById('progressCircle').classList.add('uploading');
+}
+
+function updateUploadProgress(currentFile, fileName) {
+    currentUploadIndex = currentFile;
+    const percentage = Math.round((currentFile / totalUploadFiles) * 100);
+    
+    // Actualizar círculo
+    updateProgressCircle(percentage);
+    
+    // Actualizar textos
+    document.getElementById('progressPercentage').textContent = `${percentage}%`;
+    document.getElementById('progressCount').textContent = `${currentFile} / ${totalUploadFiles}`;
+    document.getElementById('currentFileName').textContent = fileName;
+    
+    // Calcular velocidad y tiempo estimado
+    const elapsedTime = Date.now() - uploadStartTime;
+    const filesPerSecond = currentFile / (elapsedTime / 1000);
+    const remainingFiles = totalUploadFiles - currentFile;
+    const estimatedTime = remainingFiles / filesPerSecond;
+    
+    if (currentFile > 0) {
+        const speed = `${filesPerSecond.toFixed(1)} archivos/seg`;
+        const eta = estimatedTime > 60 ? 
+            `~${Math.round(estimatedTime / 60)}min restantes` : 
+            `~${Math.round(estimatedTime)}seg restantes`;
+        
+        document.getElementById('uploadSpeed').textContent = `${speed} • ${eta}`;
+    }
+}
+
+function updateProgressCircle(percentage) {
+    const circle = document.getElementById('progressCircle');
+    const circumference = 314; // 2 * π * 50
+    const offset = circumference - (percentage / 100) * circumference;
+    circle.style.strokeDashoffset = offset;
+}
+
+function hideUploadProgress() {
+    document.getElementById('uploadProgressModal').classList.remove('active');
+    document.getElementById('progressCircle').classList.remove('uploading');
+}
+
+
+async function uploadFilesToPath(filesWithPath, targetPath) {
+   if (filesWithPath.length === 0 || isUploading) return;
+
+   isUploading = true;
+   showUploadProgress(filesWithPath.length); 
+   
+   let successCount = 0;
+   let errorCount = 0;
+   const maxConcurrent = 1; 
+   const maxRetries = 3; 
+   
+   try {
+      
+       for (let { file, path } of filesWithPath) {
+           let retries = 0;
+           let uploaded = false;
+           
+           while (retries < maxRetries && !uploaded) {
+               try {
+                   
+                   if (!file.type || !file.type.startsWith('image/')) {
+                       showToast(`${file.name} no es una imagen válida`, 'warning');
+                       errorCount++;
+                       break;
+                   }
+
+                   if (file.size > 50 * 1024 * 1024) {
+                       showToast(`${file.name} es demasiado grande (máximo 50MB)`, 'error');
+                       errorCount++;
+                       break;
+                   }
+
+                   const finalKey = targetPath ? `${targetPath}/${path}` : path;
+                   
+                   const params = {
+                       Bucket: CONFIG.BUCKET_NAME,
+                       Key: finalKey,
+                       Body: file,
+                       ContentType: file.type,
+                       Metadata: {
+                           'original-name': file.name,
+                           'upload-date': new Date().toISOString()
+                       }
+                   };
+
+                   
+                   await new Promise((resolve, reject) => {
+                       const upload = s3.upload(params);
+                       
+                       // Timeout de 60 segundos
+                       const timeout = setTimeout(() => {
+                           upload.abort();
+                           reject(new Error('Timeout - conexión lenta'));
+                       }, 60000);
+                       
+                       upload.promise()
+                           .then(result => {
+                               clearTimeout(timeout);
+                               resolve(result);
+                           })
+                           .catch(error => {
+                               clearTimeout(timeout);
+                               reject(error);
+                           });
+                   });
+                   
+                   uploaded = true;
+                   successCount++;
+                   updateUploadProgress(successCount, file.name); 
+                   
+               } catch (error) {
+                   retries++;
+                   console.error(`Error uploading ${file.name} (intento ${retries}):`, error);
+                   
+                   if (retries < maxRetries) {
+                       showToast(`🔄 Reintentando ${file.name}... (${retries}/${maxRetries})`, 'warning');
+                       // Esperar antes del reintento
+                       await new Promise(resolve => setTimeout(resolve, 2000));
+                   } else {
+                       showToast(`❌ Error subiendo ${file.name} después de ${maxRetries} intentos`, 'error');
+                       errorCount++;
+                   }
+               }
+           }
+           
+         
+           await new Promise(resolve => setTimeout(resolve, 500));
+       }
+
+   } catch (error) {
+       console.error('Upload error:', error);
+       showToast('Error durante la subida', 'error');
+   }
+
+   isUploading = false;
+   hideUploadProgress(); 
+   
+   
+   if (successCount > 0) {
+       showToast(`🎉 ${successCount} archivo(s) subidos correctamente`, 'success');
+       loadContent(); 
+   }
+   
+   if (errorCount > 0) {
+       showToast(`⚠️ ${errorCount} archivo(s) fallaron`, 'error');
+   }
+}
+
+
+
+async function loadContent() {
+    showLoading(true);
+    
+    try {
+        const params = {
+            Bucket: CONFIG.BUCKET_NAME,
+            Prefix: currentPath ? `${currentPath}/` : '',
+            Delimiter: '/'
+        };
+
+        const data = await s3.listObjectsV2(params).promise();
+        
+        displayContent(data.CommonPrefixes || [], data.Contents || []);
+        updateAddressBar();
+        updateNavigationButtons();
+        updateStatusBar(data);
+        
+    } catch (error) {
+        console.error('Error loading content:', error);
+        showToast(`Error cargando contenido: ${error.message}`, 'error');
+    }
+
+    showLoading(false);
+}
+
+function displayContent(prefixes, objects) {
+    const fileGrid = document.getElementById('fileGrid');
+    const fileList = document.getElementById('fileList');
+  
+    
+    // Clear previous content
+    fileGrid.innerHTML = '';
+    fileList.innerHTML = '';
+    
+   
+
+    // Display folders
+    prefixes.forEach(prefix => {
+        const folderName = prefix.Prefix.replace(currentPath ? `${currentPath}/` : '', '').replace('/', '');
+        if (folderName) {
+            createFileItem(folderName, 'folder', null, prefix.Prefix.slice(0, -1));
+        }
+    });
+
+    const currentLevelFiles = objects.filter(obj => {
+        const key = obj.Key;
+        const isImage = /\.(jpg|jpeg|png|webp|gif|bmp|svg)$/i.test(key);
+        const isInCurrentLevel = currentPath ? 
+            (key.startsWith(`${currentPath}/`) && !key.substring(currentPath.length + 1).includes('/')) :
+            !key.includes('/');
+        
+        return isImage && isInCurrentLevel && obj.Size > 0;
+    });
+
+    currentLevelFiles.forEach(obj => {
+        const fileName = obj.Key.split('/').pop();
+        const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${obj.Key}`;
+        createFileItem(fileName, 'image', obj, obj.Key, imageUrl);
+    });
+
+    clearSelection();
+}
+function createFileItem(name, type, obj, key, imageUrl = null) {
+    const fileGrid = document.getElementById('fileGrid');
+    const fileList = document.getElementById('fileList');
+    
+    // Grid view item
+    const gridItem = document.createElement('div');
+    gridItem.className = 'file-item';
+    gridItem.dataset.key = key;
+    gridItem.dataset.type = type;
+    
+    let icon = '';
+    let content = '';
+    
+    if (type === 'folder') {
+        icon = '<i class="fas fa-folder folder-icon"></i>';
+        content = `${icon}<div class="file-name">${name}</div>`;
+        gridItem.ondblclick = () => navigateTo(key);
+    } else if (type === 'image') {
+        content = `
+            <img src="${imageUrl}" alt="${name}" class="image-preview" 
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                 loading="lazy">
+            <i class="fas fa-image image-icon" style="display: none;"></i>
+            <div class="file-name">${name}</div>
+        `;
+        gridItem.ondblclick = () => showImagePreview(key, imageUrl, name, obj);
+    }
+    
+    gridItem.innerHTML = content;
+    gridItem.onclick = (e) => toggleSelection(e, key);
+    
+    // List view item
+    const listItem = document.createElement('div');
+    listItem.className = 'list-item';
+    listItem.dataset.key = key;
+    listItem.dataset.type = type;
+    
+    const fileIcon = type === 'folder' ? 
+        '<i class="fas fa-folder folder-icon"></i>' : 
+        '<i class="fas fa-image image-icon"></i>';
+    
+    const modifiedDate = obj ? new Date(obj.LastModified).toLocaleDateString() : '';
+    const fileSize = obj ? formatFileSize(obj.Size) : '';
+    
+    listItem.innerHTML = `
+        ${fileIcon}
+        <div class="file-name">${name}</div>
+        <div>${modifiedDate}</div>
+        <div>${fileSize}</div>
+        <div></div>
+    `;
+    
+    if (type === 'folder') {
+        listItem.ondblclick = () => navigateTo(key);
+    } else if (type === 'image') {
+        listItem.ondblclick = () => showImagePreview(key, imageUrl, name, obj);
+    }
+    
+    listItem.onclick = (e) => toggleSelection(e, key);
+    
+    fileGrid.appendChild(gridItem);
+    fileList.appendChild(listItem);
+}
+
+function showImagePreview(key, imageUrl, fileName, obj) {
+    currentImageData = {
+        key: key,
+        url: imageUrl,
+        name: fileName,
+        size: obj ? obj.Size : 0
+    };
+
+    document.getElementById('imageTitle').textContent = fileName;
+    document.getElementById('previewImage').src = imageUrl;
+    document.getElementById('imageUrlInput').value = imageUrl;
+    document.getElementById('imageFileName').textContent = fileName;
+    document.getElementById('imageFileSize').textContent = obj ? formatFileSize(obj.Size) : '';
+    
+    document.getElementById('imagePreviewModal').classList.add('active');
+}
+
+// FUNCIÓN CORREGIDA: Cerrar menú contextual después de acciones
+function viewSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) {
+        showToast('Selecciona una imagen para ver', 'warning');
+        return;
+    }
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const item = document.querySelector(`[data-key="${selectedKey}"]`);
+    
+    if (item.dataset.type !== 'image') {
+        showToast('Solo se pueden ver imágenes', 'error');
+        return;
+    }
+    
+    const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${selectedKey}`;
+    const fileName = selectedKey.split('/').pop();
+    
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = fileName;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function openSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const item = document.querySelector(`[data-key="${selectedKey}"]`);
+    
+    if (item.dataset.type === 'folder') {
+        navigateTo(selectedKey);
+    } else if (item.dataset.type === 'image') {
+        const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${selectedKey}`;
+        window.open(imageUrl, '_blank');
+    }
+}
+
+function renameSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const currentName = selectedKey.split('/').pop();
+    const newName = prompt('Nuevo nombre:', currentName);
+    
+    if (!newName || newName === currentName) return;
+    
+    // This would require implementing move/copy functionality
+    showToast('Función de renombrar en desarrollo', 'warning');
+}
+
+function toggleViewMode() {
+    const fileGrid = document.getElementById('fileGrid');
+    const fileList = document.getElementById('fileList');
+    const viewModeBtn = document.getElementById('viewModeBtn');
+    
+    if (viewMode === 'grid') {
+        viewMode = 'list';
+        if (fileGrid) fileGrid.style.display = 'none';
+        if (fileList) {
+            fileList.style.display = 'block';
+            fileList.classList.add('active');
+        }
+        if (viewModeBtn) viewModeBtn.innerHTML = '<i class="fas fa-list"></i> Lista';
+    } else {
+        viewMode = 'grid';
+        if (fileGrid) fileGrid.style.display = 'grid';
+        if (fileList) {
+            fileList.style.display = 'none';
+            fileList.classList.remove('active');
+        }
+        if (viewModeBtn) viewModeBtn.innerHTML = '<i class="fas fa-th"></i> Cuadrícula';
+    }
+}
+
+function refresh() {
+    loadContent();
+    showToast('Contenido actualizado', 'success');
+}
+
+// FUNCIONES CORREGIDAS: Context menu mejorado
+function showContextMenu(x, y) {
+    const contextMenu = document.getElementById('contextMenu');
+    if (!contextMenu) return;
+    
+    // Ajustar posición para que no se salga de la ventana
+    const menuWidth = 200; // Ancho aproximado del menú
+    const menuHeight = 300; // Alto aproximado del menú
+    
+    let menuX = x;
+    let menuY = y;
+    
+    if (x + menuWidth > window.innerWidth) {
+        menuX = window.innerWidth - menuWidth - 10;
+    }
+    
+    if (y + menuHeight > window.innerHeight) {
+        menuY = window.innerHeight - menuHeight - 10;
+    }
+    
+    contextMenu.style.left = `${menuX}px`;
+    contextMenu.style.top = `${menuY}px`;
+    contextMenu.classList.add('active');
+    
+    // Auto-cerrar después de 10 segundos
+    setTimeout(() => {
+        hideContextMenu();
+    }, 10000);
+}
+
+function hideContextMenu() {
+    const contextMenu = document.getElementById('contextMenu');
+    if (contextMenu) {
+        contextMenu.classList.remove('active');
+    }
+}
+
+// Modal functions mejoradas
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        
+        // Limpiar campos si es necesario
+        if (modalId === 'newFolderModal') {
+            const input = document.getElementById('folderNameInput');
+            if (input) input.value = '';
+        }
+    }
+}
+
+// Utility functions mejoradas
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function showLoading(show) {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        if (show) {
+            loadingOverlay.classList.add('active');
+        } else {
+            loadingOverlay.classList.remove('active');
+        }
+    }
+}
+
+// FUNCIÓN MEJORADA: Toast con mejor manejo
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    if (!toast || !toastMessage) return;
+    
+    toastMessage.textContent = message;
+    toast.className = `toast ${type}`;
+    
+    // Update icon based on type
+    const icon = toast.querySelector('i');
+    if (icon) {
+        switch (type) {
+            case 'success':
+                icon.className = 'fas fa-check-circle';
+                break;
+            case 'error':
+                icon.className = 'fas fa-exclamation-circle';
+                break;
+            case 'warning':
+                icon.className = 'fas fa-exclamation-triangle';
+                break;
+            default:
+                icon.className = 'fas fa-info-circle';
+        }
+    }
+    
+    toast.classList.add('show');
+    
+    // Auto-cerrar después de 4 segundos
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4000);
+    
+    // También permitir clic para cerrar
+    toast.onclick = () => {
+        toast.classList.remove('show');
+    };
+}
+
+// Additional features
+function showRecentUploads() {
+    showToast('Función de archivos recientes en desarrollo', 'info');
+}
+
+function showStorageInfo() {
+    showToast('Información de almacenamiento en desarrollo', 'info');
+}
+
+// NUEVAS FUNCIONES DE UTILIDAD
+function validateImageFile(file) {
+    // Validar tipo de archivo
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'image/bmp', 'image/svg+xml'];
+    if (!validTypes.includes(file.type)) {
+        return { valid: false, error: 'Tipo de archivo no válido' };
+    }
+    
+    // Validar tamaño (50MB máximo)
+    if (file.size > 50 * 1024 * 1024) {
+        return { valid: false, error: 'Archivo demasiado grande (máximo 50MB)' };
+    }
+    
+    // Validar nombre de archivo
+    if (!/^[a-zA-Z0-9\-_\.\s]+$/.test(file.name)) {
+        return { valid: false, error: 'Nombre de archivo contiene caracteres no válidos' };
+    }
+    
+    return { valid: true };
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Función para limpiar uploads incompletos (puede ser útil para el bug)
+async function cleanupIncompleteUploads() {
+    try {
+        const params = {
+            Bucket: CONFIG.BUCKET_NAME
+        };
+        
+        // Esta función requeriría permisos adicionales en la configuración de R2
+        const data = await s3.listMultipartUploads(params).promise();
+        
+        if (data.Uploads && data.Uploads.length > 0) {
+            for (const upload of data.Uploads) {
+                try {
+                    await s3.abortMultipartUpload({
+                        Bucket: CONFIG.BUCKET_NAME,
+                        Key: upload.Key,
+                        UploadId: upload.UploadId
+                    }).promise();
+                } catch (error) {
+                    console.error('Error cleaning up upload:', error);
+                }
+            }
+            
+            showToast(`${data.Uploads.length} uploads incompletos limpiados`, 'success');
+        } else {
+            showToast('No hay uploads incompletos para limpiar', 'info');
+        }
+        
+    } catch (error) {
+        console.error('Error cleaning up uploads:', error);
+        showToast('Error limpiando uploads incompletos', 'error');
+    }
+}
+
+// Función de emergencia para resetear estado
+function resetAppState() {
+    isUploading = false;
+    selectedItems.clear();
+    pendingFiles = null;
+    currentImageData = null;
+    hideContextMenu();
+    
+    // Cerrar todos los modales
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => modal.classList.remove('active'));
+    
+    updateSelectionUI();
+    updateActionButtons();
+    showLoading(false);
+    
+    showToast('Estado de la aplicación reiniciado', 'info');
+}
+
+
+
+window.resetAppState = resetAppState;
+window.cleanupIncompleteUploads = cleanupIncompleteUploads;
+window.setMaxConcurrentUploads = setMaxConcurrentUploads;
+window.showKeyboardShortcuts = showKeyboardShortcuts;
+
+function copyImageUrl() {
+    if (!currentImageData) return;
+    
+    navigator.clipboard.writeText(currentImageData.url).then(() => {
+        showToast('URL copiada al portapapeles', 'success');
+    }).catch(() => {
+        // Fallback
+        const textArea = document.createElement('textarea');
+        textArea.value = currentImageData.url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('URL copiada al portapapeles', 'success');
+    });
+}
+
+function copyFromInput() {
+    const urlInput = document.getElementById('imageUrlInput');
+    urlInput.select();
+    urlInput.setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    showToast('URL copiada al portapapeles', 'success');
+}
+
+function downloadCurrentImage() {
+    if (!currentImageData) return;
+    
+    const link = document.createElement('a');
+    link.href = currentImageData.url;
+    link.download = currentImageData.name;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function openImageInNewTab() {
+    if (!currentImageData) return;
+    window.open(currentImageData.url, '_blank');
+}
+
+function toggleSelection(e, key) {
+    if (e.ctrlKey || e.metaKey) {
+        // Multi-select
+        if (selectedItems.has(key)) {
+            selectedItems.delete(key);
+        } else {
+            selectedItems.add(key);
+        }
+    } else if (e.shiftKey && selectedItems.size > 0) {
+        // Range select (simplified)
+        selectedItems.add(key);
+    } else {
+        // Single select
+        clearSelection();
+        selectedItems.add(key);
+    }
+    
+    updateSelectionUI();
+    updateActionButtons();
+}
+
+function updateSelectionUI() {
+    const allItems = document.querySelectorAll('.file-item, .list-item');
+    
+    allItems.forEach(item => {
+        if (selectedItems.has(item.dataset.key)) {
+            item.classList.add('selected');
+        } else {
+            item.classList.remove('selected');
+        }
+    });
+    
+    // Update status bar
+    const selectionInfo = document.getElementById('selectionInfo');
+    if (selectedItems.size > 0) {
+        selectionInfo.textContent = `${selectedItems.size} elemento(s) seleccionado(s)`;
+    } else {
+        selectionInfo.textContent = '';
+    }
+}
+
+function clearSelection() {
+    selectedItems.clear();
+    updateSelectionUI();
+    updateActionButtons();
+}
+
+function selectAll() {
+    const allItems = document.querySelectorAll('.file-item');
+    selectedItems.clear();
+    
+    allItems.forEach(item => {
+        selectedItems.add(item.dataset.key);
+    });
+    
+    updateSelectionUI();
+    updateActionButtons();
+}
+
+function navigateTo(path) {
+    // Add to history if different from current
+    if (path !== currentPath) {
+        // Remove forward history if we're not at the end
+        if (historyIndex < navigationHistory.length - 1) {
+            navigationHistory = navigationHistory.slice(0, historyIndex + 1);
+        }
+        
+        navigationHistory.push(path);
+        historyIndex = navigationHistory.length - 1;
+    }
+    
+    currentPath = path;
+    loadContent();
+    updateUI();
+}
+
+function goBack() {
+    if (historyIndex > 0) {
+        historyIndex--;
+        currentPath = navigationHistory[historyIndex];
+        loadContent();
+        updateUI();
+    }
+}
+
+function goForward() {
+    if (historyIndex < navigationHistory.length - 1) {
+        historyIndex++;
+        currentPath = navigationHistory[historyIndex];
+        loadContent();
+        updateUI();
+    }
+}
+
+function goUp() {
+    if (currentPath) {
+        const pathParts = currentPath.split('/');
+        pathParts.pop();
+        const newPath = pathParts.join('/');
+        navigateTo(newPath);
+    }
+}
+
+function updateNavigationButtons() {
+    const backBtn = document.getElementById('backBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    
+    if (backBtn) backBtn.disabled = historyIndex <= 0;
+    if (forwardBtn) forwardBtn.disabled = historyIndex >= navigationHistory.length - 1;
+}
+
+function updateAddressBar() {
+    const addressBar = document.getElementById('addressBar');
+    if (addressBar) addressBar.value = currentPath || 'Raíz';
+}
+
+function updateActionButtons() {
+    const deleteBtn = document.getElementById('deleteBtn');
+    const viewBtn = document.getElementById('viewBtn');
+    
+    if (deleteBtn) deleteBtn.disabled = selectedItems.size === 0;
+    
+    // Enable view button only if one image is selected
+    if (viewBtn) {
+        if (selectedItems.size === 1) {
+            const selectedKey = Array.from(selectedItems)[0];
+            const item = document.querySelector(`[data-key="${selectedKey}"]`);
+            viewBtn.disabled = item.dataset.type !== 'image';
+        } else {
+            viewBtn.disabled = true;
+        }
+    }
+}
+
+function updateStatusBar(data) {
+    const itemCount = document.getElementById('itemCount');
+    if (itemCount) {
+        const totalItems = (data.CommonPrefixes?.length || 0) + 
+                          (data.Contents?.filter(obj => obj.Size > 0).length || 0);
+        itemCount.textContent = `${totalItems} elemento(s)`;
+    }
+}
+
+function updateUI() {
+    updateNavigationButtons();
+    updateAddressBar();
+    updateActionButtons();
+}
+
+// File operations
+function uploadFiles() {
+    if (selectedItems.size > 0) {
+        // Check if we have a folder selected to upload to
+        const selectedFolders = Array.from(selectedItems).filter(key => {
+            const item = document.querySelector(`[data-key="${key}"]`);
+            return item && item.dataset.type === 'folder';
+        });
+        
+        if (selectedFolders.length === 1) {
+            pendingFiles = selectedFolders[0];
+        }
+    }
+    
+    document.getElementById('fileInput').click();
+}
+
+function uploadFolder() {
+    if (selectedItems.size > 0) {
+        const selectedFolders = Array.from(selectedItems).filter(key => {
+            const item = document.querySelector(`[data-key="${key}"]`);
+            return item && item.dataset.type === 'folder';
+        });
+        
+        if (selectedFolders.length === 1) {
+            pendingFiles = selectedFolders[0];
+        }
+    }
+    
+    document.getElementById('folderInput').click();
+}
+
+function showNewFolderModal() {
+    document.getElementById('newFolderModal').classList.add('active');
+    document.getElementById('folderNameInput').focus();
+}
+
+async function createFolder() {
+    const folderName = document.getElementById('folderNameInput').value.trim();
+    
+    if (!folderName) {
+        showToast('Por favor ingresa un nombre para la carpeta', 'error');
+        return;
+    }
+    
+    if (!/^[a-zA-Z0-9\-_]+$/.test(folderName)) {
+    showToast('❌ Caracteres no válidos. Solo se permiten: letras, números, guiones (-) y guiones bajos (_)', 'error');
+    return;
+    }
+    
+    showLoading(true);
+    
+    try {
+        const folderKey = currentPath ? `${currentPath}/${folderName}/` : `${folderName}/`;
+        
+        const params = {
+            Bucket: CONFIG.BUCKET_NAME,
+            Key: folderKey,
+            Body: '',
+            ContentType: 'application/x-directory'
+        };
+        
+        await s3.putObject(params).promise();
+        
+        showToast('Carpeta creada correctamente', 'success');
+        closeModal('newFolderModal');
+        document.getElementById('folderNameInput').value = '';
+        loadContent();
+        
+    } catch (error) {
+        console.error('Error creating folder:', error);
+        showToast(`Error creando carpeta: ${error.message}`, 'error');
+    }
+    
+    showLoading(false);
+}
+
+// FUNCIÓN CORREGIDA: Cerrar menú contextual después de borrar
+async function deleteSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size === 0) return;
+    
+    if (!confirm(`¿Estás seguro de que deseas eliminar ${selectedItems.size} elemento(s)?`)) {
+        return;
+    }
+    
+    showLoading(true);
+    let successCount = 0;
+    let errorCount = 0;
+    
+    for (const key of selectedItems) {
+        try {
+            const item = document.querySelector(`[data-key="${key}"]`);
+            
+            if (item.dataset.type === 'folder') {
+                // Delete folder and all its contents
+                await deleteFolderRecursively(key);
+            } else {
+                // Delete single file
+                const params = {
+                    Bucket: CONFIG.BUCKET_NAME,
+                    Key: key
+                };
+                
+                await s3.deleteObject(params).promise();
+            }
+            
+            successCount++;
+        } catch (error) {
+            console.error('Error deleting item:', error);
+            errorCount++;
+        }
+    }
+    
+    showLoading(false);
+    
+    if (successCount > 0) {
+        showToast(`${successCount} elemento(s) eliminado(s)`, 'success');
+        loadContent();
+    }
+    
+    if (errorCount > 0) {
+        showToast(`${errorCount} elemento(s) con errores`, 'error');
+    }
+    
+    clearSelection();
+}
+
+async function deleteFolderRecursively(folderKey) {
+    const params = {
+        Bucket: CONFIG.BUCKET_NAME,
+        Prefix: `${folderKey}/`
+    };
+    
+    const data = await s3.listObjectsV2(params).promise();
+    
+    if (data.Contents && data.Contents.length > 0) {
+        const deleteParams = {
+            Bucket: CONFIG.BUCKET_NAME,
+            Delete: {
+                Objects: data.Contents.map(obj => ({ Key: obj.Key }))
+            }
+        };
+        
+        await s3.deleteObjects(deleteParams).promise();
+    }
+}
+
+// FUNCIÓN CORREGIDA: Cerrar menú contextual después de copiar URL
+function copyUrl() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const item = document.querySelector(`[data-key="${selectedKey}"]`);
+    
+    if (item.dataset.type !== 'image') {
+        showToast('Solo se puede copiar la URL de imágenes', 'error');
+        return;
+    }
+    
+    const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${selectedKey}`;
+    
+    navigator.clipboard.writeText(imageUrl).then(() => {
+        showToast('URL copiada al portapapeles', 'success');
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = imageUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('URL copiada al portapapeles', 'success');
+    });
+}
+
+// Continuación desde function downloadSelected()
+function downloadSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const item = document.querySelector(`[data-key="${selectedKey}"]`);
+    
+    if (item.dataset.type !== 'image') {
+        showToast('Solo se pueden descargar imágenes', 'error');
+        return;
+    }
+    
+    const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${selectedKey}`;
+    const fileName = selectedKey.split('/').pop();
+    
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = fileName;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    showToast(`Descargando ${fileName}`, 'success');
+}
+
+function openSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const item = document.querySelector(`[data-key="${selectedKey}"]`);
+    
+    if (item.dataset.type === 'folder') {
+        navigateTo(selectedKey);
+    } else if (item.dataset.type === 'image') {
+        const imageUrl = `${CONFIG.PUBLIC_DOMAIN}/${selectedKey}`;
+        window.open(imageUrl, '_blank');
+    }
+}
+
+function renameSelected() {
+    hideContextMenu(); // Cerrar menú contextual
+    
+    if (selectedItems.size !== 1) return;
+    
+    const selectedKey = Array.from(selectedItems)[0];
+    const currentName = selectedKey.split('/').pop();
+    const newName = prompt('Nuevo nombre:', currentName);
+    
+    if (!newName || newName === currentName) return;
+    
+    // This would require implementing move/copy functionality
+    showToast('Función de renombrar en desarrollo', 'warning');
+}
+
+function toggleViewMode() {
+    const fileGrid = document.getElementById('fileGrid');
+    const fileList = document.getElementById('fileList');
+    const viewModeBtn = document.getElementById('viewModeBtn');
+    
+    if (viewMode === 'grid') {
+        viewMode = 'list';
+        if (fileGrid) fileGrid.style.display = 'none';
+        if (fileList) {
+            fileList.style.display = 'block';
+            fileList.classList.add('active');
+        }
+        if (viewModeBtn) viewModeBtn.innerHTML = '<i class="fas fa-list"></i> Lista';
+    } else {
+        viewMode = 'grid';
+        if (fileGrid) fileGrid.style.display = 'grid';
+        if (fileList) {
+            fileList.style.display = 'none';
+            fileList.classList.remove('active');
+        }
+        if (viewModeBtn) viewModeBtn.innerHTML = '<i class="fas fa-th"></i> Cuadrícula';
+    }
+}
+
+function refresh() {
+    loadContent();
+    showToast('Contenido actualizado', 'success');
+}
+
+// FUNCIONES CORREGIDAS: Context menu mejorado
+function showContextMenu(x, y) {
+    const contextMenu = document.getElementById('contextMenu');
+    if (!contextMenu) return;
+    
+    // Ajustar posición para que no se salga de la ventana
+    const menuWidth = 200; // Ancho aproximado del menú
+    const menuHeight = 300; // Alto aproximado del menú
+    
+    let menuX = x;
+    let menuY = y;
+    
+    if (x + menuWidth > window.innerWidth) {
+        menuX = window.innerWidth - menuWidth - 10;
+    }
+    
+    if (y + menuHeight > window.innerHeight) {
+        menuY = window.innerHeight - menuHeight - 10;
+    }
+    
+    contextMenu.style.left = `${menuX}px`;
+    contextMenu.style.top = `${menuY}px`;
+    contextMenu.classList.add('active');
+    
+    // Auto-cerrar después de 10 segundos
+    setTimeout(() => {
+        hideContextMenu();
+    }, 10000);
+}
+
+function hideContextMenu() {
+    const contextMenu = document.getElementById('contextMenu');
+    if (contextMenu) {
+        contextMenu.classList.remove('active');
+    }
+}
+
+// Modal functions mejoradas
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        
+        // Limpiar campos si es necesario
+        if (modalId === 'newFolderModal') {
+            const input = document.getElementById('folderNameInput');
+            if (input) input.value = '';
+        }
+    }
+}
+
+// Utility functions mejoradas
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
+function showLoading(show) {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        if (show) {
+            loadingOverlay.classList.add('active');
+        } else {
+            loadingOverlay.classList.remove('active');
+        }
+    }
+}
+
+// FUNCIÓN MEJORADA: Toast con mejor manejo
+function showToast(message, type = 'info') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    if (!toast || !toastMessage) return;
+    
+    toastMessage.textContent = message;
+    toast.className = `toast ${type}`;
+    
+    // Update icon based on type
+    const icon = toast.querySelector('i');
+    if (icon) {
+        switch (type) {
+            case 'success':
+                icon.className = 'fas fa-check-circle';
+                break;
+            case 'error':
+                icon.className = 'fas fa-exclamation-circle';
+                break;
+            case 'warning':
+                icon.className = 'fas fa-exclamation-triangle';
+                break;
+            default:
+                icon.className = 'fas fa-info-circle';
+        }
+    }
+    
+    toast.classList.add('show');
+    
+    // Auto-cerrar después de 4 segundos
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4000);
+    
+    // También permitir clic para cerrar
+    toast.onclick = () => {
+        toast.classList.remove('show');
+    };
+}
+
+// Additional features
+function showRecentUploads() {
+    showToast('Función de archivos recientes en desarrollo', 'info');
+}
+
+function showStorageInfo() {
+    showToast('Información de almacenamiento en desarrollo', 'info');
+}
+
+// NUEVAS FUNCIONES DE UTILIDAD
+function validateImageFile(file) {
+    // Validar tipo de archivo
+    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif', 'image/bmp', 'image/svg+xml'];
+    if (!validTypes.includes(file.type)) {
+        return { valid: false, error: 'Tipo de archivo no válido' };
+    }
+    
+    // Validar tamaño (50MB máximo)
+    if (file.size > 50 * 1024 * 1024) {
+        return { valid: false, error: 'Archivo demasiado grande (máximo 50MB)' };
+    }
+    
+    // Validar nombre de archivo
+    if (!/^[a-zA-Z0-9\-_\.\s]+$/.test(file.name)) {
+        return { valid: false, error: 'Nombre de archivo contiene caracteres no válidos' };
+    }
+    
+    return { valid: true };
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Función para limpiar uploads incompletos (puede ser útil para el bug)
+async function cleanupIncompleteUploads() {
+    try {
+        const params = {
+            Bucket: CONFIG.BUCKET_NAME
+        };
+        
+        // Esta función requeriría permisos adicionales en la configuración de R2
+        const data = await s3.listMultipartUploads(params).promise();
+        
+        if (data.Uploads && data.Uploads.length > 0) {
+            for (const upload of data.Uploads) {
+                try {
+                    await s3.abortMultipartUpload({
+                        Bucket: CONFIG.BUCKET_NAME,
+                        Key: upload.Key,
+                        UploadId: upload.UploadId
+                    }).promise();
+                } catch (error) {
+                    console.error('Error cleaning up upload:', error);
+                }
+            }
+            
+            showToast(`${data.Uploads.length} uploads incompletos limpiados`, 'success');
+        } else {
+            showToast('No hay uploads incompletos para limpiar', 'info');
+        }
+        
+    } catch (error) {
+        console.error('Error cleaning up uploads:', error);
+        showToast('Error limpiando uploads incompletos', 'error');
+    }
+}
+
+// Función de emergencia para resetear estado
+function resetAppState() {
+    isUploading = false;
+    selectedItems.clear();
+    pendingFiles = null;
+    currentImageData = null;
+    hideContextMenu();
+    
+    // Cerrar todos los modales
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => modal.classList.remove('active'));
+    
+    updateSelectionUI();
+    updateActionButtons();
+    showLoading(false);
+    
+    showToast('Estado de la aplicación reiniciado', 'info');
+}
+
+// Función para cambiar límite de uploads concurrentes desde consola
+function setMaxConcurrentUploads(num) {
+    if (typeof num === 'number' && num > 0 && num <= 10) {
+        // Esta variable tendría que ser global, pero por ahora es un ejemplo
+        console.log(`Límite de uploads concurrentes cambiado a: ${num}`);
+        showToast(`Límite de uploads cambiado a ${num}`, 'info');
+        return true;
+    } else {
+        console.error('Número debe estar entre 1 y 10');
+        return false;
+    }
+}
+
+// Agregar funciones de utilidad al objeto window para debugging
+window.resetAppState = resetAppState;
+window.cleanupIncompleteUploads = cleanupIncompleteUploads;
+window.setMaxConcurrentUploads = setMaxConcurrentUploads;
+
+// Event listeners adicionales para mejorar UX
+document.addEventListener('DOMContentLoaded', () => {
+    // Prevenir que se abran imágenes al arrastrarlas accidentalmente
+    document.addEventListener('dragstart', (e) => {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+        }
+    });
+    
+    // Prevenir arrastre de imágenes - AÑADIR ESTO
+document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// También prevenir drop de archivos individuales
+document.addEventListener('dragover', (e) => {
+    if (e.dataTransfer.items) {
+        let hasFiles = false;
+        for (let item of e.dataTransfer.items) {
+            if (item.kind === 'file') {
+                const entry = item.webkitGetAsEntry();
+                if (entry && entry.isFile) {
+                    hasFiles = true;
+                    break;
+                }
+            }
+        }
+        if (hasFiles) {
+            e.dataTransfer.effectAllowed = 'none';
+            e.dataTransfer.dropEffect = 'none';
+        }
+    }
+});
+    // Mejorar accesibilidad con teclado
+    document.addEventListener('keydown', (e) => {
+        // Cerrar menú contextual con Escape
+        if (e.key === 'Escape') {
+            hideContextMenu();
+        }
+        
+        // Atajo para subir archivos (Ctrl+U)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+            e.preventDefault();
+            uploadFiles();
+        }
+        
+        // Atajo para crear carpeta (Ctrl+Shift+N)
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'N') {
+            e.preventDefault();
+            showNewFolderModal();
+        }
+    });
+    
+    // Mejor manejo de errores de carga de imágenes
+    document.addEventListener('error', (e) => {
+        if (e.target.tagName === 'IMG' && e.target.classList.contains('image-preview')) {
+            e.target.style.display = 'none';
+            const fallbackIcon = e.target.nextElementSibling;
+            if (fallbackIcon && fallbackIcon.classList.contains('image-icon')) {
+                fallbackIcon.style.display = 'block';
+            }
+        }
+    }, true);
+});
+
+// Función para mostrar atajos de teclado (bonus)
+function showKeyboardShortcuts() {
+    const shortcuts = `
+    📝 ATAJOS DE TECLADO:
+    
+    • Ctrl+A: Seleccionar todo
+    • Ctrl+N: Nueva carpeta  
+    • Ctrl+U: Subir archivos
+    • Ctrl+Shift+N: Nueva carpeta
+    • Ctrl+R / F5: Actualizar
+    • Delete: Eliminar seleccionados
+    • Enter: Abrir seleccionado
+    • Escape: Cerrar menús/modales
+    
+    🖱️ ACCIONES:
+    • Clic derecho: Menú contextual
+    • Doble clic: Abrir elemento
+    • Arrastrar: Subir archivos
+    `;
+    
+    alert(shortcuts);
+}
+
+window.showKeyboardShortcuts = showKeyboardShortcuts;
+   </script>

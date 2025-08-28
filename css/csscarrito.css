@@ -1,0 +1,41 @@
+.producto p {
+    font-size: 18px;
+    color: #A38150;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+
+.carrito-header h2 {
+    color: #A38150 !important;
+    margin: 0;
+}
+
+
+.carrito-item-price {
+    color: #A38150 !important;
+    font-weight: bold;
+}
+
+
+.carrito-total-final {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #A38150 !important;
+}
+
+.btn-finalizar {
+    flex: 1;
+    background: #A38150 !important;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}

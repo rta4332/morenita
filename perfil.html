@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Morenitta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="img/logo.png" rel="icon" type="image/png">
+    <link rel="stylesheet" href="css/tipografia.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Estilos generales */
+        ::-webkit-scrollbar {
+            width: 1px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 0 !important;
+            border: none;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #00000012 transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: #f9f5f0;
+            display: flex;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: auto;
+            overscroll-behavior: none;
+            overscroll-behavior-x: none;
+            overscroll-behavior-y: none;
+        }
+
+        /* Sidebar - Blanco con detalles dorados */
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            color: #5a4a3a;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .nav-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+            color: #5a4a3a;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            background-color: #f5eee4;
+        }
+
+        .nav-item.active {
+            background-color: #f0e6d5;
+            border-left: 4px solid #c0a062;
+            color: #5a4a3a;
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Estilos del acordeón */
+        .submenu {
+            display: none;
+            padding-left: 20px;
+            background-color: #f9f9f9;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .submenu a {
+            display: block;
+            padding: 12px 20px;
+            color: #5a4a3a;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .submenu a:hover {
+            background-color: #f0e6d5;
+            border-left: 3px solid #c0a062;
+        }
+
+        .submenu a i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        .toggle-submenu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-submenu::after {
+            content: '\f078';
+            
+            font-weight: 900;
+            transition: transform 0.3s;
+        }
+
+        .toggle-submenu.active::after {
+            transform: rotate(180deg);
+        }
+
+        /* Header - Dorado pastel */
+        .header {
+            background: linear-gradient(135deg, #f0e6d5, #e8d9b5);
+            padding: 15px 25px;
+            border-radius: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            width: 30px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #5a4a3a;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            flex: 1;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - 250px);
+            max-width: 100%;
+        }
+
+        /* Secciones principales */
+        .profile-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #eee5d5;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #c0a062;
+            margin-right: 20px;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5a4a3a;
+        }
+
+        .profile-email {
+            color: #7a6b5a;
+            margin-top: 5px;
+        }
+
+        /* Grid de información */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #c0a062;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #5a4a3a;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            color: #7a6b5a;
+        }
+
+        .verified {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .not-verified {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* Sección de pedidos */
+        .orders-section, .favorites-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 30px;
+            border: 1px solid #eee5d5;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5a4a3a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .orders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .order-card {
+            background: linear-gradient(135deg, #d7b8a6, #e2c4b0);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+
+        .order-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+
+        .order-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .order-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .order-status {
+            background-color: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+        }
+
+        /* Estilos para favoritos - Modificado para 2 por fila */
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .favorite-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 1px solid #eee5d5;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+
+        .favorite-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .favorite-card-content {
+            padding: 15px;
+        }
+
+        .favorite-card-title {
+            font-weight: bold;
+            color: #5a4a3a;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .favorite-card-price {
+            color: #c0a062;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .favorite-card-category {
+            color: #7a6b5a;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .favorite-card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-favorite {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .btn-view {
+            background-color: #c0a062;
+            color: white;
+        }
+
+        .btn-view:hover {
+            background-color: #b09052;
+        }
+
+        .btn-remove {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-remove:hover {
+            background-color: #c0392b;
+        }
+
+        /* Modales */
+        .order-modal, .product-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            overflow-y: auto;
+        }
+
+        .order-modal-content, .product-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #5a4a3a;
+        }
+
+        /* Modal del producto favorito */
+        .product-modal-header {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            align-items: start;
+        }
+
+        .product-modal-image {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .product-modal-info {
+            flex: 1;
+        }
+
+        .product-modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5a4a3a;
+            margin-bottom: 10px;
+        }
+
+        .product-modal-category {
+            color: #c0a062;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .product-modal-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c0a062;
+            margin-bottom: 20px;
+        }
+
+        .product-modal-description {
+            color: #7a6b5a;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .product-modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Botones */
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #c0a062;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #b09052;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #7a6b5a;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a4a3a;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Estados */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7a6b5a;
+        }
+
+        .no-orders, .no-favorites {
+            text-align: center;
+            padding: 40px;
+            color: #7a6b5a;
+        }
+
+        /* Modal de contraseña */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            margin-top: 80px;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #5a4a3a;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Estilos para móviles */
+        .menu-toggle {
+            display: none;
+        }
+
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            height: 60px;
+            background: linear-gradient(135deg, #5a4a3a, #7a6b5a);
+            color: white;
+            z-index: 1100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mobile-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 15px;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .mobile-menu-btn:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 25px;
+            background-color: white;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+            transform-origin: center;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px,6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px,-6px);
+        }
+
+        .mobile-logo {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #c0a062;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            flex: 1;
+            text-align: center;
+        }
+
+        .mobile-user-avatar {
+            flex-shrink: 0;
+        }
+
+        .mobile-user-avatar img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #c0a062;
+            object-fit: cover;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+        }
+
+        /* Footer móvil */
+        .mobile-footer {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            background-color: white;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .mobile-footer .footer-menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .mobile-footer .footer-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .mobile-footer .footer-item i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .mobile-footer .footer-item .count {
+            position: absolute;
+            top: -2px;
+            right: 10px;
+            background-color: #b18f11;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+        }
+
+        .mobile-footer .footer-item.active {
+            color: #c0a062;
+        }
+
+        /* Botón de WhatsApp */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            text-decoration: none;
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .orders-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .favorites-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .product-modal-header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .product-modal-image {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            .mobile-header {
+                display: block;
+            }
+            .header {
+                display: none;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+                padding-top: 80px;
+                box-sizing: border-box;
+            }
+            .profile-section, .orders-section, .favorites-section {
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .favorites-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .mobile-footer {
+                display: block;
+            }
+            .whatsapp-button {
+                bottom: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .orders-grid {
+                grid-template-columns: 1fr;
+            }
+            .favorites-grid {
+                grid-template-columns: 1fr;
+            }
+            .order-modal-content, .product-modal-content {
+                padding: 20px 15px;
+                width: 95%;
+                margin: 10% auto;
+                margin-top: 80px;
+            }
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            .main-content {
+                padding: 10px;
+                padding-top: 75px;
+            }
+            .profile-section, .orders-section, .favorites-section {
+                padding: 20px;
+            }
+            .product-modal-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-header-content {
+                padding: 0 10px;
+            }
+            .mobile-logo {
+                font-size: 1rem;
+            }
+            .mobile-user-avatar img {
+                width: 30px;
+                height: 30px;
+            }
+            .mobile-menu-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <img src="img/logo.png" alt="Morenitta Logo">
+        </div>
+        
+        <div class="nav-item active" id="nav-profile">
+            <i class="fas fa-user"></i> Mi Perfil    
+        </div>
+        <div class="nav-item" id="nav-orders">
+            <i class="fas fa-box"></i> Mis Pedidos
+        </div>
+        <div class="nav-item" id="nav-favorites">
+            <i class="fas fa-heart"></i> Mis Favoritos
+        </div>
+        
+        <!-- Menú acordeón -->
+        <div class="nav-item toggle-submenu" id="nav-shop">
+            <span><i class="fas fa-store"></i> Tienda</span>
+        </div>
+        <div class="submenu">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="desayunos.html"><i class="fas fa-coffee"></i> Desayunos</a>
+            <a href="fresas.html"><i class="fas fa-stroopwafel"></i> Fresas</a>
+            <a href="box.html"><i class="fas fa-gift"></i> Box y Licores</a>
+            <a href="arreglos.html"><i class="fas fa-spa"></i> Arreglos Florales</a>
+            <a href="frutales.html"><i class="fas fa-apple-alt"></i> Frutales</a>
+            <a href="promociones.html"><i class="fa-solid fa-tags"></i> Promociones</a>
+        </div>
+        
+        <div class="nav-item toggle-submenu" id="nav-others">
+            <span><i class="fas fa-ellipsis-h"></i> Otros</span>
+        </div>
+        <div class="submenu">
+            <a href="catalogo-especial.html"><i class="fas fa-star"></i> Catálogo Especial</a>
+            <a href="preguntas.html"><i class="fas fa-question-circle"></i> Preguntas Frecuentes</a>
+            <a href="https://wa.me/573023144445"><i class="fas fa-pen"></i> Pedido Personalizado</a>
+        </div>
+        
+        <div class="nav-item" id="nav-password">
+            <i class="fas fa-key"></i> Cambiar Contraseña
+        </div>
+        <div class="nav-item" id="nav-logout">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <div class="header">
+            <h1 style="margin: 0; color: #2c3e50;">Panel de Usuario</h1>
+        </div>
+        
+        <!-- Header móvil -->
+        <div class="mobile-header">
+            <div class="mobile-header-content">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="mobile-logo">MORENITA</div>
+                <div class="mobile-user-avatar">
+                    <img src="img/OIP.webp" alt="Foto de perfil" id="mobile-profile-pic">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Section -->
+        <div class="profile-section" id="profile-section">
+            <div class="profile-header">
+                <img src="img/OIP.webp" alt="Foto de perfil" class="profile-pic" id="profile-pic">
+                <div>
+                    <div class="profile-name" id="user-name">Usuario</div>
+                    <div class="profile-email" id="user-email">Cargando...</div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Estado del correo</div>
+                    <div class="info-value" id="email-verified">Cargando...</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">ID de usuario</div>
+                    <div class="info-value" id="user-id">Cargando...</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Fecha de registro</div>
+                    <div class="info-value" id="created-at">Cargando...</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Total de pedidos</div>
+                    <div class="info-value" id="total-orders">Cargando...</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Productos favoritos</div>
+                    <div class="info-value" id="total-favorites">Cargando...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="orders-section hidden" id="orders-section">
+            <h2 class="section-title"> Mis Pedidos</h2>
+            <div class="orders-grid" id="orders-container">
+                <div class="loading">Cargando pedidos...</div>
+            </div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div class="favorites-section hidden" id="favorites-section">
+            <h2 class="section-title"> Mis Productos Favoritos</h2>
+            <div class="favorites-grid" id="favorites-container">
+                <div class="loading">Cargando favoritos...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para detalles del pedido -->
+    <div id="orderModal" class="order-modal">
+        <div class="order-modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <div id="order-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Modal para detalles del producto favorito -->
+    <div id="productModal" class="product-modal">
+        <div class="product-modal-content">
+            <span class="close-modal" onclick="closeProductModal()">&times;</span>
+            <div id="product-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">Cambiar Contraseña</h2>
+            <div id="password-message" class="message hidden"></div>
+            <div class="form-group">
+                <label for="current-password">Contraseña Actual:</label>
+                <input type="password" id="current-password" required>
+            </div>
+            <div class="form-group">
+                <label for="new-password">Nueva Contraseña:</label>
+                <input type="password" id="new-password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirmar Nueva Contraseña:</label>
+                <input type="password" id="confirm-password" required>
+            </div>
+            <button class="btn btn-primary" id="change-password-btn">Cambiar Contraseña</button>
+        </div>
+    </div>
+
+    <!-- Footer móvil -->
+    <div class="mobile-footer">
+        <div class="footer-menu">
+            <a href="tienda.html" class="footer-item">
+                <i class="fas fa-store"></i>
+                <span>Tienda</span>
+            </a>
+            
+            <a href="perfil.html" class="footer-item active">
+                <i class="fas fa-user"></i>
+                <span>Mi cuenta</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/573023144445?text=Hola%20quiero%20más%20información%" class="whatsapp-button" target="_blank">
+        <i class="fa-whatsapp fab"></i>
+    </a>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    
+    <script>
+        // Configuración de Firebase
+      const firebaseConfig = {
+  apiKey: "AIzaSyBoRNOrpueYTJVeqxZwMtUsyAYArEHvgVU",
+  authDomain: "morenita0ficial.firebaseapp.com",
+  databaseURL: "https://morenita0ficial-default-rtdb.firebaseio.com",
+  projectId: "morenita0ficial",
+  storageBucket: "morenita0ficial.firebasestorage.app",
+  messagingSenderId: "867231481408",
+  appId: "1:867231481408:web:50512d7709d3b9d4e7a9a5"
+};
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+
+        const auth = firebase.auth();
+        const database = firebase.database();
+        
+        let currentUser = null;
+        let userOrders = [];
+        let userFavorites = [];
+        let isAdmin = false;
+
+
+        // Referencias del DOM
+        const profileSection = document.getElementById('profile-section');
+        const ordersSection = document.getElementById('orders-section');
+        const favoritesSection = document.getElementById('favorites-section');
+        const ordersContainer = document.getElementById('orders-container');
+        const favoritesContainer = document.getElementById('favorites-container');
+        const passwordModal = document.getElementById('passwordModal');
+        const orderModal = document.getElementById('orderModal');
+        const productModal = document.getElementById('productModal');
+        const orderModalContent = document.getElementById('order-modal-content');
+        const productModalContent = document.getElementById('product-modal-content');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileOverlay = document.createElement('div');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const mobileProfilePic = document.getElementById('mobile-profile-pic');
+        
+        mobileOverlay.className = 'mobile-overlay';
+        document.body.appendChild(mobileOverlay);
+
+        // Navigation
+        document.getElementById('nav-profile').addEventListener('click', () => {
+            showSection('profile');
+            setActiveNav('nav-profile');
+            closeSidebar();
+        });
+        
+        document.getElementById('nav-orders').addEventListener('click', () => {
+            showSection('orders');
+            setActiveNav('nav-orders');
+            loadUserOrders();
+            closeSidebar();
+        });
+        
+        document.getElementById('nav-favorites').addEventListener('click', () => {
+            showSection('favorites');
+            setActiveNav('nav-favorites');
+            loadUserFavorites();
+            closeSidebar();
+        });
+        
+        document.getElementById('nav-password').addEventListener('click', () => {
+            passwordModal.style.display = 'block';
+            closeSidebar();
+        });
+        
+        document.getElementById('nav-logout').addEventListener('click', logout);
+
+        // Acordeón del menú
+        document.querySelectorAll('.toggle-submenu').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const submenu = this.nextElementSibling;
+                if (submenu.style.display === 'block') {
+                    submenu.style.display = 'none';
+                } else {
+                    submenu.style.display = 'block';
+                }
+            });
+        });
+
+        // Modal controls
+        document.querySelector('.close').addEventListener('click', () => {
+            passwordModal.style.display = 'none';
+        });
+        
+
+
+
+
+
+        function closeOrderModal() {
+            orderModal.style.display = 'none';
+        }
+
+        function closeProductModal() {
+            productModal.style.display = 'none';
+        }
+        
+        window.addEventListener('click', (event) => {
+            if (event.target === passwordModal) {
+                passwordModal.style.display = 'none';
+            }
+            if (event.target === orderModal) {
+                orderModal.style.display = 'none';
+            }
+            if (event.target === productModal) {
+                productModal.style.display = 'none';
+            }
+            if (event.target === mobileOverlay) {
+                closeSidebar();
+            }
+        });
+
+        // Menú hamburguesa
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+        }
+
+        mobileOverlay.addEventListener('click', closeSidebar);
+        
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            mobileOverlay.classList.toggle('active');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.classList.toggle('active');
+            }
+        }
+
+        function closeSidebar() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('open');
+                mobileOverlay.classList.remove('active');
+                if (mobileMenuBtn) {
+                    mobileMenuBtn.classList.remove('active');
+                }
+            }
+        }
+
+        function setActiveNav(activeId) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.getElementById(activeId).classList.add('active');
+        }
+
+        function showSection(section) {
+            profileSection.classList.add('hidden');
+            ordersSection.classList.add('hidden');
+            favoritesSection.classList.add('hidden');
+            
+            if (section === 'profile') {
+                profileSection.classList.remove('hidden');
+            } else if (section === 'orders') {
+                ordersSection.classList.remove('hidden');
+            } else if (section === 'favorites') {
+                favoritesSection.classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            auth.signOut()
+                .then(() => {
+                    window.location.href = 'login.html';
+                })
+                .catch((error) => {
+                    console.error('Error al cerrar sesión:', error);
+                });
+        }
+
+        function formatDate(timestamp) {
+            if (!timestamp) return 'No disponible';
+            const date = new Date(timestamp);
+            return date.toLocaleDateString('es-ES', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP'
+            }).format(amount);
+        }
+
+        function formatPrice(precio) {
+            if (typeof precio === 'number') {
+                return precio.toLocaleString('es-CO');
+            }
+            const numero = parseFloat(precio);
+            return isNaN(numero) ? precio : numero.toLocaleString('es-CO');
+        }
+
+        function getStatusClass(status) {
+            const statusLower = status.toLowerCase();
+            if (statusLower.includes('pendiente')) return 'status-pendiente';
+            if (statusLower.includes('entregado')) return 'status-entregado';
+            if (statusLower.includes('cancelado')) return 'status-cancelado';
+            return 'status-pendiente';
+        }
+
+        async function loadUserProfile(user) {
+    currentUser = user;
+    
+    document.getElementById('user-email').textContent = user.email || 'No disponible';
+    document.getElementById('user-name').textContent = user.displayName || user.email.split('@')[0];
+    
+    const emailVerifiedElement = document.getElementById('email-verified');
+    if (user.emailVerified) {
+        emailVerifiedElement.textContent = 'Verificado';
+        emailVerifiedElement.className = 'info-value verified';
+    } else {
+        emailVerifiedElement.textContent = 'No verificado';
+        emailVerifiedElement.className = 'info-value not-verified';
+    }
+    
+    document.getElementById('user-id').textContent = user.uid;
+    document.getElementById('created-at').textContent = formatDate(user.metadata.creationTime);
+    
+    if (user.photoURL) {
+        document.getElementById('profile-pic').src = user.photoURL;
+        mobileProfilePic.src = user.photoURL;
+    }
+    
+    // Cargar conteo de favoritos desde localStorage
+    loadFavoritesCount();
+    
+    // Verificar si el usuario es administrador
+    isAdmin = await checkIfUserIsAdmin(user.email);
+    if (isAdmin) {
+        showAdminButton();
+        console.log('Usuario administrador detectado');
+    }
+}
+
+        function loadFavoritesCount() {
+            const favorites = JSON.parse(localStorage.getItem('favoritos') || '[]');
+            document.getElementById('total-favorites').textContent = favorites.length;
+        }
+
+        async function loadUserOrders() {
+            if (!currentUser) return;
+            
+            ordersContainer.innerHTML = '<div class="loading">Cargando pedidos...</div>';
+            
+            try {
+                const pedidosRef = database.ref('pedidos');
+                
+                const snapshot = await pedidosRef.once('value');
+                const allOrders = snapshot.val() || {};
+                
+                userOrders = [];
+                
+                Object.keys(allOrders).forEach(orderId => {
+                    const order = allOrders[orderId];
+                    if (order.usuario && order.usuario.userId === currentUser.uid) {
+                        userOrders.push({
+                            id: orderId,
+                            ...order
+                        });
+                    }
+                });
+                
+                userOrders.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+                
+                document.getElementById('total-orders').textContent = userOrders.length;
+                
+                displayOrders();
+                
+            } catch (error) {
+                console.error('Error al cargar pedidos:', error);
+                ordersContainer.innerHTML = '<div class="no-orders">Error al cargar los pedidos. Intente nuevamente.</div>';
+            }
+        }
+
+        function displayOrders() {
+            if (userOrders.length === 0) {
+                ordersContainer.innerHTML = '<div class="no-orders">No tienes pedidos realizados aún.</div>';
+                return;
+            }
+
+            const ordersHTML = userOrders.map(order => `
+                <div class="order-card" data-order-id="${order.id}">
+                    <div class="order-card-content">
+                        <div class="order-number">Pedido #${order.id}</div>
+                        <div class="order-status ${getStatusClass(order.estado)}">${order.estado}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            ordersContainer.innerHTML = ordersHTML;
+            
+            document.querySelectorAll('.order-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const orderId = this.getAttribute('data-order-id');
+                    const order = userOrders.find(o => o.id === orderId);
+                    if (order) {
+                        showOrderDetails(order);
+                    }
+                });
+            });
+        }
+
+        async function loadUserFavorites() {
+            favoritesContainer.innerHTML = '<div class="loading">Cargando favoritos...</div>';
+            
+            try {
+                // Obtener favoritos del localStorage
+                const favorites = JSON.parse(localStorage.getItem('favoritos')) || [];
+                
+                if (favorites.length === 0) {
+                    favoritesContainer.innerHTML = '<div class="no-favorites">No tienes productos favoritos aún.</div>';
+                    return;
+                }
+
+                userFavorites = [];
+                
+                // Cargar detalles de cada producto favorito desde Firebase
+                for (const favorite of favorites) {
+                    try {
+                        const productRef = database.ref(`productos/${favorite.categoria}/${favorite.id}`);
+                        const snapshot = await productRef.once('value');
+                        const productData = snapshot.val();
+                        
+                        if (productData) {
+                            userFavorites.push({
+                                id: favorite.id,
+                                categoria: favorite.categoria,
+                                ...productData
+                            });
+                        }
+                    } catch (error) {
+                        console.error(`Error cargando producto favorito ${favorite.id}:`, error);
+                    }
+                }
+                
+                displayFavorites();
+                
+            } catch (error) {
+                console.error('Error al cargar favoritos:', error);
+                favoritesContainer.innerHTML = '<div class="no-favorites">Error al cargar los favoritos. Intente nuevamente.</div>';
+            }
+        }
+        
+        function displayFavorites() {
+            if (userFavorites.length === 0) {
+                favoritesContainer.innerHTML = '<div class="no-favorites">No tienes productos favoritos.</div>';
+                return;
+            }
+
+            const favoritesHTML = userFavorites.map(product => `
+                <div class="favorite-card">
+                    <img src="${product.imagen || 'img/placeholder.jpg'}" alt="${product.nombre}" class="favorite-card-image">
+                    <div class="favorite-card-content">
+                        <div class="favorite-card-category">${product.categoria}</div>
+                        <div class="favorite-card-title">${product.nombre}</div>
+                        <div class="favorite-card-price">${formatPrice(product.precio)}</div>
+                        <div class="favorite-card-actions">
+                            <button class="btn-favorite btn-view" onclick="viewProductModal('${product.categoria}', '${product.id}')">
+                                <i class="fas fa-eye"></i> Ver
+                            </button>
+                            <button class="btn-favorite btn-remove" onclick="removeFavorite('${product.id}', '${product.categoria}')">
+                                <i class="fas fa-heart-broken"></i> Quitar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            favoritesContainer.innerHTML = favoritesHTML;
+        }
+
+        function viewProductModal(categoria, id) {
+            const product = userFavorites.find(p => p.id === id && p.categoria === categoria);
+            if (!product) return;
+
+            const productDetailsHTML = `
+                <div class="product-modal-header">
+                    <img src="${product.imagen || 'img/placeholder.jpg'}" alt="${product.nombre}" class="product-modal-image">
+                    <div class="product-modal-info">
+                        <div class="product-modal-category">${product.categoria}</div>
+                        <div class="product-modal-title">${product.nombre}</div>
+                        <div class="product-modal-price">${formatPrice(product.precio)}</div>
+                        <div class="product-modal-description">
+                            ${product.descripcion || 'Sin descripción disponible.'}
+                        </div>
+                        <div class="product-modal-actions">
+                            <button class="btn btn-danger" onclick="removeFavoriteFromModal('${product.id}', '${product.categoria}')">
+                                <i class="fas fa-heart-broken"></i> Quitar de Favoritos
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            productModalContent.innerHTML = productDetailsHTML;
+            productModal.style.display = 'block';
+        }
+
+        function removeFavoriteFromModal(id, categoria) {
+            removeFavorite(id, categoria);
+            closeProductModal();
+        }
+
+        function removeFavorite(id, categoria) {
+            if (!confirm('¿Estás seguro de que quieres quitar este producto de tus favoritos?')) {
+                return;
+            }
+
+            try {
+                // Obtener favoritos actuales del localStorage
+                let favorites = JSON.parse(localStorage.getItem('favoritos') || '[]');
+                
+                // Filtrar para remover el producto específico
+                const updatedFavorites = favorites.filter(fav => !(fav.id === id && fav.categoria === categoria));
+                
+                // Guardar en localStorage
+                localStorage.setItem('favoritos', JSON.stringify(updatedFavorites));
+                
+                // Actualizar contador en Firebase (decrementar)
+                const productRef = database.ref(`productos/${categoria}/${id}`);
+                productRef.child('favoritos').transaction(function(currentFavorites) {
+                    return Math.max((currentFavorites || 0) - 1, 0);
+                }).then(() => {
+                    console.log('Contador de favoritos actualizado en Firebase');
+                }).catch(error => {
+                    console.error('Error actualizando contador de favoritos:', error);
+                });
+                
+                // Actualizar la vista
+                userFavorites = userFavorites.filter(fav => !(fav.id === id && fav.categoria === categoria));
+                displayFavorites();
+                
+                // Actualizar contador en el perfil
+                document.getElementById('total-favorites').textContent = updatedFavorites.length;
+                
+                // Mostrar notificación
+                mostrarNotificacion('Producto eliminado de favoritos');
+                
+            } catch (error) {
+                console.error('Error al eliminar favorito:', error);
+                mostrarNotificacion('Error al eliminar el producto de favoritos');
+            }
+        }
+
+        function showOrderDetails(order) {
+            const orderDetailsHTML = `
+                <h2 style="color: #2c3e50; margin-bottom: 20px; border-bottom: 2px solid #c0a062; padding-bottom: 10px;">
+                    Detalles del Pedido #${order.id}
+                </h2>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <div class="info-label">Fecha</div>
+                        <div class="info-value">${order.fechaFormateada || formatDate(order.fecha)}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Estado</div>
+                        <div class="info-value ${getStatusClass(order.estado)}" style="display: inline-block; padding: 5px 15px; border-radius: 20px; background-color: #c0a062; color: white;">
+                            ${order.estado}
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                    <div>
+                        <div class="info-label">Método de Pago</div>
+                        <div class="info-value">${order.metodo_pago || 'No especificado'}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Categoría</div>
+                        <div class="info-value">${order.categoria || 'No especificado'}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Envío</div>
+                        <div class="info-value">${formatCurrency(order.envio || 0)}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Subtotal</div>
+                        <div class="info-value">${formatCurrency(order.subtotal || 0)}</div>
+                    </div>
+                    <div>
+                        <div class="info-label">Adicionales</div>
+                        <div class="info-value">${formatCurrency(order.adicionales_costo || 0)}</div>
+                    </div>
+                </div>
+
+                ${order.cliente ? `
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-weight: bold; color: #2c3e50; margin-bottom: 10px;">📍 Información de Entrega:</div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                            <div>
+                                <div style="font-weight: bold;">Cliente:</div>
+                                <div>${order.cliente.nombre}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold;">Teléfono:</div>
+                                <div>${order.cliente.telefono}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold;">Dirección:</div>
+                                <div>${order.cliente.direccion}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold;">Email:</div>
+                                <div>${order.cliente.email}</div>
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+                
+                ${order.productos && order.productos.length > 0 ? `
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-weight: bold; color: #2c3e50; margin-bottom: 10px;">🛍️ Productos:</div>
+                        ${order.productos.map(producto => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e9ecef;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    ${producto.imagen ? `<img src="${producto.imagen}" alt="${producto.nombre}" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover;">` : ''}
+                                    <div>
+                                        <div style="font-weight: bold;">${producto.nombre}</div>
+                                        <div style="color: #666; font-size: 14px;">Cantidad: ${producto.cantidad}</div>
+                                    </div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>${formatCurrency(producto.precio)}</div>
+                                    <div style="font-weight: bold;">${formatCurrency(producto.precio * producto.cantidad)}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : ''}
+
+                ${order.adicionales && (order.adicionales.globos || order.adicionales.mensaje || order.adicionales.motivo) ? `
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-weight: bold; color: #2c3e50; margin-bottom: 10px;">✨ Adicionales:</div>
+                        ${order.adicionales.globos ? `
+                            <div style="padding: 5px 0;">
+                                <span style="font-weight: bold;">Globos:</span> ${order.adicionales.globos}
+                            </div>
+                        ` : ''}
+                        ${order.adicionales.mensaje ? `
+                            <div style="padding: 5px 0;">
+                                <span style="font-weight: bold;">Mensaje:</span> ${order.adicionales.mensaje}
+                            </div>
+                        ` : ''}
+                        ${order.adicionales.mensajePersonalizado ? `
+                            <div style="padding: 5px 0;">
+                                <span style="font-weight: bold;">Mensaje Personalizado:</span> "${order.adicionales.mensajePersonalizado}"
+                            </div>
+                        ` : ''}
+                        ${order.adicionales.mensajeGloboPersonalizado ? `
+                            <div style="padding: 5px 0;">
+                                <span style="font-weight: bold;">Mensaje en Globo:</span> "${order.adicionales.mensajeGloboPersonalizado}"
+                            </div>
+                        ` : ''}
+                        ${order.adicionales.motivo && order.adicionales.motivo !== 'No especificado' ? `
+                            <div style="padding: 5px 0;">
+                                <span style="font-weight: bold;">Motivo:</span> ${order.adicionales.motivo}
+                            </div>
+                        ` : ''}
+                    </div>
+                ` : ''}
+                
+                <div style="text-align: right; font-size: 20px; margin-top: 20px; padding-top: 15px; border-top: 2px solid #c0a062;">
+                    <span style="font-weight: bold;">Total: </span>
+                    <span style="color: #c0a062; font-weight: bold;">${formatCurrency(order.total)}</span>
+                </div>
+            `;
+            
+            orderModalContent.innerHTML = orderDetailsHTML;
+            orderModal.style.display = 'block';
+        }
+
+        // Change password functionality
+        document.getElementById('change-password-btn').addEventListener('click', async () => {
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                showPasswordMessage('error', 'Todos los campos son requeridos');
+                return;
+            }
+
+            if (newPassword !== confirmPassword) {
+                showPasswordMessage('error', 'Las contraseñas no coinciden');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                showPasswordMessage('error', 'La nueva contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+
+            try {
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    currentUser.email,
+                    currentPassword
+                );
+                
+                await currentUser.reauthenticateWithCredential(credential);
+                await currentUser.updatePassword(newPassword);
+                
+                showPasswordMessage('success', 'Contraseña cambiada exitosamente');
+                
+                document.getElementById('current-password').value = '';
+                document.getElementById('new-password').value = '';
+                document.getElementById('confirm-password').value = '';
+                
+                setTimeout(() => {
+                    passwordModal.style.display = 'none';
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Error al cambiar contraseña:', error);
+                let errorMessage = 'Error al cambiar la contraseña';
+                
+                if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'La contraseña actual es incorrecta';
+                } else if (error.code === 'auth/weak-password') {
+                    errorMessage = 'La nueva contraseña es muy débil';
+                }
+                
+                showPasswordMessage('error', errorMessage);
+            }
+        });
+
+        function showPasswordMessage(type, text) {
+            const messageDiv = document.getElementById('password-message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.classList.remove('hidden');
+        }
+
+        // Función para mostrar notificación simple
+        function mostrarNotificacion(mensaje) {
+            // Crear elemento de notificación si no existe
+            let notification = document.getElementById('notification');
+            if (!notification) {
+                notification = document.createElement('div');
+                notification.id = 'notification';
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background-color: #c0a062;
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                    z-index: 9999;
+                    font-weight: bold;
+                    display: none;
+                    
+                `;
+                document.body.appendChild(notification);
+            }
+            
+            notification.textContent = mensaje;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                loadUserProfile(user);
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Actualizar contador del carrito
+        function actualizarContadorCarrito() {
+            let carrito = [];
+            try {
+                const carritoGuardado = localStorage.getItem('carrito');
+                if (carritoGuardado) {
+                    carrito = JSON.parse(carritoGuardado);
+                }
+            } catch (error) {
+                console.error('Error al obtener el carrito desde localStorage:', error);
+            }
+
+            const totalItems = carrito.reduce((total, item) => total + (item.cantidad || 0), 0);
+            
+            const mobileContador = document.getElementById('mobileCarritoContador');
+            if (mobileContador) {
+                mobileContador.textContent = totalItems;
+                mobileContador.style.display = totalItems > 0 ? 'flex' : 'none';
+            }
+        }
+
+        async function checkIfUserIsAdmin(userEmail) {
+    try {
+        const madRef = database.ref('mad');
+        const snapshot = await madRef.once('value');
+        const adminEmails = snapshot.val() || {};
+        
+        // Verificar si el email del usuario está en la lista de administradores
+        const adminsList = Object.values(adminEmails);
+        const isUserAdmin = adminsList.some(admin => 
+            admin.email && admin.email.toLowerCase() === userEmail.toLowerCase()
+        );
+        
+        return isUserAdmin;
+    } catch (error) {
+        console.error('Error verificando permisos de administrador:', error);
+        return false;
+    }
+}
+
+function showAdminButton() {
+    // Crear el botón de administrador si no existe
+    let adminButton = document.getElementById('admin-panel-btn');
+    if (!adminButton) {
+        adminButton = document.createElement('button');
+        adminButton.id = 'admin-panel-btn';
+        adminButton.className = 'btn btn-primary';
+        adminButton.style.cssText = `
+            margin-left: 15px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        `;
+        adminButton.innerHTML = '<i class="fas fa-cog"></i> Panel Admin';
+        adminButton.addEventListener('click', () => {
+            window.location.href = 'dash.html';
+        });
+        
+        adminButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+        });
+        
+        adminButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        });
+
+        // Agregar al header principal
+        const header = document.querySelector('.header');
+        if (header) {
+            header.appendChild(adminButton);
+        }
+    }
+
+    let adminNavItem = document.getElementById('nav-admin');
+
+    if (!adminNavItem) {
+        adminNavItem = document.createElement('div');
+        adminNavItem.id = 'nav-admin';
+        adminNavItem.className = 'nav-item';
+        adminNavItem.style.cssText = `
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+        `;
+        adminNavItem.innerHTML = '<i class="fas fa-cog"></i> Panel Administrativo';
+        adminNavItem.addEventListener('click', () => {
+            window.location.href = 'dash.html';
+        });
+
+        // Insertar antes del item "Cambiar Contraseña"
+        const passwordNav = document.getElementById('nav-password');
+        if (passwordNav) {
+            passwordNav.parentNode.insertBefore(adminNavItem, passwordNav);
+        }
+    }
+}
+
+        // Llamar a la función al cargar la página
+        document.addEventListener('DOMContentLoaded', actualizarContadorCarrito);
+    </script>
+</body>
+</html>

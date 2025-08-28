@@ -1,0 +1,2213 @@
+{
+  "adiciones": {
+    "adicion1": {
+      "descripcion": "Chicharrón: Incluye bollo limpio y limón",
+      "firebaseKey": "adicion1",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/chicharrron.png",
+      "nombre": "Adición 1",
+      "precio": 16000
+    },
+    "adicion10": {
+      "descripcion": "Copa de frutas: Mix de frutas frescas",
+      "firebaseKey": "adicion10",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/copa-frutas.png",
+      "nombre": "Adición 10",
+      "precio": 4500
+    },
+    "adicion11": {
+      "descripcion": "Parfait: Yogurt griego con granola y frutas",
+      "firebaseKey": "adicion11",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/parfail.png",
+      "nombre": "Adición 11",
+      "precio": 8000
+    },
+    "adicion12": {
+      "descripcion": "Mini torta: Torta de 1/4 incluye vela y lazo",
+      "firebaseKey": "adicion12",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/mini-torta.png",
+      "nombre": "Adición 12",
+      "precio": 24000
+    },
+    "adicion13": {
+      "descripcion": "True love: 3 fresas cubiertas en chocolate negro y blanco",
+      "firebaseKey": "adicion13",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/tru-love.png",
+      "nombre": "Adición 13",
+      "precio": 24000
+    },
+    "adicion14": {
+      "descripcion": "Porción de torta: Incluye tooper dorado y vela (feliz dia, feliz cumpleaños)",
+      "firebaseKey": "adicion14",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/pastel-.png",
+      "nombre": "Adición 14",
+      "precio": 15000
+    },
+    "adicion15": {
+      "descripcion": "",
+      "firebaseKey": "adicion15",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/cvz-corona.png",
+      "nombre": "Adición 15",
+      "precio": 4500
+    },
+    "adicion16": {
+      "descripcion": "",
+      "firebaseKey": "adicion16",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/hatsu.png",
+      "nombre": "Adición 16",
+      "precio": 4500
+    },
+    "adicion17": {
+      "descripcion": "",
+      "firebaseKey": "adicion17",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/jp-chenet.png",
+      "nombre": "Adición 17",
+      "precio": 29000
+    },
+    "adicion18": {
+      "descripcion": "",
+      "firebaseKey": "adicion18",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/jp-chenet-lata.png",
+      "nombre": "Adición 18",
+      "precio": 13000
+    },
+    "adicion19": {
+      "descripcion": "Rosal: Set de 3 rosas",
+      "firebaseKey": "adicion19",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/rosal.png",
+      "nombre": "Adición 19",
+      "precio": 14000
+    },
+    "adicion2": {
+      "descripcion": "Chicharrón: Incluye bollo limpio y limón",
+      "firebaseKey": "adicion2",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/chicharrron.png",
+      "nombre": "Adición 2",
+      "precio": 22000
+    },
+    "adicion20": {
+      "descripcion": "1 rosa",
+      "firebaseKey": "adicion20",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/rosa.png",
+      "nombre": "Adición 20",
+      "precio": 4000
+    },
+    "adicion21": {
+      "descripcion": "1 rosa + 1 ferrero decorado",
+      "firebaseKey": "adicion21",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/rosa-ferrero.png",
+      "nombre": "Adición 21",
+      "precio": 15000
+    },
+    "adicion22": {
+      "descripcion": "1 girasol decorado",
+      "firebaseKey": "adicion22",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/girasol.png",
+      "nombre": "Adición 22",
+      "precio": 17000
+    },
+    "adicion24": {
+      "descripcion": "Globos metalizados con helio: En forma de corazón o estrella",
+      "firebaseKey": "adicion24",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/metal.png",
+      "nombre": "Adición 24",
+      "precio": 5000
+    },
+    "adicion25": {
+      "descripcion": "Mini oso: 20 cm",
+      "firebaseKey": "adicion25",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/mini-oso.png",
+      "nombre": "Adición 25",
+      "precio": 21000
+    },
+    "adicion26": {
+      "descripcion": "Porta retrato con foto",
+      "firebaseKey": "adicion26",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/porta-retrato.png",
+      "nombre": "Adición 26",
+      "precio": 20000
+    },
+    "adicion27": {
+      "descripcion": "Mug-pocillo Personalizado",
+      "firebaseKey": "adicion27",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/mug-posillo.png",
+      "nombre": "Adición 27",
+      "precio": 12000
+    },
+    "adicion28": {
+      "descripcion": "Vela con aroma (Mini burbuja)",
+      "firebaseKey": "adicion28",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/vela-aroma-burble.png",
+      "nombre": "Adición 28",
+      "precio": 8000
+    },
+    "adicion29": {
+      "descripcion": "Vela con aroma (burbuja)",
+      "firebaseKey": "adicion29",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/burble-master.png",
+      "nombre": "Adición 29",
+      "precio": 21000
+    },
+    "adicion3": {
+      "descripcion": "Sándwich gratinado: Pollo con maíz tierno, jamón, queso mozzarella, pan y salsa de la casa",
+      "firebaseKey": "adicion3",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/sandiw-gratinado.png",
+      "nombre": "Adición 3",
+      "precio": 10000
+    },
+    "adicion30": {
+      "descripcion": "Vela con aroma (Rosa)",
+      "firebaseKey": "adicion30",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/rosa-vela.png",
+      "nombre": "Adición 30",
+      "precio": 12000
+    },
+    "adicion31": {
+      "descripcion": "Vela con aroma (Virgen)",
+      "firebaseKey": "adicion31",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/vela-virgen.png",
+      "nombre": "Adición 31",
+      "precio": 17000
+    },
+    "adicion32": {
+      "descripcion": "Vela con aroma (Oso)",
+      "firebaseKey": "adicion32",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/vela-oso-aroma.png",
+      "nombre": "Adición 32",
+      "precio": 18000
+    },
+    "adicion33": {
+      "descripcion": "Base de agua: Bouquet de globos",
+      "firebaseKey": "adicion33",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquet-1.png",
+      "nombre": "Adición 33",
+      "precio": 25000
+    },
+    "adicion34": {
+      "descripcion": "Base de agua: Bouquet de globos",
+      "firebaseKey": "adicion34",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquert-2.png",
+      "nombre": "Adición 34",
+      "precio": 39000
+    },
+    "adicion35": {
+      "descripcion": "Base de agua: Bouquet de globos",
+      "firebaseKey": "adicion35",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquet-3.png",
+      "nombre": "Adición 35",
+      "precio": 13000
+    },
+    "adicion36": {
+      "descripcion": "Base de globos",
+      "firebaseKey": "adicion36",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquet4.png",
+      "nombre": "Adición 36",
+      "precio": 20000
+    },
+    "adicion37": {
+      "descripcion": "Base de globos",
+      "firebaseKey": "adicion37",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquet5.png",
+      "nombre": "Adición 37",
+      "precio": 15000
+    },
+    "adicion38": {
+      "descripcion": "Base de agua: Bouquet de globos",
+      "firebaseKey": "adicion38",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/banquet6.png",
+      "nombre": "Adición 38",
+      "precio": 43000
+    },
+    "adicion39": {
+      "descripcion": "",
+      "firebaseKey": "adicion39",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/j-naranja.png",
+      "nombre": "Adición 39",
+      "precio": 5000
+    },
+    "adicion4": {
+      "descripcion": "Sándwich Integral: Pan integral con pollo, jamón, queso mozzarella y verduras",
+      "firebaseKey": "adicion4",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/sandw-intergral.png",
+      "nombre": "Adición 4",
+      "precio": 12000
+    },
+    "adicion5": {
+      "descripcion": "2 arepas de queso con carne molida",
+      "firebaseKey": "adicion5",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/2-arepas-con-carne-molida.png",
+      "nombre": "Adición 5",
+      "precio": 13000
+    },
+    "adicion6": {
+      "descripcion": "Waffles: Incluye fresas y miel mapple",
+      "firebaseKey": "adicion6",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/waffles.png",
+      "nombre": "Adición 6",
+      "precio": 13000
+    },
+    "adicion7": {
+      "descripcion": "Pancakes: Incluye fresas y miel mapple",
+      "firebaseKey": "adicion7",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/pancakes.png",
+      "nombre": "Adición 7",
+      "precio": 13000
+    },
+    "adicion8": {
+      "descripcion": "Empanadas: 2 empanadas de carne/pollo",
+      "firebaseKey": "adicion8",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/empanadas.png",
+      "nombre": "Adición 8",
+      "precio": 7000
+    },
+    "adicion9": {
+      "descripcion": "Deditos de queso: 4 deditos con full queso",
+      "firebaseKey": "adicion9",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/deditos-de-queso.png",
+      "nombre": "Adición 9",
+      "precio": 6000
+    }
+  },
+  "admis": {
+    "admin1": {
+      "email": "andresjavier_400@hotmail.com",
+      "isAdmin": true,
+      "nombre": "andres"
+    }
+  },
+  "bannerespecial": {
+    "activo": false,
+    "celular": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banner-dia-especial-mobile/testeoo.png",
+    "link": "catalogo-especial.html",
+    "pc": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banner-dia-especial-mobile/testeoo.png"
+  },
+  "carrusel": {
+    "desktop": [
+      {
+        "alt": "globos",
+        "link": "desayunos.html",
+        "url": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banners/computadores/1.webp"
+      },
+      {
+        "alt": "desayunos",
+        "link": "desayunos.html",
+        "url": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banners/computadores/2.webp"
+      }
+    ],
+    "mobile": [
+      {
+        "alt": "desayunos",
+        "link": "promociones.html",
+        "url": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banners/celular/1.webp"
+      },
+      {
+        "alt": "desayunos",
+        "link": "desayunos.html",
+        "url": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/banners/celular/2.webp"
+      }
+    ]
+  },
+  "colores-lazos": {
+    "color1": {
+      "codigo": "#FF0000",
+      "nombre": "Rojo"
+    }
+  },
+  "config": {
+    "catalogoEspecial": true,
+    "catalogoMensaje": {
+      "message": "",
+      "title": "Catalogo no disponible"
+    }
+  },
+  "configuracion": {
+    "carrusel1": {
+      "mostrarCarrusel": true,
+      "mostrarTexto": true,
+      "texto": "ARREGLOS FLORALES QUE CONVIERTEN CUALQUIER DÍA EN ESPECIAL"
+    },
+    "carrusel2": {
+      "mostrarCarrusel": true,
+      "mostrarTexto": true,
+      "texto": "SORPRENDE Y ENDULZA EL DÍA CON UN DESAYUNO INOLVIDABLE"
+    },
+    "carrusel3": {
+      "mostrarCarrusel": true,
+      "mostrarTexto": true,
+      "texto": "CELEBRA, DISFRUTA Y BRINDA CON LO MEJOR"
+    }
+  },
+  "globos": {
+    "-OXoD5WOhZWouZY9oVg2": {
+      "firebaseKey": "-OXoD5WOhZWouZY9oVg2",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/plateado-reflex.png",
+      "nombre": "Plateado reflex",
+      "precio": 4500
+    },
+    "-OXoDCyVpt0N8JxVocph": {
+      "firebaseKey": "-OXoDCyVpt0N8JxVocph",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/verde-relflex.png",
+      "nombre": "verde reflex",
+      "precio": 4500
+    },
+    "-OXoDQAf3rGLdQEXpMg8": {
+      "firebaseKey": "-OXoDQAf3rGLdQEXpMg8",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/rosado-reflex.png",
+      "nombre": "rosado reflex",
+      "precio": 4500
+    },
+    "globo10": {
+      "firebaseKey": "globo10",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/rojo-pastel.png",
+      "nombre": "rojo pastel",
+      "precio": 4500
+    },
+    "globo11": {
+      "firebaseKey": "globo11",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/rrojo-reflex.png",
+      "nombre": "rojo reflex",
+      "precio": 4500
+    },
+    "globo12": {
+      "firebaseKey": "globo12",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/negro.png",
+      "nombre": "negro",
+      "precio": 4500
+    },
+    "globo13": {
+      "firebaseKey": "globo13",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/dorado-reflex.png",
+      "nombre": "dorado reflex",
+      "precio": 4500
+    },
+    "globo14": {
+      "firebaseKey": "globo14",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/campage.png",
+      "nombre": "champagne",
+      "precio": 4500
+    },
+    "globo15": {
+      "firebaseKey": "globo15",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/arena-bing.png",
+      "nombre": "arena/beig",
+      "precio": 4500
+    },
+    "globo17": {
+      "firebaseKey": "globo17",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/eucalicto.png",
+      "nombre": "eucalicto",
+      "precio": 4500
+    },
+    "globo2": {
+      "firebaseKey": "globo2",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/fucsia-reflex.png",
+      "nombre": "Fucsia Réflex",
+      "precio": 4500
+    },
+    "globo3": {
+      "firebaseKey": "globo3",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/fucsia-pastel.png",
+      "nombre": "Fucsia pastel",
+      "precio": 4500
+    },
+    "globo4": {
+      "firebaseKey": "globo4",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/oro-rosa-reflex.png",
+      "nombre": "oro rosa reflex",
+      "precio": 4500
+    },
+    "globo5": {
+      "firebaseKey": "globo5",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/palo-rosa.png",
+      "nombre": "palo rosa",
+      "precio": 4500
+    },
+    "globo6": {
+      "firebaseKey": "globo6",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/morado-reflex.png",
+      "nombre": "morado reflex",
+      "precio": 4500
+    },
+    "globo7": {
+      "firebaseKey": "globo7",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/lila-pastel.png",
+      "nombre": "lila pastel",
+      "precio": 4500
+    },
+    "globo8": {
+      "firebaseKey": "globo8",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/azul-reflex.png",
+      "nombre": "azul reflex",
+      "precio": 4500
+    },
+    "globo9": {
+      "firebaseKey": "globo9",
+      "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/azul-naval-pastel.png",
+      "nombre": "azul naval pastel",
+      "precio": 4500
+    }
+  },
+  "mad": {
+    "admin1": {
+      "email": "deavilaa433@gmail.com"
+    },
+    "admin2": {
+      "email": "rta779688@gmail.com"
+    }
+  },
+  "pedidos": {
+    "-OYP6GIPnIu90Yk89ZmG": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "promociones"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-15-16:45",
+          "horarioGeneralTexto": "Lunes a Domingo: 3:00pm - 4:45pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "promociones",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T03:26:35.737Z",
+      "fechaEntrega": "2025-08-24",
+      "fechaFormateada": "23/8/2025",
+      "id": "892406",
+      "metodo_pago": "Efectivo al recibir",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "promociones",
+          "id": "0",
+          "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasta-frutal/1_1.webp",
+          "nombre": "prodcut 1 promos",
+          "precio": 102000
+        },
+        {
+          "cantidad": 1,
+          "categoria": "promociones",
+          "id": "1",
+          "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/1.webp",
+          "nombre": "product 2 promos",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 161000,
+      "timestamp": 1756005995737,
+      "total": 169000,
+      "usuario": {
+        "userDisplayName": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYP6UIDkXqHFE-9FXLt": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-10-12:45",
+          "horarioGeneralTexto": "Lunes a Domingo: 10:00am - 12:45pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T03:27:33.069Z",
+      "fechaEntrega": "2025-08-24",
+      "fechaFormateada": "23/8/2025",
+      "id": "692112",
+      "metodo_pago": "Efectivo al recibir",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "0",
+          "imagen": "https://i.imgur.com/tNpk0cH.jpg",
+          "nombre": "CONO FLORAL",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756006053069,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYP775IximQOXBlyabO": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-15-16:45",
+          "horarioGeneralTexto": "Lunes a Domingo: 3:00pm - 4:45pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T03:30:20.172Z",
+      "fechaEntrega": "2025-08-25",
+      "fechaFormateada": "23/8/2025",
+      "id": "266439",
+      "metodo_pago": "Efectivo al recibir",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "0",
+          "imagen": "https://i.imgur.com/tNpk0cH.jpg",
+          "nombre": "CONO FLORAL",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756006220173,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYPApBfxP6Ifo2jEhQC": {
+      "adicionales": {
+        "colorGlobo": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/plateado-reflex.png, https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/globos/verde-relflex.png",
+        "globos": "2 globos (2 colores ) - Total: $9000",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-17-19",
+          "horarioGeneralTexto": "Lunes a Domingo: 5:00pm - 7:00pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Personalizado: \"xccbx\" ",
+        "mensajeGloboPersonalizado": "gsdgsgs",
+        "mensajePersonalizado": "xccbx",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 12000,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T03:46:31.952Z",
+      "fechaEntrega": "2025-08-25",
+      "fechaFormateada": "23/8/2025",
+      "id": "917110",
+      "metodo_pago": "Daviplata",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "0",
+          "imagen": "https://i.imgur.com/tNpk0cH.jpg",
+          "nombre": "CONO FLORAL",
+          "precio": 59000
+        },
+        {
+          "cantidad": 1,
+          "imagen": "https://pub-2c0010c6ef454c3a8dd9b573f70a17f4.r2.dev/adiciones/mini-torta.png",
+          "nombre": "Adición 12",
+          "precio": 24000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 83000,
+      "timestamp": 1756007191953,
+      "total": 103000,
+      "usuario": {
+        "userDisplayName": "pedido un desayuno + otro dos + coordinar entrega111111111",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYPI2CpFCOysGSmLsYe": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-17-19",
+          "horarioGeneralTexto": "Lunes a Domingo: 5:00pm - 7:00pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "andres",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T04:18:03.762Z",
+      "fechaEntrega": "2025-08-23",
+      "fechaFormateada": "23/8/2025",
+      "id": "439859",
+      "metodo_pago": "Nequi",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "1",
+          "imagen": "https://i.imgur.com/YwTkT1V.jpg",
+          "nombre": "CONO FERRERO MINI",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756009083762,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "andres",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYPMhb0_MHux26eDtCS": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-17-19",
+          "horarioGeneralTexto": "Lunes a Domingo: 5:00pm - 7:00pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "andres1",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T04:38:25.981Z",
+      "fechaEntrega": "2025-08-23",
+      "fechaFormateada": "23/8/2025",
+      "id": "624881",
+      "metodo_pago": "Nequi",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "1",
+          "imagen": "https://i.imgur.com/YwTkT1V.jpg",
+          "nombre": "CONO FERRERO MINI",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756010305982,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "andres1",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYPNAa8djUp16GZGja2": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-15-16:45",
+          "horarioGeneralTexto": "Lunes a Domingo: 3:00pm - 4:45pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "andres1",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T04:40:28.807Z",
+      "fechaEntrega": "2025-08-25",
+      "fechaFormateada": "24/8/2025",
+      "id": "453853",
+      "metodo_pago": "Efectivo al recibir",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "1",
+          "imagen": "https://i.imgur.com/YwTkT1V.jpg",
+          "nombre": "CONO FERRERO MINI",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756010428808,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "andres1",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    },
+    "-OYPPLBu8LYFTDvBoniq": {
+      "adicionales": {
+        "colorGlobo": "",
+        "globos": "Ninguno",
+        "horarios": {
+          "categorias": [
+            "diaespecial"
+          ],
+          "coordinacionEspecial": false,
+          "horarioDesayuno": "",
+          "horarioDesayunoTexto": "",
+          "horarioGeneral": "lunes-domingo-17-19",
+          "horarioGeneralTexto": "Lunes a Domingo: 5:00pm - 7:00pm",
+          "numeroCategoriasDetectadas": 1,
+          "tieneDesayunos": false,
+          "tipoEntrega": "",
+          "tipoEntregaTexto": "No especificado"
+        },
+        "mensaje": "Ninguno",
+        "mensajeGloboPersonalizado": "",
+        "mensajePersonalizado": "",
+        "motivo": "No especificado"
+      },
+      "adicionales_costo": 0,
+      "categoria": "diaespecial",
+      "cliente": {
+        "direccion": "carrera16#20b 39",
+        "email": "diome@money.com",
+        "nombre": "andres122",
+        "puntoReferencia": "este es pedido pal 23",
+        "telefono": "31178901800"
+      },
+      "envio": 8000,
+      "estado": "Pendiente",
+      "fecha": "2025-08-24T04:49:56.535Z",
+      "fechaEntrega": "2025-08-24",
+      "fechaFormateada": "23/8/2025",
+      "id": "697144",
+      "metodo_pago": "Efectivo al recibir",
+      "productos": [
+        {
+          "cantidad": 1,
+          "categoria": "diaespecial",
+          "id": "1",
+          "imagen": "https://i.imgur.com/YwTkT1V.jpg",
+          "nombre": "CONO FERRERO MINI",
+          "precio": 59000
+        }
+      ],
+      "receptor": {
+        "celular": "2121414124124",
+        "nombre": "pablo escobar "
+      },
+      "subtotal": 59000,
+      "timestamp": 1756010996536,
+      "total": 67000,
+      "usuario": {
+        "userDisplayName": "andres122",
+        "userEmail": "rta779688@gmail.com",
+        "userId": "Xj261bX0R7aQtkG9c5Y5Wf64MAL2"
+      }
+    }
+  },
+  "productos": {
+    "arreglos": {
+      "6": {
+        "categoria": "arreglos",
+        "descripcion": "Lindo ramo de 30-35 rosas\nnaturales, decorado con papel\ncoreano y lazo.",
+        "favoritos": 0,
+        "firebaseKey": "6",
+        "id": "ghklj",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-fiori/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-fiori/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-fiori/3.webp",
+        "nombre": "RAMO FIORI",
+        "precio": 154000
+      },
+      "7": {
+        "categoria": "arreglos",
+        "descripcion": "Hermoso ramo de 7 girasoles\nnaturales, follajes y 4 chocolates\nferreros rocher, decorado con papel\ncoreano y lazo.",
+        "favoritos": "",
+        "firebaseKey": "7",
+        "id": "bvv",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-girasoles/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-girasoles/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-girasoles/3.webp",
+        "nombre": "RAMO GIRASOLES",
+        "precio": 140000
+      },
+      "8": {
+        "categoria": "arreglos",
+        "descripcion": "Hermoso ramo de 100 rosas\nnaturales, decorado con papel\ncoreano y lazo. \"NO INCLUYE PELUCHE\"",
+        "favoritos": "",
+        "firebaseKey": "8",
+        "id": "buchon",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-buchonm/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-buchonm/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-buchonm/3.webp",
+        "nombre": "RAMO BUCHON",
+        "precio": 382000
+      },
+      "9": {
+        "categoria": "arreglos",
+        "descripcion": "Linda caja de cartón rígido en forma\nde corazón con 19-20 rosas\nnaturales y lazo.\n\n\nEl arreglo va cubierto en tull blanco",
+        "favoritos": "",
+        "firebaseKey": "9",
+        "id": "cvvcv",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mini-isabela/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mini-isabela/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mini-isabela/3.webp",
+        "nombre": "MINI ISABELLA",
+        "precio": 122000
+      },
+      "10": {
+        "categoria": "arreglos",
+        "descripcion": "Linda caja de cartón rígido en forma\nde corazón con 29-32 rosas\nnaturales y lazo.\n\n\nEl arreglo va cubierto en tull blanco",
+        "favoritos": "",
+        "firebaseKey": "10",
+        "id": "bss",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/isabella/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/isabella/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/isabella/1.webp",
+        "nombre": "ISABELLA",
+        "precio": 175000
+      },
+      "11": {
+        "categoria": "arreglos",
+        "descripcion": "Linda caja de cartón rígido en forma\nde corazón con 17-19 rosas\nnaturales, 19 chocolates ferreros\nrocher y lazo.\n\n\nEl arreglo va cubierto en tull blanco",
+        "favoritos": "",
+        "firebaseKey": "11",
+        "id": "bb",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/corazon-ferrero/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/corazon-ferrero/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/corazon-ferrero/3.webp",
+        "nombre": "CORAZON FERRERO",
+        "precio": 193000
+      },
+      "13": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo compuesto por 15 rosas,\nlirios, mini rosas y mix de follajes,\npuedes elegir: (peluche, vino,\nchocolates o frutas)",
+        "favoritos": "",
+        "firebaseKey": "13",
+        "id": "cvctr",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/sandra/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/sandra/1.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/sandra/1.webp",
+        "nombre": "SANDRA",
+        "precio": 200000
+      },
+      "14": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de base en cartón rígido,\ncompuesto por 24 rosas naturales\ncon follaje y 7 globos con helio y 1\nglobo burbuja con helio.",
+        "favoritos": "",
+        "firebaseKey": "14",
+        "id": "12ct5",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-ramo/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-ramo/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-ramo/3.webp",
+        "nombre": "MEGA RAMO",
+        "precio": 260000
+      },
+      "15": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de base en cartón rígido,\ncompuesto por 12-13 rosas naturales\ny mix de follajes disponibles.",
+        "favoritos": "",
+        "firebaseKey": "15",
+        "id": "iuytr",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-khole/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-khole/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-khole/3.webp",
+        "nombre": "RAMO KLHOE",
+        "precio": 130000
+      },
+      "16": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de base en cartón rígido,\ncompuesto por 19-18 rosas naturales\ncon flores y follajes.",
+        "favoritos": "",
+        "firebaseKey": "16",
+        "id": "dsfbnm",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-redondo/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-redondo/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/ramo-redondo/1.webp",
+        "nombre": "RAMO REDONDO",
+        "precio": 198000
+      },
+      "18": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de base en cartón rígido o\nbase de mimbre, compuesto por\n60-65 rosas naturales y follajes",
+        "favoritos": "",
+        "firebaseKey": "18",
+        "id": "njhy",
+        "image3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/love-flower/1.webp",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/love-flower/2.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/love-flower/1.webp",
+        "nombre": "LOVE  FLOWER",
+        "precio": 280000
+      },
+      "19": {
+        "categoria": "arreglos",
+        "descripcion": "Linda caja de cartón rígido en forma\nde corazón con 55-60 rosas\nnaturales, 11 chocolates ferrero\nrocher y vino tinto.",
+        "favoritos": "",
+        "firebaseKey": "19",
+        "id": "cvvccvt",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-corazon/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-corazon/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/mega-corazon/3.webp",
+        "nombre": "MEGA CORAZON",
+        "precio": 360000
+      },
+      "20": {
+        "categoria": "arreglos",
+        "descripcion": "Ramo de 5-6 rosas naturales con 1\ngirasol y eucalipto, decorado con\npapel coreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": "",
+        "firebaseKey": "20",
+        "id": "cvcb",
+        "image3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/cono-girasol-con-rosses/1.webp",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/cono-girasol-con-rosses/2.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/cono-girasol-con-rosses/1.webp",
+        "nombre": "GIRASOL CON ROSAS",
+        "precio": 58000
+      },
+      "21": {
+        "categoria": "arreglos",
+        "descripcion": "Una flor natural preservada que mantiene su belleza y frescura por años, sin necesidad de agua ni cuidados especiales. Perfecta para expresar amor, gratitud y admiración, esta rosa es el regalo ideal para momentos inolvidables.  Características:  Base de madera con cristal   Lazo Disponible en: Rosado, fucsia y rojo  Incluye tarjeta con mensaje personalizado  Tarjeta con instrucciones para el cuidado de la rosa",
+        "favoritos": "",
+        "id": "rosa eterna",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/rosa-eterna/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/rosa-eterna/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/arreglos-florales/rosa-eterna/1.webp",
+        "nombre": "ROSA ETERNA",
+        "precio": "150000"
+      },
+      "-OYR4ccZXFJnjjNtSJLz": {
+        "categoria": "arreglos",
+        "descripcion": "6 rosas naturales acompañado con\neucalipto, decorado con papel\ncoreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación",
+        "firebaseKey": "-OYR4ccZXFJnjjNtSJLz",
+        "id": "prod-1756039056336",
+        "imagen": "te.pb",
+        "imagen2": "be",
+        "imagen3": "be",
+        "nombre": "Ramo Gold - imgs",
+        "precio": 42000
+      },
+      "-OYR64fcF0oSNJghMzeE": {
+        "categoria": "arreglos",
+        "descripcion": "12 rosas naturales acompañado con\neucalipto, decorado con papel\ncoreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "firebaseKey": "-OYR64fcF0oSNJghMzeE",
+        "id": "prod-1756039462255",
+        "imagen": "1.b",
+        "imagen2": "bb",
+        "imagen3": "b",
+        "nombre": "Ramo Floral -imgs",
+        "precio": 66000
+      },
+      "-OYR6kY2YDCdixNSfcda": {
+        "categoria": "arreglos",
+        "descripcion": "4 hermosas gerberas naturales\nacompañado con florecitas,\ndecorado con papel coreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "firebaseKey": "-OYR6kY2YDCdixNSfcda",
+        "id": "prod-1756039634308",
+        "imagen": "v",
+        "imagen2": "c",
+        "imagen3": "c",
+        "nombre": "Ramo Gerberas Mini - igms",
+        "precio": 32000
+      },
+      "-OYR71ZX213UCbEK488y": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de 11-12 gerberas naturales\nacompañado con eucaliptos,\ndecorado con papel coreano y lazo.",
+        "firebaseKey": "-OYR71ZX213UCbEK488y",
+        "id": "prod-1756039696990",
+        "imagen": "v",
+        "imagen2": "v",
+        "imagen3": "v",
+        "nombre": "Ramo Gerbera - imgs",
+        "precio": 59000
+      },
+      "-OYR7V6Ft-pt-24qMOSQ": {
+        "categoria": "arreglos",
+        "descripcion": "4 girasoles naturales acompañado\ncon flores y eucalipto, decorado con\npapel coreano y lazo.",
+        "firebaseKey": "-OYR7V6Ft-pt-24qMOSQ",
+        "id": "prod-1756039815252",
+        "imagen": "b",
+        "imagen2": "bb",
+        "imagen3": "v",
+        "nombre": "Ramo Girasoles Mini - imgs",
+        "precio": 62000
+      },
+      "-OYR7gU1PUivW6JqAWJ9": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de Lirios naturales,\ndecorado con papel coreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "firebaseKey": "-OYR7gU1PUivW6JqAWJ9",
+        "id": "prod-1756039883245",
+        "imagen": "v",
+        "imagen2": "v",
+        "imagen3": "v",
+        "nombre": "Ramo Lirios Mini -imgs",
+        "precio": 41000
+      },
+      "-OYR869ViVGVsiog7r9u": {
+        "categoria": "arreglos",
+        "descripcion": "Mix de flores, follajes, 2 rosas\nnaturales acompañado con 2\nchocolates ferreros rocher, decorado\ncon papel coreano y lazo.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "firebaseKey": "-OYR869ViVGVsiog7r9u",
+        "id": "prod-1756040005945",
+        "imagen": "b",
+        "imagen2": "bb",
+        "imagen3": "v",
+        "nombre": "Ramo Mixto Pq -imgs",
+        "precio": 73000
+      },
+      "-OYR8MHkRXhCUPwOzbZF": {
+        "categoria": "arreglos",
+        "descripcion": "Mix de flores, follajes, 5 rosas\nnaturales, decorado con papel\ncoreano y lazo.",
+        "firebaseKey": "-OYR8MHkRXhCUPwOzbZF",
+        "id": "prod-1756040044827",
+        "imagen": "v",
+        "imagen2": "v",
+        "imagen3": "v",
+        "nombre": "Ramo Mixto Md - imgs",
+        "precio": 76000
+      },
+      "-OYR8rZQxiWrS-vqAVBD": {
+        "categoria": "arreglos",
+        "descripcion": "Mix de flores como claveles, lirios,\ngirasol, rosas, eucaliptos y muchos\nmás... decorado con papel coreano y\nlazo.",
+        "firebaseKey": "-OYR8rZQxiWrS-vqAVBD",
+        "id": "prod-1756040170127",
+        "imagen": "vb",
+        "imagen2": "bv",
+        "imagen3": "vb",
+        "nombre": "Ramo Mixto Grd - imgs",
+        "precio": 190000
+      },
+      "-OYR993-g1FV_-7rGChs": {
+        "categoria": "arreglos",
+        "descripcion": "Mix de lirios y 6 rosas naturales,\ndecorado con papel coreano y lazo",
+        "firebaseKey": "-OYR993-g1FV_-7rGChs",
+        "id": "prod-1756040262330",
+        "imagen": "vv",
+        "imagen2": "vv",
+        "imagen3": "v",
+        "nombre": "Ramo Miss Lirios -imgs",
+        "precio": 96000
+      },
+      "-OYR9NwsbljH7DutZI0X": {
+        "categoria": "arreglos",
+        "descripcion": "Mix de lirios, follaje verde, 7-8 rosas\nnaturales, decorado con papel\ncoreano y lazo.",
+        "firebaseKey": "-OYR9NwsbljH7DutZI0X",
+        "id": "prod-1756040333749",
+        "imagen": "vv",
+        "imagen2": "v",
+        "imagen3": "v",
+        "nombre": "Ramo Romántico",
+        "precio": 96000
+      },
+      "-OYRAn1kHYOnEbUODZkF": {
+        "categoria": "arreglos",
+        "descripcion": "Tierno ramo de mini rosas\nnaturales, decorado con papel\ncoreano y lazo.",
+        "firebaseKey": "-OYRAn1kHYOnEbUODZkF",
+        "id": "prod-1756040677755",
+        "imagen": "bb",
+        "imagen2": "bb",
+        "imagen3": "b",
+        "nombre": "Ramo Rosas Petit -imgs",
+        "precio": 60000
+      },
+      "-OYRBFP7DB8c5t5-KcY6": {
+        "categoria": "arreglos",
+        "descripcion": "Exclusivo ramo de pinoquios\nnaturales, decorado con papel\ncoreano y lazo.",
+        "firebaseKey": "-OYRBFP7DB8c5t5-KcY6",
+        "id": "prod-1756040823599",
+        "imagen": "gf",
+        "imagen2": "fg",
+        "imagen3": "f",
+        "nombre": "Ramo  Pinoquios - imgs",
+        "precio": 49000
+      },
+      "-OYRBR4KHdS24ntIQYNv": {
+        "categoria": "arreglos",
+        "descripcion": "Hermoso ramo de flores con\ngerberas, 6 rosas, hortensias y\nmás... decorado con papel coreano y\nlazo.",
+        "firebaseKey": "-OYRBR4KHdS24ntIQYNv",
+        "id": "prod-1756040864513",
+        "imagen": "vv",
+        "imagen2": "cv",
+        "imagen3": "vc",
+        "nombre": "Ramo Florecer -imgs",
+        "precio": 90000
+      },
+      "-OYRBRsKbdS24ntIQYNv": {
+        "categoria": "arreglos",
+        "descripcion": "Hermoso ramo de 48-50 rosasnaturales en forma de corazón,decorado con papel coreano y lazo.",
+        "firebaseKey": "OYRBRsKbdS24ntIQYNv",
+        "id": "prod-1756040822223",
+        "imagen": "vv",
+        "imagen2": "cv",
+        "imagen3": "vc",
+        "nombre": "Ramo Love  -img",
+        "precio": 198000
+      },
+      "-OYRBRsKbdS2a2ntIQYNv": {
+        "categoria": "arreglos",
+        "descripcion": "Lindo ramo de 24 rosas naturales,decorado con papel coreano y lazo",
+        "firebaseKey": "OYRBRsKbdS2a2ntIQYNv",
+        "id": "prod-1756040833223",
+        "imagen": "vv",
+        "imagen2": "cv",
+        "imagen3": "vc",
+        "nombre": "RAMO EVA",
+        "precio": 140000
+      },
+      "-OYRD3vnxBVbzCAW6zPS": {
+        "categoria": "arreglos",
+        "descripcion": "Arreglo de base en cartón rígido,\ncompuesto por 45-55 rosas\nnaturales en colores surtidos o\nunicolor, lirios y follajes.",
+        "firebaseKey": "-OYRD3vnxBVbzCAW6zPS",
+        "id": "prod-1756041264087",
+        "imagen": "v",
+        "imagen2": "vv",
+        "imagen3": "v",
+        "nombre": "Nidia",
+        "precio": 237000
+      }
+    },
+    "box": [
+      {
+        "categoria": "box",
+        "descripcion": "Jarra metálica, globo burbuja con motivo, hoja de papel, follaje, lazo y tarjeta con mensaje personalizado. contiene: 1 cerveza coronita o mini pony, papas Pringles, 3 galletas oreo, mini nutella o ponqué mini ramo y masmelos o gomitas",
+        "favoritos": 1,
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/dulcera/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/dulcera/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/dulcera/1.webp",
+        "nombre": "DULCERA",
+        "precio": "62000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Jarra de aluminio, globo burbuja con motivo, hoja de papel, follaje, lazo y tarjeta con mensaje personalizado. contiene: Vino JP Chenet 200 ml, papas pringles, galleta oreo, 2 Mini nutella, masmelos o gomitas, ferrero Rocher x3 uni.y 1 galleta Hanuta",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/jarra-dulcera/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/jarra-dulcera/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/jarra-dulcera/1.webp",
+        "nombre": "JARRA DULCERA",
+        "precio": "140000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "  Jarra de aluminio, globo burbuja con motivo, hoja de papel, follaje, lazo y tarjeta con mensaje personalizado. contiene: 3 cervezas coronitas, Ferreros Rocher x3 uni, papas pringles y mini nutella",
+        "favoritos": 1,
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/JARRA-CERVECERA/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/JARRA-CERVECERA/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/JARRA-CERVECERA/1.webp",
+        "nombre": "JARRA CERVECERA",
+        "precio": "99000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera con relleno, lazo, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Vino tinto de 750 ml, chocolate ferrero x3 unidades y 1 copa de vidrio.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/1.webp",
+        "nombre": "REFERENCIA 1",
+        "precio": "110000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera con relleno, lazo, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Vino tinto de 375 ml, chocolate ferrero x3 unidades y 1 copa de vidrio",
+        "favoritos": "",
+        "firebaseKey": "4",
+        "id": "rs",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/REFERENCIA1/1.webp",
+        "nombre": "REFERENCIA 2",
+        "precio": 87000
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera con tapa de acrílico y nombre personalizado, relleno con viruta de madera, lazo de tela, tarjeta con mensaje personalizado. contiene: JP Chenet de lata, caja de 3 fresas con chocolate blanco y chocolate negro, frasco con frutos secos, vela decorativa con aroma de la virgen, ramito con flores secas. ",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia3/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia3/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia3/3.webp",
+        "nombre": "REFERENCIA 3",
+        "precio": "106000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Vino personal 187ml, caja de chocolate, café tostado molido Juan Valdez de 70g, pocillo de vidrio, bolsita de frutos secos, vela decorativa con aroma, ramito con flores secas y tooper de feliz día o feliz cumpleaños",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia4/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia4/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia4/3.webp",
+        "nombre": "REFERENCIA 4",
+        "precio": "115000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera con tapa de acrílico y nombre personalizado, relleno con viruta de madera, lazo de tela, tarjeta con mensaje personalizado. contiene: JP Chenet de 200ml, copa de vidrio, 2 chocolates ferreros, pocillo de vidrio, bolsita de frutos secos, vela decorativa con aroma",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia5/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia5/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia5/3.webp",
+        "nombre": "REFERENCIA 5",
+        "precio": "127000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera de color, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Peluche conejito o oso (según disponibilidad), caja de 3 fresas cubiertas con chocolate negro y chocolate blanco, frasco con frutos secos, porta retrato con foto, ramito con flores secas",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia6/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia6/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia6/3.webp",
+        "nombre": "REFERENCIA 6",
+        "precio": "124000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera de color, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Vino Blanco JP Divine Brut Chardonnay  de 750 ml, peluche (según disponibilidad), 2 copas de vidiro personalizada, 2 chocolates ferreros, porta retrato con foto.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia7/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia7/2.webp",
+        "nombre": "REFERENCIA 7",
+        "precio": "202000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera de color, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Vino Espumoso Jp Divine Muscat de 750 ml, caja de chocolate, frasco con frutos secos, vela decorativa con aroma, porta retrato con foto.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia8/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia8/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia8/3.webp",
+        "nombre": "REFERENCIA 8",
+        "precio": "198000"
+      },
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera de color, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Whisky Buchanans Deluxe 750ml, capsulas de café Juan Valdéz, frasco con frutos secos, copa de whiskey y ramito de flores secas.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia9/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia9/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia9/3.webp",
+        "nombre": "REFERENCIA 9",
+        "precio": "264000"
+      },
+      null,
+      {
+        "categoria": "box",
+        "descripcion": "Caja de madera de color, relleno con viruta de madera, lazos, tarjeta con mensaje personalizado, el arreglo va cubierto en tul blanco. contiene: Crema Baileys de 700ml, caja de fresas con chocolate blanco y chocolate negro, copa de vidirio personalizada, vela decorativa con aroma y ramito de flores secas",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia11/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia11/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/box/referencia11/3.webp",
+        "nombre": "referencia 11",
+        "precio": "200000"
+      }
+    ],
+    "desayunos": [
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nZumo de naranja en frasco de vidrio,\nsándwich gratinado, brownie o\nmuffin con vela.",
+        "favoritos": 1,
+        "firebaseKey": "0",
+        "id": "MENU 1",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu1/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu1/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu1/3.webp",
+        "nombre": "MENU 1",
+        "precio": 39000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nMix de 7 frutas frescas acompañado\ncon leche condensada y granola.",
+        "favoritos": 0,
+        "firebaseKey": "1",
+        "id": "2",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/bowl-de-frutas/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/bowl-de-frutas/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/bowl-de-frutas/3.webp",
+        "nombre": "BOWL DE FRUTAS",
+        "precio": 40000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nZumo de naranja en frasco de vidrio,\nsándwich gratinado, 4 deditos de\nqueso, copa con frutas, maní mixto\ny brownie o muffin con vela.",
+        "favoritos": 3,
+        "firebaseKey": "2",
+        "id": "3",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu2/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu2/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu2/3.webp",
+        "nombre": "MENU 2",
+        "precio": 60000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela en tapa de acetato y ramito de\nflores preservadas. \n\n\nPostre/porción de torta (incluye vela\ny tooper dorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio, mini\nchicharrón con bollitos y limón,\nmanzana verde/roja, trozos de\nchorizos con limón, 4 deditos de\nqueso y galletas oreo.",
+        "favoritos": 1,
+        "firebaseKey": "3",
+        "id": "7",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu5/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu5/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu5/1.webp",
+        "nombre": "MENU 5",
+        "precio": 90000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nZumo de naranja en frasco vidrio,\nsándwich gratinado, waffles con\nfresas o kiwi y arándanos, miel\nmapple, salsa de frutos rojos y\nmuffin con vela o brownie",
+        "favoritos": 1,
+        "firebaseKey": "4",
+        "id": "4",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-waffles/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-waffles/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-waffles/3.webp",
+        "nombre": "MENU WAFFLES",
+        "precio": 60000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nZumo de naranja en frasco de vidrio,\npancakes con fresas acompañado\ncon miel mapple, salsa de frutos\nrojos, copa de frutas, granola, mini\nnutella y frasco de yogurt griego.",
+        "favoritos": 1,
+        "firebaseKey": "5",
+        "id": "5",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/MENU-3-PANCAKES/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/MENU-3-PANCAKES/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/MENU-3-PANCAKES/3.webp",
+        "nombre": "MENU 3 PANCAKES",
+        "precio": 63000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Linda caja de cartón con moño de\ntela y ramito de flores preservadas. \n\n\nZumo de naranja en frasco de vidrio,\nMix con chicharrón, bollitos limpio, 2\ndeditos de queso, 3 mini chorizo, 1\nempanada de carne/pollo, trozos de\nqueso costeño y limón.",
+        "favoritos": 1,
+        "firebaseKey": "6",
+        "id": "6",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-4-criollo/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-4-criollo/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu-4-criollo/3.webp",
+        "nombre": "MENU 4 CRIOLLO",
+        "precio": 63000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de cartón con arreglo de globos\ny lazo.\n\n\nPostre/porción de torta (incluye vela\ny tooper dorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio, 2\narepas de queso con carne molida,\nmini chicharrón con bollitos y limón,\ntrozos de chorizos y 4 deditos de\nqueso.",
+        "favoritos": "",
+        "firebaseKey": "7",
+        "id": "8",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu6/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu6/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu6/3.webp",
+        "nombre": "MENU 6",
+        "precio": 118000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nZumo de naranja en frasco de vidrio,\nsándwich gratinado, picada de\nfrutas, 5 deditos de queso, parfait en\nfrasco de vidrio (yogurt griego con\ngranola y frutas) y mini nutella.",
+        "favoritos": 1,
+        "firebaseKey": "8",
+        "id": "9",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu7/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu7/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu7/3.webp",
+        "nombre": "MENU 7",
+        "precio": 89000
+      },
+      null,
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nZumo de naranja en frasco de vidrio,\nchicharrón con bollos limpios y\nlimón, picada de frutas, soda hatsu o\ncerveza y muffin con vela o brownie",
+        "favoritos": "",
+        "firebaseKey": "10",
+        "id": "vcc",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu9/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu9/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu9/1.webp",
+        "nombre": "MENU 9",
+        "precio": 89000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nZumo de naranja en frasco de vidrio,\n2 Arepas de queso con carne molida,\npicada de frutas, muffin con vela o\nbrownie y mini nutella.",
+        "favoritos": "",
+        "firebaseKey": "11",
+        "id": "cv",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu10/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu10/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu10/3.webp",
+        "nombre": "MENU 10",
+        "precio": 83000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nZumo de naranja en frasco de vidrio,\nSándwich integral con pollo, jamón,\nquesillos y verduras, picada de frutas,\nsoda Hatsu, frasco de vidrio con maní\nmixto y arreglo de 3 rosas con flores",
+        "favoritos": "",
+        "firebaseKey": "12",
+        "id": "fd",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu11/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu11/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu11/3.webp",
+        "nombre": "MENU 11",
+        "precio": 100000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nTorta de 1/4 (incluye vela y tooper\ndorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio,\nsándwich gratinado, 5 deditos de\nqueso, picada de frutas y mini nutella.",
+        "favoritos": "",
+        "firebaseKey": "13",
+        "id": "c",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu12/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu12/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu12/3.webp",
+        "nombre": "MENU 12",
+        "precio": 111000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nZumo de naranja en frasco de vidrio,\nsándwich gratinado, chicharrón con\nbollo y limón, 5 deditos de queso,\nmanzana verde/roja, parfait (Yogurt\ncon granola y frutas) y mini nutella.",
+        "favoritos": 1,
+        "firebaseKey": "14",
+        "id": "xc",
+        "imagen": "https://i.imgur.com/BMmkHFo.png",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/MENU-HEXAGONAL-MIXTO/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/MENU-HEXAGONAL-MIXTO/1.webp",
+        "nombre": "MENU HEXAGONAL MIXTO",
+        "precio": 112000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nTorta de 1/4 (incluye vela y tooper\ndorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio,\nsándwich gratinado, picada de frutas,\narreglo de 3 rosas con flores, parfait\nen frasco de vidrio(yogurt griego con\ngranola y frutas) y mini nutella.",
+        "favoritos": 2,
+        "firebaseKey": "15",
+        "id": "cc",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu13/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu13/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu13/1.webp",
+        "nombre": "MENU 13",
+        "precio": 133000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nTorta de 1/4 (incluye vela y tooper\ndorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio, 2\narepas de queso con carne molida,\npicada de frutas, 2 cervezas coronitas\no sodas hatsu, frasco de vidrio con\nmaní mixto.",
+        "favoritos": "",
+        "firebaseKey": "16",
+        "id": "ds",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu14/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu14/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu14/1.webp",
+        "nombre": "MENU 14",
+        "precio": 125000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon globos, mantelito y lazos.\n\n\nTorta de 1/4 (incluye vela y tooper\ndorado de feliz día/feliz\ncumpleaños/feliz aniversario), zumo\nde naranja en frasco de vidrio,\nchicharrón con bollos y limón, picada\nde bocadillo con queso, 1 manzana\nverde/roja, 1 cerveza coronita o soda\nhatsu, y frasco de vidrio con maní\nmixto.",
+        "favoritos": "",
+        "firebaseKey": "17",
+        "id": "vgg",
+        "imagen": "https://i.imgur.com/nbtySch.png",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu15/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu15/3.webp",
+        "nombre": "MENU 15",
+        "precio": 136000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada\ncon arco de globos y tooper con\nmotivo (feliz día/feliz cumpleaños/feliz\naniversario) mantelito y lazos.\n\n\nMini torta de 1/4 (incluye vela), zumo\nde naranja en frasco de vidrio,\nsándwich gratinado, 5 deditos de\nqueso, parfait (yogurt griego con\ngranola y frutas), arreglo de 3 rosas\ncon flores y manzana verde/roja.",
+        "favoritos": "",
+        "firebaseKey": "18",
+        "id": "uy",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/mini-arco-organico/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/mini-arco-organico/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/mini-arco-organico/1.webp",
+        "nombre": "MINI ARCO ORGANICO",
+        "precio": 157000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada con\n3 globos con helio, un globo metalizado\ncon helio y globo burbuja con motivo,\nmantelito y lazos.\n\n\nTorta de 1/4 (incluye vela y tooper dorado\nde feliz día/feliz cumpleaños/feliz\naniversario), zumo de naranja en frasco\nde vidrio, chicharrón con bollo y limón,\nsándwich gratinado, 5 deditos de queso,\nparfait (yogurt con granola y frutas), 2\ncervezas coronitas o sodas hatsu, picada\nde frutas y frasco de vidrio con maní.",
+        "favoritos": "",
+        "firebaseKey": "19",
+        "id": "klj",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu17/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu17/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu17/3.webp",
+        "nombre": "MENU 17",
+        "precio": 171000
+      },
+      null,
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera decorada con flores, rosas, lazo y tela, portarretrato con mensaje personalizado o foto y cubiertos de bambú con pitillo eco.  2 parfait en copa de vidrio (yogurt griego, granola y frutas con arándanos), 2 zumos de naranja, sándwich especial con pan orégano, queso mozzarella, jamón, lechuga crespa, tomate, cebolla y salsa de la casa, waffles con fresas, miel mapple, salsa de frutos rojos y mini copa de frutas \"No incluye los globos con helio, adiciónalos por un valor de $ 14.000 mil\"",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/tu-y-yo/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/tu-y-yo/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/tu-y-yo/3.webp",
+        "nombre": "TU & YO",
+        "precio": "139000"
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada con\nlazos, mantelito, 4 globos con helio y\nglobo burbuja forma orgánica.\n\n\nTorta de 1/4 (incluye vela y tooper dorado\nde feliz día/feliz cumpleaños/feliz\naniversario), zumo de naranja en frasco\nde vidrio, sándwich gratinado, parfait\n(yogurt con granola y frutas), picada de\nfrutas, arreglo de rosas y flores y frasco\nde vidrio con maní y mini nutella.",
+        "favoritos": "",
+        "firebaseKey": "22",
+        "id": "gf",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu19/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu19/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu19/1.webp",
+        "nombre": "MENU 19 BURBUJA ORGANICO",
+        "precio": 179000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada con\nlazos, mantelito, globo burbuja forma\norgánica con flores y rosas.\n\n \n\nTorta de 1/4 (incluye vela y tooper dorado\nde feliz día/feliz cumpleaños/feliz\naniversario), zumo de naranja en frasco\nde vidrio, sándwich gratinado, soda Hatsu\no cerveza coronita, parfait en frasco de\nvidrio (yogurt con granola y fruta), frasco\nde vidrio con maní, mini nutella, y\nmanzana verde/roja",
+        "favoritos": "",
+        "firebaseKey": "23",
+        "id": "cfgd",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu20/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu20/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu20/1.webp",
+        "nombre": "MENU 20 BURBUJA ORGANICO FLORAL",
+        "precio": 168000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas, decorada con\narco de globos y tooper con motivo (feliz\ndía/feliz cumpleaños/feliz aniversario)\nmantelito y lazos.\n\n\nTorta de 1/4 (incluye vela), zumo de\nnaranja en frasco de vidrio, sándwich\ngratinado, 5 deditos de queso, manzana\nverde/roja, arreglo de rosas con flores,\npapas pringles, mini nutella y galleta.",
+        "favoritos": "",
+        "firebaseKey": "24",
+        "id": "bbb",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/arco-organico/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/arco-organico/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/arco-organico/1.webp",
+        "nombre": "ARCO ORGANICO",
+        "precio": 192000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada con\nlazos, mantelito, arco de globos forma\norgánica con 7 rosas y flores, 3 globos con\nhelio y tooper con motivo (feliz día/feliz\ncumpleaños/feliz aniversario)\n\n\nTorta de 1/4 (incluye vela), zumo de\nnaranja en frasco de vidrio, sándwich\ngratinado, 5 deditos de queso, pinchos de\nJamón y quesillo, mini nutella, bandeja\nde frutas frescas( uvas, 1 kiwi, 1 granadilla\no durazno, 2 manzanas y fresas) y 1 soda\nhatsu o cerveza.",
+        "favoritos": "",
+        "firebaseKey": "25",
+        "id": "vccx",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu22/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu22/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu22/3.webp",
+        "nombre": "MENU 22 ARCO ORGANICO FLORAL",
+        "precio": 224000
+      },
+      {
+        "categoria": "desayunos",
+        "descripcion": "Caja de madera con patas decorada con\nlazos, mantelito, arco de globos forma\norgánica, 3 globos con helio y tooper con\nmotivo (feliz día/feliz cumpleaños/feliz\naniversario)\n\n\nTorta de 1/4 (incluye vela), zumo de\nnaranja en frasco de vidrio, chicharrón\ncon bollos y limón, 2 arepas de queso con\ncarne molida, 8 deditos de queso, 2\ncervezas coronita o 2 sodas hatsu, mini\nnutella y galletas",
+        "favoritos": "",
+        "firebaseKey": "26",
+        "id": "bvccc",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu23/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu23/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/desayunos/menu23/3.webp",
+        "nombre": "MENU 23 ARCO ORGANICO PLUS",
+        "precio": 199000
+      }
+    ],
+    "diaespecial": [
+      null,
+      {
+        "categoria": "diaespecial",
+        "descripcion": "  Cono o papel coreano, tarjeta con mensaje personalizado y empaque en bolsa. contiene: 6-7 rosas naturales y 4 chocolates Ferreros Rocher.",
+        "favoritos": 2,
+        "id": "",
+        "imagen": "https://i.imgur.com/YwTkT1V.jpg",
+        "imagen2": "https://i.imgur.com/JWG20Ja.jpg",
+        "imagen3": "https://i.imgur.com/ai2D7sK.jpg",
+        "nombre": "CONO FERRERO MINI",
+        "precio": "59000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Cono o papel coreano, tarjeta con mensaje personalizado y empaque en bolsa. contiene: 8-9 rosas naturales y 8 chocolates Ferreros Rocher.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/89C8r0i.jpg",
+        "imagen2": "https://i.imgur.com/StCImRF.jpg",
+        "imagen3": "https://i.imgur.com/q8My3WY.jpg",
+        "nombre": "CONO FERRERO",
+        "precio": "78000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Cartón negro, lazo y tarjeta con mensaje personalizado. contiene: 48-50 rosas naturales.",
+        "favoritos": "",
+        "id": "ramo love",
+        "imagen": "https://i.imgur.com/UoMBFD0.jpg",
+        "imagen2": "https://i.imgur.com/tPa7cc2.jpg",
+        "imagen3": "https://i.imgur.com/86nl6do.jpg",
+        "nombre": "RAMO LOVE",
+        "precio": "198000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": " Papel coreano, lazo, empaque en bolsa y tarjeta con mensaje personalizado. contiene: Arreglo floral de mano compuesto por rosas naturales, flores y follajes en tonos disponibles, 2 chocolates Ferreros Rocher ",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/fTkTLO3.jpg",
+        "imagen2": "https://i.imgur.com/s0eIcSw.jpg",
+        "imagen3": "https://i.imgur.com/s0eIcSw.jpg",
+        "nombre": "RAMO PURA",
+        "precio": "53000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "  Papel coreano, lazo y tarjeta con mensaje personalizado. contiene: 24 rosas naturales y follaje disponible.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/Q8iXwoW.jpg",
+        "imagen2": "https://i.imgur.com/Q8iXwoW.jpg",
+        "imagen3": "https://i.imgur.com/Q8iXwoW.jpg",
+        "nombre": "RAMO EVA",
+        "precio": "140000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "  Papel coreano, lazo y tarjeta con mensaje personalizado. contiene: 30-35 rosas naturales.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/1lZRBK1.jpg",
+        "imagen2": "https://i.imgur.com/u0j8mTY.jpg",
+        "imagen3": " https://i.imgur.com/24YFvT4.jpg",
+        "nombre": "RAMO FIORI",
+        "precio": "154000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Papel coreano, lazo y tarjeta con mensaje personalizado. contiene: 7 girasoles con follaje y 4 chocolates ferrero rocher.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/TN71Uk2.jpg",
+        "imagen2": "https://i.imgur.com/7oeKO6J.jpg",
+        "imagen3": "https://i.imgur.com/57mgvms.jpg",
+        "nombre": "RAMO GIRASOLES",
+        "precio": "140000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Papel coreano, lazo y tarjeta con mensaje personalizado. contiene: 100 rosas naturales aprox. listón con frase corta,   ejemplo (feliz día, feliz mes, te amo, te quiero, feliz cumpleaños, feliz aniversario, perdóname, ¿quieres ser mi novia? ¿Te quieres casar conmigo?)... \"NO INCLUYE PELUCHE\"",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/I2AESdR.jpg",
+        "imagen2": "https://i.imgur.com/Hi2N7Uy.jpg",
+        "imagen3": "https://i.imgur.com/rOuzhAE.jpg",
+        "nombre": "RAMO BUCHON",
+        "precio": "382000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Caja de cartón rigido en forma de corazón, lazo y tarjeta con mensaje personalizado. contiene: 19-20 rosas naturales.  \"El arreglo va cubierto en tul blanco\"",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/qvOtUGT.jpg",
+        "imagen2": "https://i.imgur.com/yEzfLk2.jpg",
+        "imagen3": "https://i.imgur.com/CVqgRrM.jpg",
+        "nombre": "MINI ISABELLA",
+        "precio": "1220000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Caja de cartón rigida en forma de corazón, lazo y tarjeta con mensaje personalizado. contiene: 29-32 rosas naturales",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/xcpV5z9.jpg",
+        "imagen2": "https://i.imgur.com/HJMh87k.jpg",
+        "imagen3": "https://i.imgur.com/HJMh87k.jpg",
+        "nombre": "ISABELLA",
+        "precio": "175000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Caja de cartón rígida en forma de corazón, lazo y tarjeta con mensaje personalizado. contiene: 17-19 rosas naturales y 19 chocolates Ferrero Rocher",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/OrwDix8.jpg",
+        "imagen2": "https://i.imgur.com/kGkZFsH.jpg",
+        "imagen3": "https://i.imgur.com/oJu0GQR.jpg",
+        "nombre": "CORAZON FERRERO",
+        "precio": "193000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Empaque tipo cartera impermeable, lazo y tarjeta con mensaje personalizado. contiene: 10-11 rosas naturales con mix de follaje",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/8zK5P17.jpg",
+        "imagen2": "https://i.imgur.com/IPclpay.jpg",
+        "imagen3": "https://i.imgur.com/bt34VNH.jpg",
+        "nombre": "CARTERA FLORAL",
+        "precio": "129000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Canasta de paja artesanal, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con 15 rosas, lirios, mini rosas y mix de follajes, puedes elegir: (peluche, vino, chocolates, mug o frutas)",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/KRGUsPG.jpg",
+        "imagen2": "https://i.imgur.com/KRGUsPG.jpg",
+        "imagen3": "https://i.imgur.com/KRGUsPG.jpg",
+        "nombre": "SANDRA",
+        "precio": "200000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Base de cartón rigido forma cilindro, lazo y tarjeta con mensaje personalizado. contiene: 24 rosas naturales con follaje y 7 globos con helio y 1 globo burbuja con helio y motivo",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/pNgEKuV.jpg",
+        "imagen2": "https://i.imgur.com/BMzTfsu.jpg",
+        "imagen3": "https://i.imgur.com/djwLsNC.jpg",
+        "nombre": "MEGA RAMO",
+        "precio": "260000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Base de cartón rígido forma cilindro, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con 12-13 rosas y mix de follajes disponibles",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/8xtV5dC.jpg",
+        "imagen2": "https://i.imgur.com/gM6RRvX.jpg",
+        "imagen3": "https://i.imgur.com/KRrp31L.jpg",
+        "nombre": "RAMO KLHOE",
+        "precio": "130000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Base de cartón rígido forma cilindro, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con 16-18 rosas y mix de follajes disponibles",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/GV3IOGq.jpg",
+        "imagen2": "https://i.imgur.com/Qt0VAJh.jpg",
+        "imagen3": "https://i.imgur.com/IHU5o1i.jpg",
+        "nombre": "RAMO REDONDO",
+        "precio": "198000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Base de cartón rígido forma cilindro, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con rosas y mix de flores y follajes disponibles.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/CjOy5oZ.jpg",
+        "imagen2": "https://i.imgur.com/3f0Lp3Z.jpg",
+        "imagen3": "https://i.imgur.com/8K1EoRc.jpg",
+        "nombre": "RAMO MIXTO",
+        "precio": "189000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Base de cartón rígido o canasto de paja, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con 60-65 rosas y follaje disponible",
+        "favoritos": "",
+        "id": "",
+        "image3": "https://i.imgur.com/oUlfRUj.jpg",
+        "imagen": "https://i.imgur.com/ySW0wOy.jpg",
+        "imagen2": "https://i.imgur.com/5zszfyj.jpg",
+        "nombre": "LOVE  FLOWER",
+        "precio": "280000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "caja de cartón rígido en forma de corazón, lazo y tarjeta con mensaje personalizado. contiene: Arreglo compuesto con 55-60 rosas, 11 chocolates ferrero rocher y vino tinto.",
+        "favoritos": "",
+        "id": "",
+        "imagen": "https://i.imgur.com/DAPRD9D.jpg",
+        "imagen2": "https://i.imgur.com/FTiZx2k.jpg",
+        "imagen3": "https://i.imgur.com/QBqmmci.jpg",
+        "nombre": "MEGA CORAZON",
+        "precio": "360000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Cono o papel coreano, tarjeta con mensaje personalizado y empaque en bolsa. contiene: 5-6 rosas naturales y  1 girasol",
+        "favoritos": "",
+        "id": "",
+        "image3": "https://i.imgur.com/No0ATZw.jpg",
+        "imagen": "https://i.imgur.com/OXV82K5.jpg",
+        "imagen2": "https://i.imgur.com/IWZTbo3.jpg",
+        "nombre": "CONO GIRASOL CON ROSAS",
+        "precio": "58000"
+      },
+      {
+        "categoria": "diaespecial",
+        "descripcion": "Una flor natural preservada que mantiene su belleza y frescura por años, sin necesidad de agua ni cuidados especiales. Perfecta para expresar amor, gratitud y admiración, esta rosa es el regalo ideal para momentos inolvidables.  Características:  Base de madera con cristal   Lazo Disponible en: Rosado, fucsia y rojo  Incluye tarjeta con mensaje personalizado  Tarjeta con instrucciones para el cuidado de la rosa",
+        "favoritos": "",
+        "id": "rosa eterna",
+        "imagen": "https://i.imgur.com/ExZvTQH.png",
+        "imagen2": "https://i.imgur.com/wahNfRx.png",
+        "imagen3": "https://i.imgur.com/ExZvTQH.png",
+        "nombre": "ROSA ETERNA",
+        "precio": "150000"
+      }
+    ],
+    "fresas": [
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón con lazo, 1 rosa\nnatural, 4 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": 2,
+        "firebaseKey": "0",
+        "id": "2xa",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/valentino/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/valentino/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/valentino/3.webp",
+        "nombre": "VALENTINO",
+        "precio": 32000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón con lazo, 1 rosa\nnatural, 6 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": 1,
+        "firebaseKey": "1",
+        "id": "vx4",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/fidelina/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/fidelina/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/fidelina/3.webp",
+        "nombre": "FIDELINA",
+        "precio": 40000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón con lazo, 1 rosa\nnatural, 8 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": 0,
+        "firebaseKey": "2",
+        "id": "nnn",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/celestina/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/celestina/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/celestina/3.webp",
+        "nombre": "CELESTINA",
+        "precio": 50000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón con lazo, 1 rosa\nnatural, 12 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": 0,
+        "firebaseKey": "3",
+        "id": "v",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/lucero/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/lucero/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/lucero/3.webp",
+        "nombre": "LUCERO",
+        "precio": 63000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón con lazo, 1 rosa\nnatural, 1 cerveza coronita, 4 fresas\ncubiertas en chocolate blanco y\nchocolate negro.\n\n\nEl arreglo va empacado en una\nlinda bolsa de presentación.",
+        "favoritos": 0,
+        "firebaseKey": "4",
+        "id": "b",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mrdrink/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mrdrink/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mrdrink/3.webp",
+        "nombre": "MR DRINK",
+        "precio": 38000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido con 4 rosas\nnaturales, 5-6 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va cubierto en tull.",
+        "favoritos": 0,
+        "firebaseKey": "5",
+        "id": "vv4",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/minibouquet/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/minibouquet/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/minibouquet/1.webp",
+        "nombre": "MINI BOUQUET",
+        "precio": 66000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido con 7-8 rosas\nnaturales, 10 fresas cubiertas en\nchocolate blanco y chocolate negro.\n\n\nEl arreglo va cubierto en tull.",
+        "favoritos": "",
+        "firebaseKey": "6",
+        "id": "vcg",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/bouquetradicional/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/bouquetradicional/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/bouquetradicional/3.webp",
+        "nombre": "BOUQUET TRADICIONAL",
+        "precio": 91000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido en forma de\ncorazón con 9-10 rosas naturales, 11\nfresas cubiertas en chocolate blanco\ny chocolate negro.\n\n\nEl arreglo va cubierto en tull.",
+        "favoritos": "",
+        "firebaseKey": "7",
+        "id": "ct12",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/armeria/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/armeria/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/armeria/3.webp",
+        "nombre": "ARMERIA",
+        "precio": 91000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido en forma de\ncorazón con 20-22 rosas naturales, 1\nglobo con helio, 15-16 fresas\ncubiertas en chocolate blanco y\nchocolate negro.\n\n\nEl arreglo va cubierto en tull.",
+        "favoritos": "",
+        "firebaseKey": "8",
+        "id": "vdf",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mariaceleste/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mariaceleste/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/mariaceleste/3.webp",
+        "nombre": "MARIA CELESTE",
+        "precio": 183000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido compuesto por\n50-58 rosas naturales y 8 fresas\ncubiertas en chocolate blanco y\nchocolate negro.",
+        "favoritos": "",
+        "firebaseKey": "9",
+        "id": "ncc",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/cilindro-sweet-rosas/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/cilindro-sweet-rosas/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/cilindro-sweet-rosas/1.webp",
+        "nombre": "CILINDRO SWEET ROSAS",
+        "precio": 215000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de cartón rígido compuesto por\n15-18 rosas naturales, 3 chocolates\nferreros rocher, 3 fresas cubiertas en\nchocolate blanco y chocolate negro.",
+        "favoritos": "",
+        "firebaseKey": "10",
+        "id": "vgfd",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/sweet-aeros/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/sweet-aeros/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/sweet-aeros/3.webp",
+        "nombre": "SWEET AEROS",
+        "precio": 135000
+      },
+      {
+        "categoria": "fresas",
+        "descripcion": "Caja de madera compuesto por\nrosas y flores naturales, 1 vino JP\nCHENET 200ml, copa de vidrio, 6\nfresas cubiertas en chocolate blanco\ny chocolate negro.\n\n\nEl arreglo va cubierto en tull.",
+        "favoritos": "",
+        "firebaseKey": "11",
+        "id": "vchg",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/rousss/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/rousss/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/fresas/rousss/3.webp",
+        "nombre": "ROUSS",
+        "precio": 130000
+      }
+    ],
+    "frutales": [
+      {
+        "categoria": "frutales",
+        "descripcion": " Canasto de paja artesanal con globos y follaje, lazos, tarjeta con mensaje personalizado..  Soda hatsu, sándwich integral (pollo, jamón, quesillos, verduras), arreglo de 3 rosas, galleta integral, mix de frutas: (Uvas, 2 mandarinas, 2 manzanas, 2 kiwis, 1 mango o granadilla y fresas)",
+        "favoritos": 3,
+        "id": "canasta frutal",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasta-frutal/1_1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasta-frutal/2.webp",
+        "nombre": "CANASTA FRUTAL",
+        "precio": "102000"
+      },
+      {
+        "categoria": "frutales",
+        "descripcion": "Canasto de paja artesanal con globos y follaje, lazos, tarjeta con mensaje personalizado.  Mix de frutas: (Uvas, 1 mandarina, 1 manzana, fresas, 2 kiwis, 1 granadilla o pera).",
+        "favoritos": 6,
+        "id": "mini canasta frutal",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/3.webp",
+        "nombre": "MINI CANASTA FRUTAL",
+        "precio": "59000"
+      },
+      {
+        "categoria": "frutales",
+        "descripcion": "  Canasto de paja artesanal, lazo, tarjeta con mensaje personalizado.  6 Rosas, 2 girasoles y mix de follaje disponible, mix de frutas: (2 manzanas, 1 durazno o granadilla, uvas y fresas), vino finca las moras de 375 ml",
+        "favoritos": 9,
+        "id": "canasto de frutas con girasoles",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasto-de-frutas-con-girasoles/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasto-de-frutas-con-girasoles/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasto-de-frutas-con-girasoles/3.webp",
+        "nombre": "CANASTO DE FRUTAS CON GIRASOLES",
+        "precio": "185000"
+      }
+    ],
+    "promociones": [
+      {
+        "categoria": "promociones",
+        "descripcion": " Canasto de paja artesanal con globos y follaje, lazos, tarjeta con mensaje personalizado..  Soda hatsu, sándwich integral (pollo, jamón, quesillos, verduras), arreglo de 3 rosas, galleta integral, mix de frutas: (Uvas, 2 mandarinas, 2 manzanas, 2 kiwis, 1 mango o granadilla y fresas)",
+        "favoritos": 3,
+        "id": "product 1 promo",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasta-frutal/1_1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/canasta-frutal/2.webp",
+        "nombre": "prodcut 1 promos",
+        "precio": "102000"
+      },
+      {
+        "categoria": "promociones",
+        "descripcion": "Canasto de paja artesanal con globos y follaje, lazos, tarjeta con mensaje personalizado.  Mix de frutas: (Uvas, 1 mandarina, 1 manzana, fresas, 2 kiwis, 1 granadilla o pera).",
+        "favoritos": 6,
+        "id": "´product 2 promo",
+        "imagen": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/1.webp",
+        "imagen2": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/2.webp",
+        "imagen3": "https://pub-d1f994dab72149a69130d74ac2480218.r2.dev/frutales/mini-canasta-frutal/3.webp",
+        "nombre": "product 2 promos",
+        "precio": "59000"
+      }
+    ]
+  }
+}
